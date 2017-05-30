@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.id.sima.core.service.UserDao">
+	 <select id="checkLogin" parameterType="com.id.sima.core.model.User" resultType="java.lang.Integer">
+  		SELECT COUNT(*) FROM m_user
+  		WHERE
+    	user_name=#{userName} AND password=#{password} AND hak_akses=#{hakAkses}
+  	</select>
+</mapper>
