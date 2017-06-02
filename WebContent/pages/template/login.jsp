@@ -10,18 +10,22 @@
 </head>
 <body>
 	<s:div cssClass="container">
+		<div class="sdi">
+			<img alt="Loading" src="${pageContext.request.contextPath}/makeOver/images/logoSDI.png">
+			<h3>Sistem Informasi Manajemen Aset</h3>
+		</div>
 		<div class="login-container">
             <div id="output"></div>
             <div class="form-box">
-                <s:form namespace="/authentication" action="auth" validate="true" method="post">
-                    <s:textfield name="userName" required="true" placeholder="username" />
-					<s:password name="password" required="true" placeholder="password"/>
-					<s:select list="#{'admin':'Administrator','manager':'Manager','user':'User'}" name="hakAkses" required="true" id="level"/>
-					<s:submit cssClass="btn btn-info " value="Login"/>
-                </s:form>
-                <div class="errors">
+            	<div class="errors">
                 	<s:fielderror name="invalid"/>
                 </div>
+                <s:form namespace="/authentication" action="auth" validate="true" method="post">
+                    <s:textfield name="userName" required="true" placeholder="username" />
+					<s:password name="password" required="true" placeholder="password" cssClass="easyui-passwordbox"/>
+					<s:select list="#{'admin':'Administrator','owner':'Owner','user':'User'}" name="hakAkses" required="true" id="level"/>
+					<s:submit cssClass="btn btn-info " value="Login"/>
+                </s:form>
             </div>
         </div>  
 	</s:div>

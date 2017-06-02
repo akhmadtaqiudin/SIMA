@@ -9,16 +9,26 @@
 <jsp:include page="/pages/template/header.jsp"></jsp:include>
 </head>
 <body>
-	<div class="navbar navbar-default navbar-fixed-top">
-	  <div class="container">
-	    <div class="navbar-header">
-	      <a class="navbar-brand" href="#">
-	        <img id="logo" alt="Loading" src="${pageContext.request.contextPath}/makeOver/images/logo.png">
-	      </a>
-	      <h1>Sistem Informasi Manajemen Aset</h1>
-	    </div>
-	  </div>
-	</div>
+	<div class="navbar navbar-default navbar-fixed-top bs-docs-nav">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <h3>Sistem Informasi Manajemen Aset</h3>
+        </div>
+        <div id="navbar" >
+          <div class="nav navbar-nav navbar-right">  
+            <a class="navbar-right" href="${pageContext.request.contextPath}/authentication/logout.action">
+	          <span class="glyphicon glyphicon-user" aria-hidden="true"></span><s:property value="#session['userName'].userName" /> Logout
+	        </a>
+	      </div>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </div>
 	<div class="easyui-layout" id="main">
         <div data-options="region:'west',split:true" title="Dasboard" id="west">
         	<ul class="easyui-tree" data-options="animate:true">
@@ -26,29 +36,43 @@
                 <span>My Documents</span>
                 <ul>
                     <li data-options="state:'closed'">
-                        <span>Barang Inventaris</span>
+                        <span>Master Inventaris</span>
                         <ul>
-                            <li><span>Ruangan</span></li>
-                            <li><span>Barang</span></li>
-                            <li><span>Company</span></li>
+                            <li><a href="${pageContext.request.contextPath}/barang/SearchAllBarang.action">Inventaris Barang</a></li>
+                            <li><a href="${pageContext.request.contextPath}/bhp/SearchAllBhp.action">Inventaris Barang Habis Pakai</a></li>
+			    			<li><a href="${pageContext.request.contextPath}/masterRuangan/searchRuangan.action">Inventaris Ruang</a></li>
                         </ul>
                     </li>
-                    <li>
-                        <span>Barang Habis Pakai</span>
+                    <li data-options="state:'closed'">
+                        <span>Pengadaan</span>
                         <ul>
-                            <li>Formulir Pengajuan</li>
-                            <li>Java</li>
-                            <li>Microsoft Office</li>
-                            <li>Games</li>
+                            <li><a href="${pageContext.request.contextPath}/ruangan/searchRuangan.action">Formulir Pengajuan</a></li>
                         </ul>
                     </li>
-                    <li>
+                    <li data-options="state:'closed'">
+                        <span>Penggunaan</span>
+                        <ul>
+                            <li><a href="${pageContext.request.contextPath}/ruangan/searchRuangan.action">Kelas 1</a></li>
+                            <li><a href="${pageContext.request.contextPath}/ruangan/searchRuangan.action">Kelas 2</a></li>
+                            <li><a href="${pageContext.request.contextPath}/ruangan/searchRuangan.action">Kelas 3</a></li>
+                            <li><a href="${pageContext.request.contextPath}/ruangan/searchRuangan.action">Kelas 4</a></li>
+                            <li><a href="${pageContext.request.contextPath}/ruangan/searchRuangan.action">Kelas 5</a></li>
+                            <li><a href="${pageContext.request.contextPath}/ruangan/searchRuangan.action">Kelas 6</a></li>
+                            <li><a href="${pageContext.request.contextPath}/ruangan/searchRuangan.action">Perpus</a></li>
+                            <li><a href="${pageContext.request.contextPath}/ruangan/searchRuangan.action">Ruang Guru</a></li>
+                            <li><a href="${pageContext.request.contextPath}/ruangan/searchRuangan.action">Ruang Kepala Sekolah</a></li>
+                            <li><a href="${pageContext.request.contextPath}/ruangan/searchRuangan.action">Mushola</a></li>
+                            <li><a href="${pageContext.request.contextPath}/ruangan/searchRuangan.action">Gudang Produktif</a></li>
+                            <li><a href="${pageContext.request.contextPath}/ruangan/searchRuangan.action">Gudang Nonproduktif</a></li>
+                        </ul>
+                    </li>
+                    <li data-options="state:'closed'">
                         <span>Laporan</span>
                         <ul>
-                            <li>Intel</li>
-                            <li>Java</li>
-                            <li>Microsoft Office</li>
-                            <li>Games</li>
+                            <li><a href="${pageContext.request.contextPath}/ruangan/searchRuangan.action">Laporan Inventaris Barang</a></li>
+                            <li><a href="${pageContext.request.contextPath}/ruangan/searchRuangan.action">Laporan</a> </li>
+                            <li><a href="${pageContext.request.contextPath}/ruangan/searchRuangan.action">Microsoft Office</a></li>
+                            <li><a href="${pageContext.request.contextPath}/ruangan/searchRuangan.action">Games</a></li>
                         </ul>
                     </li>
                 </ul>
