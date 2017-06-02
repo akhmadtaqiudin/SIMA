@@ -13,14 +13,14 @@
     		<result name="success">/pages/template/login.jsp</result>
     		<result name="error">/pages/template/login.jsp</result>
     	</action>
-    	<action name="auth" class="com.id.sima.core.action.UserAction" method="Login">
+    	<action name="auth" class="com.id.sima.core.controller.UserAction" method="Login">
     		<result name="input">/pages/template/login.jsp</result>
     		<result name="admin">/pages/template/home.jsp</result>
-    		<result name="manager">/pages/template/mainManager.jsp</result>
+    		<result name="owner">/pages/template/mainOwner.jsp</result>
     		<result name="user">/pages/template/mainUser.jsp</result>
     		<result name="error">/pages/template/login.jsp</result>
     	</action>
-    	<action name="logout" class="com.id.sima.core.action.UserAction" method="LogOut">
+    	<action name="logout" class="com.id.sima.core.controller.UserAction" method="LogOut">
     		<result name="success">/pages/template/login.jsp</result>
     		<result name="error">/pages/template/login.jsp</result>
     	</action>

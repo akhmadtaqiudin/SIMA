@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <constant name="struts.devMode" value="true"/>
+    <package name="Barang" extends="json-default,struts-default" namespace="/barang">
+    
+    	<!--mendeklarasikan dan memanggil class interceptor -->
+    	<interceptors>
+    		<interceptor name="authinterceptorLogin" class="com.id.sima.core.controller.CoreAuthentication" />
+    		<interceptor-stack name="authStack">
+				<interceptor-ref name="authinterceptorLogin"/>
+				<interceptor-ref name="defaultStack"/>
+				<interceptor-ref name="basicStack"/>
+			</interceptor-stack>
+    	</interceptors>
+    	
+    	<global-results>
+			<result name="login">/pages/template/login.jsp</result>
+		</global-results>
+        
+    	<action name="SearchAllBarang" class="com.id.sima.modul.controller.BarangController" method="searchAllBarang">
+    		<interceptor-ref name="authStack"/>
+    		<result name="success">/pages/modul/inventaris/barangMain.jsp</result>
+    		<result name="error">/pages/modul/inventaris/barangMain.jsp</result>
+    	</action>
+    	<action name="SelectListBarang" class="com.id.sima.modul.controller.BarangController" method="searchList">
+    		<interceptor-ref name="authStack"/>
+    		<result name="success">/pages/modul/inventaris/barangMain.jsp</result>
+    		<result name="error">/pages/modul/inventaris/barangMain.jsp</result>
+    	</action>
+    	<action name="SelectByJson" class="com.id.sima.modul.controller.BarangController" method="searchKodeToJson">
+    		<result type="json">
+                <param name="noCache">true</param>
+		        <param name="root">barang</param>
+    		</result>
+    	</action>
+    	<action name="AddBarang">
+    		<interceptor-ref name="authStack"/>
+    		<result name="input">/pages/modul/inventaris/barangAdd.jsp</result>
+    		<result name="success">/pages/modul/inventaris/barangAdd.jsp</result>
+    		<result name="error">/pages/modul/inventaris/barangAdd.jsp</result>
+    	</action>
+    	<action name="SaveBarang" class="com.id.sima.modul.controller.BarangController" method="addBarang">
+    		<interceptor-ref name="authStack"/>
+    		<result name="input">/pages/modul/inventaris/barangAdd.jsp</result>
+    		<result name="success">/pages/modul/inventaris/barangMain.jsp</result>
+    		<result name="error">/pages/modul/inventaris/barangAdd.jsp</result>
+    	</action>
+    	<action name="EditBarang" class="com.id.sima.modul.controller.BarangController" method="searchWhereKode">
+    		<interceptor-ref name="authStack"/>
+    		<result name="input">/pages/modul/inventaris/barangEdit.jsp</result>
+    		<result name="success">/pages/modul/inventaris/barangEdit.jsp</result>
+    		<result name="error">/pages/modul/inventaris/barangEdit.jsp</result>
+    	</action>
+    	<action name="SaveEditBarang" class="com.id.sima.modul.controller.BarangController" method="editBarang">
+    		<interceptor-ref name="authStack"/>
+    		<result name="input">/pages/modul/inventaris/barangEdit.jsp</result>
+    		<result name="success">/pages/modul/inventaris/barangMain.jsp</result>
+    		<result name="error">/pages/modul/inventaris/barangEdit.jsp</result>
+    	</action>
+    	<action name="DeletBarang" class="com.id.sima.modul.controller.BarangController" method="deletBarang">
+    		<interceptor-ref name="authStack"/>
+    		<result name="success">/pages/modul/inventaris/barangMain.jsp</result>
+    		<result name="error">/pages/modul/inventaris/barangMain.jsp</result>
+    	</action>
+    	<action name="ViewBarang" class="com.id.sima.modul.controller.BarangController" method="searchWhereKode">
+    		<interceptor-ref name="authStack"/>
+    		<result name="success">/pages/modul/inventaris/barangView.jsp</result>
+    		<result name="error">/pages/modul/inventaris/barangView.jsp</result>
+    	</action>
+    </package>
+</struts>

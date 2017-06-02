@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <constant name="struts.devMode" value="true"/>
+    <package name="Ruangan" extends="json-default,struts-default" namespace="/masterRuangan">
+    
+    	<!--mendeklarasikan dan memanggil class interceptor -->
+    	<interceptors>
+    		<interceptor name="authinterceptorLogin" class="com.id.sima.core.controller.CoreAuthentication" />
+    		<interceptor-stack name="authStack">
+				<interceptor-ref name="authinterceptorLogin"/>
+				<interceptor-ref name="defaultStack"/>
+				<interceptor-ref name="basicStack"/>
+			</interceptor-stack>
+    	</interceptors>
+    	
+    	<global-results>
+			<result name="login">/pages/template/login.jsp</result>
+		</global-results>
+        
+    	<action name="searchRuangan" class="com.id.sima.modul.controller.RuanganController" method="searchAllRecord">
+    		<interceptor-ref name="authStack"/>
+    		<result name="success">/pages/modul/inventaris/ruanganMain.jsp</result>
+    		<result name="error">/pages/modul/inventaris/ruanganMain.jsp</result>
+    	</action>
+    	<action name="SelectListRuangan" class="com.id.sima.modul.controller.RuanganController" method="selectList">
+    		<interceptor-ref name="authStack"/>
+    		<result name="success">/pages/modul/inventaris/ruanganMain.jsp</result>
+    		<result name="error">/pages/modul/inventaris/ruanganMain.jsp</result>
+    	</action>
+    	<action name="SelectByJson" class="com.id.sima.modul.controller.RuanganController" method="searchKodeToJson">
+    		<result type="json">
+                <param name="noCache">true</param>
+		        <param name="root">ruangan</param>
+    		</result>
+    	</action>
+    	<action name="AddRuangan">
+    		<interceptor-ref name="authStack"/>
+    		<result name="input">/pages/modul/inventaris/ruanganAdd.jsp</result>
+    		<result name="success">/pages/modul/inventaris/ruanganAdd.jsp</result>
+    		<result name="error">/pages/modul/inventaris/ruanganAdd.jsp</result>
+    	</action>
+    	<action name="SaveRuangan" class="com.id.sima.modul.controller.RuanganController" method="addRecord">
+    		<interceptor-ref name="authStack"/>
+    		<result name="input">/pages/modul/inventaris/ruanganAdd.jsp</result>
+    		<result name="success">/pages/modul/inventaris/ruanganMain.jsp</result>
+    		<result name="error">/pages/modul/inventaris/ruanganAdd.jsp</result>
+    	</action>
+    	<action name="EditRuangan" class="com.id.sima.modul.controller.RuanganController" method="searchWhereRecord">
+    		<interceptor-ref name="authStack"/>
+    		<result name="input">/pages/modul/inventaris/ruanganEdit.jsp</result>
+    		<result name="success">/pages/modul/inventaris/ruanganEdit.jsp</result>
+    		<result name="error">/pages/modul/inventaris/ruanganEdit.jsp</result>
+    	</action>
+    	<action name="SaveEditRuangan" class="com.id.sima.modul.controller.RuanganController" method="editRecord">
+    		<interceptor-ref name="authStack"/>
+    		<result name="input">/pages/modul/inventaris/ruanganEdit.jsp</result>
+    		<result name="success">/pages/modul/inventaris/ruanganMain.jsp</result>
+    		<result name="error">/pages/modul/inventaris/ruanganEdit.jsp</result>
+    	</action>
+    	<action name="DeletRuangan" class="com.id.sima.modul.controller.RuanganController" method="deletRecord">
+    		<interceptor-ref name="authStack"/>
+    		<result name="success">/pages/modul/inventaris/ruanganMain.jsp</result>
+    		<result name="error">/pages/modul/inventaris/ruanganMain.jsp</result>
+    	</action>
+    	<action name="ViewRuangan" class="com.id.sima.modul.controller.RuanganController" method="searchWhereRecord">
+    		<interceptor-ref name="authStack"/>
+    		<result name="success">/pages/modul/inventaris/ruanganView.jsp</result>
+    		<result name="error">/pages/modul/inventaris/ruanganView.jsp</result>
+    	</action>
+    </package>
+</struts>
