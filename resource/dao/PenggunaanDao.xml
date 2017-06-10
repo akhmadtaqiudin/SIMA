@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.id.sima.modul.service.PenggunaanDao">
+	<resultMap id="BaseResultMap" type="com.id.sima.modul.model.Penggunaan" >
+	    <result column="kode_penggunaan" property="kodePenggunaan"/>
+	    <result column="kode_barang" property="kodeBarang" />
+	    <result column="nama_barang" property="namaBarang" />
+	    <result column="keterangan" property="keterangan" />
+	    <result column="merek" property="merek" />
+	    <result column="satuan" property="satuan" />
+	    <result column="jumlah" property="jumlah" />
+	    <result column="kode_ruangan" property="kodeRuangan" />
+	    <result column="nama_ruangan" property="namaRuangan" />
+	    <result column="baik" property="baik" />
+	    <result column="rusak" property="rusak" />
+	</resultMap>
+	<select id="selectWhereKode" parameterType="com.id.sima.modul.model.Penggunaan" resultMap="BaseResultMap">
+		SELECT p.kode_penggunaan,p.kode_barang,p.baik,p.rusak,p.keterangan,
+		(SELECT nama_barang FROM m_barang WHERE kode_barang = t_penggunaan.kode_barang) AS nama_barang 
+		FROM t_penggunaan p
+		LEFT JOIN m_barang b ON b.kode_barang=p.kode_barang
+		LEFT JOIN m_ruangan r ON r.kode_ruangan=p.kode_ruangan 
+		WHERE kode_penggunaan = #{kodeRuangan}
+	</select>
+	<select id="selectAllRecord" parameterType="com.id.sima.modul.model.Penggunaan" resultMap="BaseResultMap">
+		SELECT p.kode_penggunaan,p.kode_barang,p.baik,p.rusak,p.keterangan,
+		(SELECT nama_barang FROM m_barang WHERE kode_barang = t_penggunaan.kode_barang) AS nama_barang 
+		FROM t_penggunaan p
+		LEFT JOIN m_barang b ON b.kode_barang=p.kode_barang
+		LEFT JOIN m_ruangan r ON r.kode_ruangan=p.kode_ruangan 	
+		WHERE lower(nama_barang) like '%'|| lower(#{namaBarang}) ||'%' order by kode_penggunaan asc
+	</select>
+  	<select id="maxID" parameterType="com.id.sima.modul.model.Penggunaan" resultType="java.lang.Integer">
+  		SELECT COUNT(*) FROM t_penggunaan 
+  	</select>
+  	<select id="count" parameterType="com.id.sima.modul.model.Penggunaan" resultType="java.lang.Integer">
+  		SELECT COUNT(*) FROM t_penggunaan WHERE kode_barang = #{kodeBarang}
+  	</select>
+	<insert id="insertRecord" parameterType="com.id.sima.modul.model.Penggunaan">
+		INSERT INTO t_penggunaan(kode_penggunaan,kode_barang,kode_ruangan,jumlah,baik,rusak,keterangan)
+    	VALUES (#{kodePenggunaan},#{kodeBarang},#{kodeRuangan},#{jumlah},#{baik},#{rusak},#{keterangan})
+	</insert>
+	<update id="updateRecord" parameterType="com.id.sima.modul.model.Penggunaan">
+		UPDATE t_penggunaan SET
+		kode_barang=#{kodeBarang},kode_ruangan=#{kodeRuangan},jumlah=#{jumlah},baik=#{baik},rusak=#{rusak},keterangan=#{keterangan}
+		WHERE kode_penggunaan=#{kodePenggunaan}
+	</update>
+	<delete id="deletRecord" parameterType="com.id.sima.modul.model.Penggunaan">
+		DELETE FROM t_penggunaan
+		WHERE kode_penggunaan = #{kodePenggunaan}
+	</delete>
+</mapper>

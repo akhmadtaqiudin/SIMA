@@ -14,15 +14,23 @@
 	</resultMap>
 	<select id="selectWhereKode" parameterType="com.id.sima.modul.model.Barang" resultMap="BaseResultMap">
 		SELECT * FROM m_barang
-		WHERE kode_barang = #{kodeBarang}
+		WHERE kode_barang=#{kodeBarang}
 	</select>
 	<select id="selectAllRecord" parameterType="com.id.sima.modul.model.Barang" resultMap="BaseResultMap">
 		SELECT * FROM m_barang
-		WHERE
-		nama_barang like '%'|| #{namaBarang} ||'%' order by nama_barang asc
+		WHERE jenis=#{jenis} AND
+		lower(nama_barang) like '%'|| lower(#{namaBarang}) ||'%' order by nama_barang asc
 	</select>
+	<select id="selectAllBhp" parameterType="com.id.sima.modul.model.Barang" resultMap="BaseResultMap">
+		SELECT * FROM m_barang
+		WHERE jenis=#{jenis} AND
+		lower(nama_barang) like '%'|| lower(#{namaBarang}) ||'%' order by nama_barang asc
+	</select>
+  	<select id="maxID" parameterType="com.id.sima.modul.model.Barang" resultType="java.lang.Integer">
+  		SELECT COUNT(*) FROM m_barang 
+  	</select>
   	<select id="count" parameterType="com.id.sima.modul.model.Barang" resultType="java.lang.Integer">
-  		SELECT COUNT(*) FROM m_barang
+  		SELECT COUNT(*) FROM m_barang WHERE lower(nama_barang)=lower(#{namaBarang}) AND lower(keterangan)=lower(#{keterangan})
   	</select>
 	<select id="selectList" parameterType="com.id.sima.modul.model.Barang" resultMap="BaseResultMap">
 		SELECT * FROM m_barang order by kode_barang asc
@@ -31,12 +39,12 @@
 		INSERT INTO m_barang(
             kode_barang, nama_barang, keterangan, merek, jenis, satuan, jumlah, harga)
     	VALUES
-			(#{kodeBarang},#{namaKaryawan},#{keterangan},#{merek},#{jenis},#{satuan},#{jumlah},#{harga})
+			(#{kodeBarang},#{namaBarang},#{keterangan},#{merek},#{jenis},#{satuan},#{jumlah},#{harga})
 	</insert>
 	<update id="updateRecord" parameterType="com.id.sima.modul.model.Barang">
 		UPDATE m_barang SET
 		nama_barang=#{namaBarang}, keterangan=#{keterangan}, merek=#{merek}, 
-		jenis=#{jenis}, satuan=#{satuan}, jumlah=#{jumlah}, harga=#{harga}
+		satuan=#{satuan}, jumlah=#{jumlah}, harga=#{harga}
 		WHERE kode_barang=#{kodeBarang}
 	</update>
 	<delete id="deletRecord" parameterType="com.id.sima.modul.model.Barang">

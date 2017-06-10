@@ -16,8 +16,11 @@
 		SELECT * FROM m_ruangan	WHERE
 		lower(nama_ruangan) like '%'|| lower(#{namaRuangan}) ||'%' order by kode_ruangan asc
 	</select>
+  	<select id="maxID" parameterType="com.id.sima.modul.model.Ruangan" resultType="java.lang.Integer">
+  		SELECT COUNT(*) FROM m_ruangan 
+  	</select>
   	<select id="count" parameterType="com.id.sima.modul.model.Ruangan" resultType="java.lang.Integer">
-  		SELECT COUNT(*) FROM m_ruangan
+  		SELECT COUNT(*) FROM m_ruangan WHERE lower(nama_ruangan) = lower(#{namaRuangan})
   	</select>
 	<select id="selectList" parameterType="com.id.sima.modul.model.Ruangan" resultMap="BaseResultMap">
 		SELECT * FROM m_ruangan order by kode_ruangan asc
