@@ -39,8 +39,9 @@ public class PenggunaanController extends CoreAction{
 		
 		String kode="";
 		kode += "KP";
-		int x = 0;
-		x = penggunaanDao.count(penggunaan);
+		int y = 0;
+		y = penggunaanDao.count(penggunaan);
+		int x = penggunaanDao.maxID(penggunaan);
 		x++;
 		
 		if(x <99 && x>=10){
@@ -52,7 +53,10 @@ public class PenggunaanController extends CoreAction{
 		}else{
 			kode+="000"+x;
 		}
-			
+		if(y > 0){
+			addFieldError("invaliPenggunaan", "Kode Barang : "+penggunaan.getKodeBarang()+" sudah terdaftar pada database, harap gunakan Kode Barang lain");
+			return ERROR;
+		}
 		try {
 			penggunaan.setKodePenggunaan(kode);
 			penggunaanDao.insertRecord(penggunaan);
@@ -66,6 +70,12 @@ public class PenggunaanController extends CoreAction{
 	public String editPenggunaan(){
 		System.out.println("Jalankan method editPenggunaan");
 		
+		int y = 0;
+		y = penggunaanDao.count(penggunaan);
+		if(y > 0){
+			addFieldError("invaliPenggunaan", "Kode Barang : "+penggunaan.getKodeBarang()+" sudah terdaftar pada database, harap gunakan Kode Barang lain");
+			return ERROR;
+		}
 		try {
 			penggunaanDao.updateRecord(penggunaan);
 		} catch (Exception e) {
