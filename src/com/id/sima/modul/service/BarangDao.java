@@ -8,8 +8,10 @@ public interface BarangDao {
 	int insertRecord(Barang record);
 	int updateRecord(Barang record);
 	int deletRecord(Barang record);
+	int maxID(Barang kode);
 	int count(Barang kode);
 	Barang selectWhereKode(Barang record);
 	List<Barang> selectAllRecord(Barang record);
+	List<Barang> selectAllBhp(Barang record);
 	List<Barang> selectList();
 }
