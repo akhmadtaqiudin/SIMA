@@ -9,7 +9,7 @@ public class Pengadaan extends Barang{
 	private String tglAwal;
 	private String tglAkhir;
 	public String getKodePengadaan() {
-		return kodePengadaan;
+		return kodePengadaan; 
 	}
 	public void setKodePengadaan(String kodePengadaan) {
 		this.kodePengadaan = kodePengadaan;
