@@ -5,7 +5,7 @@ public class Ruangan {
 	private String kodeRuangan;
 	private String namaRuangan;
 	private int panjang;
-	private int lebar;
+	private int lebar; 
 	public String getKodeRuangan() {
 		return kodeRuangan;
 	}
