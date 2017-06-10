@@ -5,10 +5,8 @@ public class Penggunaan extends Barang{
 	private String kodePenggunaan;
 	private String kodeRuangan;
 	private String namaRuangan;
-	private int jumlah;
 	private int baik;
-	private int Rusak;
-	private String keterangan;
+	private int rusak;
 	public String getKodePenggunaan() {
 		return kodePenggunaan;
 	}
@@ -27,12 +25,6 @@ public class Penggunaan extends Barang{
 	public void setNamaRuangan(String namaRuangan) {
 		this.namaRuangan = namaRuangan;
 	}
-	public int getJumlah() {
-		return jumlah;
-	}
-	public void setJumlah(int jumlah) {
-		this.jumlah = jumlah;
-	}
 	public int getBaik() {
 		return baik;
 	}
@@ -40,15 +32,9 @@ public class Penggunaan extends Barang{
 		this.baik = baik;
 	}
 	public int getRusak() {
-		return Rusak;
+		return rusak;
 	}
 	public void setRusak(int rusak) {
-		Rusak = rusak;
-	}
-	public String getKeterangan() {
-		return keterangan;
-	}
-	public void setKeterangan(String keterangan) {
-		this.keterangan = keterangan;
+		this.rusak = rusak;
 	}
 }
