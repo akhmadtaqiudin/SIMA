@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <constant name="struts.devMode" value="true"/>
+    <package name="PenggunaanBarang" extends="json-default,struts-default" namespace="/penggunaanBarang">
+    
+    	<!--mendeklarasikan dan memanggil class interceptor -->
+    	<interceptors>
+    		<interceptor name="authinterceptorLogin" class="com.id.sima.core.controller.CoreAuthentication" />
+    		<interceptor-stack name="authStack">
+				<interceptor-ref name="authinterceptorLogin"/>
+				<interceptor-ref name="defaultStack"/>
+				<interceptor-ref name="basicStack"/>
+			</interceptor-stack>
+    	</interceptors>
+    	
+    	<global-results>
+			<result name="login">/pages/template/login.jsp</result>
+		</global-results>
+        
+    	<action name="SearchAllPenggunaan" class="com.id.sima.modul.controller.PenggunaanController" method="searchAllPenggunaan">
+    		<interceptor-ref name="authStack"/>
+    		<result name="success">/pages/modul/transaction/penggunaanMain.jsp</result>
+    		<result name="error">/pages/modul/transaction/penggunaanMain.jsp</result>
+    	</action>
+    	<action name="AddPenggunaan">
+    		<interceptor-ref name="authStack"/>
+    		<result name="input">/pages/modul/transaction/penggunaanAdd.jsp</result>
+    		<result name="success">/pages/modul/transaction/penggunaanAdd.jsp</result>
+    		<result name="error">/pages/modul/transaction/penggunaanAdd.jsp</result>
+    	</action>
+    	<action name="SavePenggunaan" class="com.id.sima.modul.controller.BarangController" method="addPenggunaan">
+    		<interceptor-ref name="authStack"/>
+    		<result name="input">/pages/modul/transaction/penggunaanAdd.jsp</result>
+    		<result name="success">/pages/modul/transaction/penggunaanMain.jsp</result>
+    		<result name="error">/pages/modul/transaction/penggunaanAdd.jsp</result>
+    	</action>
+    	<action name="EditPenggunaan" class="com.id.sima.modul.controller.BarangController" method="searchWherePenggunaan">
+    		<interceptor-ref name="authStack"/>
+    		<result name="input">/pages/modul/transaction/penggunaanEdit.jsp</result>
+    		<result name="success">/pages/modul/transaction/penggunaanEdit.jsp</result>
+    		<result name="error">/pages/modul/transaction/penggunaanEdit.jsp</result>
+    	</action>
+    	<action name="SaveEditPenggunaan" class="com.id.sima.modul.controller.BarangController" method="editPenggunaan">
+    		<interceptor-ref name="authStack"/>
+    		<result name="input">/pages/modul/transaction/penggunaanEdit.jsp</result>
+    		<result name="success">/pages/modul/transaction/penggunaanMain.jsp</result>
+    		<result name="error">/pages/modul/transaction/penggunaanEdit.jsp</result>
+    	</action>
+    	<action name="DeletPenggunaan" class="com.id.sima.modul.controller.BarangController" method="deletPenggunaan">
+    		<interceptor-ref name="authStack"/>
+    		<result name="success">/pages/modul/transaction/penggunaanMain.jsp</result>
+    		<result name="error">/pages/modul/transaction/penggunaanMain.jsp</result>
+    	</action>
+    	<action name="ViewPenggunaan" class="com.id.sima.modul.controller.BarangController" method="searchWherePenggunaan">
+    		<interceptor-ref name="authStack"/>
+    		<result name="success">/pages/modul/transaction/penggunaanView.jsp</result>
+    		<result name="error">/pages/modul/transaction/penggunaanView.jsp</result>
+    	</action>
+    </package>
+</struts>

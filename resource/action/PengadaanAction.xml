@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <constant name="struts.devMode" value="true"/>
+    <package name="PengadaanBarang" extends="json-default,struts-default" namespace="/pengadaanBarang">
+    
+    	<!--mendeklarasikan dan memanggil class interceptor -->
+    	<interceptors>
+    		<interceptor name="authinterceptorLogin" class="com.id.sima.core.controller.CoreAuthentication" />
+    		<interceptor-stack name="authStack">
+				<interceptor-ref name="authinterceptorLogin"/>
+				<interceptor-ref name="defaultStack"/>
+				<interceptor-ref name="basicStack"/>
+			</interceptor-stack>
+    	</interceptors>
+    	
+    	<global-results>
+			<result name="login">/pages/template/login.jsp</result>
+		</global-results>
+        
+    	<action name="SearchAllPengadaan" class="com.id.sima.modul.controller.PengadaanController" method="searchAllPengadaan">
+    		<interceptor-ref name="authStack"/>
+    		<result name="success">/pages/modul/transaction/pengadaanMain.jsp</result>
+    		<result name="error">/pages/modul/transaction/pengadaanMain.jsp</result>
+    	</action>
+    	<action name="AddPengadaan">
+    		<interceptor-ref name="authStack"/>
+    		<result name="input">/pages/modul/transaction/pengadaanAdd.jsp</result>
+    		<result name="success">/pages/modul/transaction/pengadaanAdd.jsp</result>
+    		<result name="error">/pages/modul/transaction/pengadaanAdd.jsp</result>
+    	</action>
+    	<action name="SavePengadaan" class="com.id.sima.modul.controller.PengadaanController" method="addPengadaan">
+    		<interceptor-ref name="authStack"/>
+    		<result name="input">/pages/modul/transaction/pengadaanAdd.jsp</result>
+    		<result name="success">/pages/modul/transaction/pengadaanMain.jsp</result>
+    		<result name="error">/pages/modul/transaction/pengadaanAdd.jsp</result>
+    	</action>
+    	<action name="EditPengadaan" class="com.id.sima.modul.controller.PengadaanController" method="searchWherePengadaan">
+    		<interceptor-ref name="authStack"/>
+    		<result name="input">/pages/modul/transaction/pengadaanEdit.jsp</result>
+    		<result name="success">/pages/modul/transaction/pengadaanEdit.jsp</result>
+    		<result name="error">/pages/modul/transaction/pengadaanEdit.jsp</result>
+    	</action>
+    	<action name="SaveEditPengadaan" class="com.id.sima.modul.controller.PengadaanController" method="editPengadaan">
+    		<interceptor-ref name="authStack"/>
+    		<result name="input">/pages/modul/transaction/pengadaanEdit.jsp</result>
+    		<result name="success">/pages/modul/transaction/pengadaanMain.jsp</result>
+    		<result name="error">/pages/modul/transaction/pengadaanEdit.jsp</result>
+    	</action>
+    	<action name="DeletPengadaan" class="com.id.sima.modul.controller.PengadaanController" method="deletPengadaan">
+    		<interceptor-ref name="authStack"/>
+    		<result name="success">/pages/modul/transaction/pengadaanMain.jsp</result>
+    		<result name="error">/pages/modul/transaction/pengadaanMain.jsp</result>
+    	</action>
+    	<action name="ViewPengadaan" class="com.id.sima.modul.controller.PengadaanController" method="searchWherePengadaan">
+    		<interceptor-ref name="authStack"/>
+    		<result name="success">/pages/modul/transaction/pengadaanView.jsp</result>
+    		<result name="error">/pages/modul/transaction/pengadaanView.jsp</result>
+    	</action>
+    	<action name="SubmitePengadaan" class="com.id.sima.modul.controller.PengadaanController" method="submitPengadaan">
+    		<interceptor-ref name="authStack"/>
+    		<result name="success">/pages/modul/transaction/pengadaanMain.jsp</result>
+    		<result name="error">/pages/modul/transaction/pengadaanMain.jsp</result>
+    	</action>
+    	<action name="ReviewPengadaan" class="com.id.sima.modul.controller.PengadaanController" method="reviewPengadaan">
+    		<interceptor-ref name="authStack"/>
+    		<result name="success">/pages/modul/transaction/pengadaanMain.jsp</result>
+    		<result name="error">/pages/modul/transaction/pengadaanMain.jsp</result>
+    	</action>
+    	<action name="AccPengadaan" class="com.id.sima.modul.controller.PengadaanController" method="accPengadaan">
+    		<interceptor-ref name="authStack"/>
+    		<result name="success">/pages/modul/transaction/pengadaanMain.jsp</result>
+    		<result name="error">/pages/modul/transaction/pengadaanMain.jsp</result>
+    	</action>
+    </package>
+</struts>

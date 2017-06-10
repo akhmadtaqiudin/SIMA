@@ -72,5 +72,30 @@
     		<result name="success">/pages/modul/inventaris/barangView.jsp</result>
     		<result name="error">/pages/modul/inventaris/barangView.jsp</result>
     	</action>
+    	
+    	<!-- Barang Habispakai -->
+    	<action name="SearchAllBhp" class="com.id.sima.modul.controller.BarangController" method="searchAllBarangBhp">
+    		<interceptor-ref name="authStack"/>
+    		<result name="success">/pages/modul/inventaris/barangBhpMain.jsp</result>
+    		<result name="error">/pages/modul/inventaris/barangBhpMain.jsp</result>
+    	</action>
+    	<action name="AddBarangBhp">
+    		<interceptor-ref name="authStack"/>
+    		<result name="input">/pages/modul/inventaris/barangBhpAdd.jsp</result>
+    		<result name="success">/pages/modul/inventaris/barangBhpAdd.jsp</result>
+    		<result name="error">/pages/modul/inventaris/barangBhpAdd.jsp</result>
+    	</action>
+    	<action name="SaveBarangBhp" class="com.id.sima.modul.controller.BarangController" method="addBarangBhp">
+    		<interceptor-ref name="authStack"/>
+    		<result name="input">/pages/modul/inventaris/barangBhpAdd.jsp</result>
+    		<result name="success">/pages/modul/inventaris/barangBhpMain.jsp</result>
+    		<result name="error">/pages/modul/inventaris/barangBhpAdd.jsp</result>
+    	</action>
+    	<action name="SaveEditBarangBhp" class="com.id.sima.modul.controller.BarangController" method="editBarang">
+    		<interceptor-ref name="authStack"/>
+    		<result name="input">/pages/modul/inventaris/barangEdit.jsp</result>
+    		<result name="success">/pages/modul/inventaris/barangBhpMain.jsp</result>
+    		<result name="error">/pages/modul/inventaris/barangEdit.jsp</result>
+    	</action>
     </package>
 </struts>
