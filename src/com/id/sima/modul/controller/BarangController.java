@@ -21,12 +21,24 @@ public class BarangController extends CoreAction{
 	public String searchAllBarang(){
 		System.out.println("jalankan method serachAllBarang");
 		
-		/*if(barang.getNamaBarang().equalsIgnoreCase("")){
+		if(barang==null){
 			barang = new Barang();
 			barang.setNamaBarang("");
 		}
-		*/
+		barang.setJenis("1");
 		listBarang = barangDao.selectAllRecord(barang);
+		return SUCCESS;
+	}
+	
+	public String searchAllBarangBhp(){
+		System.out.println("jalankan method serachAllBarang");
+		
+		if(barang==null){
+			barang = new Barang();
+			barang.setNamaBarang("");
+		}
+		barang.setJenis("2");
+		listBarang = barangDao.selectAllBhp(barang);
 		return SUCCESS;
 	}
 	
@@ -57,7 +69,9 @@ public class BarangController extends CoreAction{
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 		String d[] = sdf.format(new Date()).split("/"),date="";
 		date+=d[0]+d[1]+d[2];
-		int x = barangDao.count(barang);
+		int y = 0;
+		y = barangDao.count(barang);
+		int x = barangDao.maxID(barang);
 		x++;
 		
 		if(x <99 && x>=10){
@@ -69,9 +83,13 @@ public class BarangController extends CoreAction{
 		}else{
 			date+="000"+x;
 		}
-		
+		if(y > 0){
+			addFieldError("invaliPengadaan", "Nama Barang : "+barang.getNamaBarang()+" dan Keterangan : "+barang.getKeterangan()+" sudah terdaftar pada database, harap gunakan yang lain");
+			return ERROR;
+		}
 		try {
 			barang.setKodeBarang(date);
+			barang.setJenis("1");
 			barangDao.insertRecord(barang);
 		} catch (Exception e) {
 			addFieldError("invaliBarang", "Gagal menambahkan data dikarenakan "+e);
@@ -80,9 +98,47 @@ public class BarangController extends CoreAction{
 		return SUCCESS;
 	}
 	
+	public String addBarangBhp(){
+		System.out.println("jalankan method addBarangBhp");
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+		String d[] = sdf.format(new Date()).split("/"),date="";
+		date+=d[0]+d[1]+d[2];
+		int y = 0;
+		y = barangDao.count(barang);
+		int x = barangDao.maxID(barang);
+		x++;		
+		if(x <99 && x>=10){
+			date+="00"+x;
+		}else if(x>99 && x<1000){
+			date+="0"+x;
+		}else if(x>=999){
+			date+=x;
+		}else{
+			date+="000"+x;
+		}
+		if(y > 0){
+			addFieldError("invaliPengadaan", "Nama Barang : "+barang.getNamaBarang()+" dan Keterangan : "+barang.getKeterangan()+" sudah terdaftar pada database, harap gunakan yang lain");
+			return ERROR;
+		}
+		try {
+			barang.setKodeBarang(date);
+			barang.setJenis("2");
+			barangDao.insertRecord(barang);
+		} catch (Exception e) {
+			addFieldError("invaliBarangBhp", "Gagal menambahkan data dikarenakan "+e);
+			return ERROR;
+		}
+		return SUCCESS;
+	}
 	public String editBarang(){
 		System.out.println("jalankan method editBarang");
-		
+		int y = 0;
+		y = barangDao.count(barang);
+		if(y > 0){
+			addFieldError("invaliPengadaan", "Nama Barang : "+barang.getNamaBarang()+" dan Keterangan : "+barang.getKeterangan()+" sudah terdaftar pada database, harap gunakan yang lain");
+			return ERROR;
+		}
 		try {
 			barangDao.updateRecord(barang);
 		} catch (Exception e) {
