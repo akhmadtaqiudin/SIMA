@@ -56,7 +56,9 @@ public class RuanganController extends CoreAction{
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 		String d[] = sdf.format(new Date()).split("/"),date="";
 		date+=d[0]+d[1]+d[2];
-		int x = ruanganDao.count(ruangan);
+		int y = 0;
+		y = ruanganDao.count(ruangan);
+		int x = ruanganDao.maxID(ruangan);
 		x++;
 		
 		if(x <99 && x>=10){
@@ -68,7 +70,10 @@ public class RuanganController extends CoreAction{
 		}else{
 			date+="000"+x;
 		}
-		
+		if(y > 0){
+			addFieldError("invaliRuangan", "Nama Ruangan : "+ruangan.getNamaRuangan()+" sudah terdaftar pada database, harap gunakan Nama Ruangan lain");
+			return ERROR;
+		}
 		try {
 			ruangan.setKodeRuangan(date);
 			ruanganDao.insertRecord(ruangan);
@@ -81,7 +86,12 @@ public class RuanganController extends CoreAction{
 	
 	public String editRecord(){
 		System.out.println("Jalankan Method editRecord");
-		
+		int y = 0;
+		y = ruanganDao.count(ruangan);
+		if(y > 0){
+			addFieldError("invaliRuangan", "Nama Ruangan : "+ruangan.getNamaRuangan()+" sudah terdaftar pada database, harap gunakan Nama Ruangan lain");
+			return ERROR;
+		}
 		try {
 			ruanganDao.updateRecord(ruangan);
 		} catch (Exception e) {
