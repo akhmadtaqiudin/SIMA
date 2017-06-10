@@ -13,7 +13,7 @@ public class Barang {
 	private int jumlah;
 	private BigDecimal harga;
 	public String getKodeBarang() {
-		return kodeBarang;
+		return kodeBarang; 
 	}
 	public void setKodeBarang(String kodeBarang) {
 		this.kodeBarang = kodeBarang;
