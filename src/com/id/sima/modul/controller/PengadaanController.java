@@ -39,8 +39,9 @@ public class PengadaanController extends CoreAction{
 		
 		String kode="";
 		kode += "KPB";
-		int x = 0;
-		x = pengadaanDao.count(pengadaan);
+		int y = 0;
+		y = pengadaanDao.count(pengadaan);
+		int x = pengadaanDao.maxID(pengadaan);
 		x++;
 		
 		if(x <99 && x>=10){
@@ -52,9 +53,13 @@ public class PengadaanController extends CoreAction{
 		}else{
 			kode+="000"+x;
 		}
-			
+		if(y > 0){
+			addFieldError("invaliPengadaan", "Kode Barang : "+pengadaan.getKodeBarang()+" sudah terdaftar pada database, harap gunakan Kode Barang lain");
+			return ERROR;
+		}
 		try {
 			pengadaan.setKodePengadaan(kode);
+			pengadaan.setStatus("1");
 			pengadaanDao.insertRecord(pengadaan);
 		} catch (Exception e) {
 			addFieldError("invaliPengadaan", "Gagal menambahkan data dikarenakan "+e);
@@ -66,6 +71,12 @@ public class PengadaanController extends CoreAction{
 	public String editPengadaan(){
 		System.out.println("Jalankan method searchAllPengadaan");
 		
+		int y = 0;
+		y = pengadaanDao.count(pengadaan);
+		if(y > 0){
+			addFieldError("invaliPengadaan", "Kode Barang : "+pengadaan.getKodeBarang()+" sudah terdaftar pada database, harap gunakan Kode Barang lain");
+			return ERROR;
+		}
 		try {
 			pengadaanDao.updateRecord(pengadaan);
 		} catch (Exception e) {
@@ -90,18 +101,39 @@ public class PengadaanController extends CoreAction{
 	public String submitPengadaan(){
 		System.out.println("Jalankan method searchAllPengadaan");
 		
+		try {
+			pengadaan.setStatus("2");
+			pengadaanDao.updateRecord(pengadaan);
+		} catch (Exception e) {
+			addFieldError("invaliPengadaan", "Gagal mengirim data dikarenakan "+e);
+			return ERROR;
+		}	
 		return SUCCESS;
 	}
 	
-	public String reviewPengadaan(){
+	public String riviewPengadaan(){
 		System.out.println("Jalankan method searchAllPengadaan");
 		
+		try {
+			pengadaan.setStatus("3");
+			pengadaanDao.updateRecord(pengadaan);
+		} catch (Exception e) {
+			addFieldError("invaliPengadaan", "Gagal meriview data dikarenakan "+e);
+			return ERROR;
+		}	
 		return SUCCESS;
 	}
 	
 	public String accPengadaan(){
 		System.out.println("Jalankan method searchAllPengadaan");
 		
+		try {
+			pengadaan.setStatus("4");
+			pengadaanDao.updateRecord(pengadaan);
+		} catch (Exception e) {
+			addFieldError("invaliPengadaan", "Gagal memberi acc data dikarenakan "+e);
+			return ERROR;
+		}	
 		return SUCCESS;
 	}
 	public Pengadaan getPengadaan() {
