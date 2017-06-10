@@ -9,6 +9,7 @@ public interface RuanganDao {
 	int insertRecord(Ruangan record);
 	int updateRecord(Ruangan record);
 	int deletRecord(Ruangan record);
+	int maxID(Ruangan kode);
 	int count(Ruangan kode);
 	Ruangan selectWhereKode(Ruangan record);
 	List<Ruangan> selectAllRecord(Ruangan record);
