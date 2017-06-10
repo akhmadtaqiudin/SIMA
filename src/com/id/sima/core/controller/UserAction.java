@@ -28,9 +28,9 @@ public class UserAction extends CoreAction{
 				if(hakAkses.equalsIgnoreCase("admin") && session != null){
 					user =(User) session.get("userName");
 					return "admin";
-				}else if(hakAkses.equalsIgnoreCase("manager") && session != null){
+				}else if(hakAkses.equalsIgnoreCase("owner") && session != null){
 					user =(User) session.get("userName");
-					return "manager";
+					return "owner";
 				}else if(hakAkses.equalsIgnoreCase("user") && session != null){
 					user =(User) session.get("userName");
 					return "user";
@@ -38,7 +38,7 @@ public class UserAction extends CoreAction{
 					return ERROR;
 				}
 			}else{
-				addFieldError("invalid", "Maaf Username & Password Salah");
+				addFieldError("invalid", "Username & Password Salah");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
