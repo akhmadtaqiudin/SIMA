@@ -1,8 +1,6 @@
 package com.id.sima.modul.controller;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -38,7 +36,7 @@ public class BarangController extends CoreAction{
 			barang.setNamaBarang("");
 		}
 		barang.setJenis("2");
-		listBarang = barangDao.selectAllBhp(barang);
+		listBarang = barangDao.selectAllRecord(barang);
 		return SUCCESS;
 	}
 	
@@ -46,13 +44,6 @@ public class BarangController extends CoreAction{
 		System.out.println("jalankan method searchWhereKode");
 		
 		barang = barangDao.selectWhereKode(barang);		
-		return SUCCESS;
-	}
-	
-	public String searchKodeToJson(){
-		System.out.println("jalankan method searchKode");
-		
-		barang = barangDao.selectWhereKode(barang);
 		return SUCCESS;
 	}
 	
@@ -66,29 +57,28 @@ public class BarangController extends CoreAction{
 	public String addBarang(){
 		System.out.println("jalankan method addBarang");
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-		String d[] = sdf.format(new Date()).split("/"),date="";
-		date+=d[0]+d[1]+d[2];
+		String kode="";
+		kode += "KBI";
 		int y = 0;
 		y = barangDao.count(barang);
 		int x = barangDao.maxID(barang);
 		x++;
 		
 		if(x <99 && x>=10){
-			date+="00"+x;
+			kode+="00"+x;
 		}else if(x>99 && x<1000){
-			date+="0"+x;
+			kode+="0"+x;
 		}else if(x>=999){
-			date+=x;
+			kode+=x;
 		}else{
-			date+="000"+x;
+			kode+="000"+x;
 		}
 		if(y > 0){
 			addFieldError("invaliPengadaan", "Nama Barang : "+barang.getNamaBarang()+" dan Keterangan : "+barang.getKeterangan()+" sudah terdaftar pada database, harap gunakan yang lain");
 			return ERROR;
 		}
 		try {
-			barang.setKodeBarang(date);
+			barang.setKodeBarang(kode);
 			barang.setJenis("1");
 			barangDao.insertRecord(barang);
 		} catch (Exception e) {
@@ -101,32 +91,32 @@ public class BarangController extends CoreAction{
 	public String addBarangBhp(){
 		System.out.println("jalankan method addBarangBhp");
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-		String d[] = sdf.format(new Date()).split("/"),date="";
-		date+=d[0]+d[1]+d[2];
+		String kode="";
+		kode += "KBHP";
 		int y = 0;
 		y = barangDao.count(barang);
 		int x = barangDao.maxID(barang);
-		x++;		
+		x++;
+		
 		if(x <99 && x>=10){
-			date+="00"+x;
+			kode+="00"+x;
 		}else if(x>99 && x<1000){
-			date+="0"+x;
+			kode+="0"+x;
 		}else if(x>=999){
-			date+=x;
+			kode+=x;
 		}else{
-			date+="000"+x;
+			kode+="000"+x;
 		}
 		if(y > 0){
 			addFieldError("invaliPengadaan", "Nama Barang : "+barang.getNamaBarang()+" dan Keterangan : "+barang.getKeterangan()+" sudah terdaftar pada database, harap gunakan yang lain");
 			return ERROR;
 		}
 		try {
-			barang.setKodeBarang(date);
+			barang.setKodeBarang(kode);
 			barang.setJenis("2");
 			barangDao.insertRecord(barang);
 		} catch (Exception e) {
-			addFieldError("invaliBarangBhp", "Gagal menambahkan data dikarenakan "+e);
+			addFieldError("invaliBarang", "Gagal menambahkan data dikarenakan "+e);
 			return ERROR;
 		}
 		return SUCCESS;
