@@ -5,8 +5,11 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<jsp:include page="/pages/template/header.jsp"></jsp:include>
-<title>SIMA</title>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/makeOver/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/makeOver/css/style.css"/>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/makeOver/js/jquery.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/makeOver/js/bootstrap.min.js" ></script>
+	<title>SIMA</title>
 </head>
 <body>
 	<s:div cssClass="container">
@@ -22,7 +25,7 @@
                 </div>
                 <s:form namespace="/authentication" action="auth" validate="true" method="post">
                     <s:textfield name="userName" required="true" placeholder="username" />
-					<s:password name="password" required="true" placeholder="password" cssClass="easyui-passwordbox"/>
+					<s:password name="password" required="true" placeholder="password" />
 					<s:select list="#{'admin':'Administrator','owner':'Owner','user':'User'}" name="hakAkses" required="true" id="level"/>
 					<s:submit cssClass="btn btn-info " value="Login"/>
                 </s:form>

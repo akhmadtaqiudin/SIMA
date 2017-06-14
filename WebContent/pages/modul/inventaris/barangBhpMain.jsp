@@ -1,13 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib uri="http://displaytag.sf.net" prefix="display"%>
-<%@page import="com.id.sima.modul.model.Ruangan"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page import="com.id.sima.modul.model.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <jsp:include page="/pages/template/header.jsp"></jsp:include>
-<title>Insert title here</title>
+<title>SIMA</title>
+<script type="text/javascript">
+	$(window).ready(function(){
+		$("#listTableBarang  > thead tr th, tr td").css({"text-align": "center", "vertical-align": "middle"});
+    }); 
+</script>
 </head>
 <body>
 	<div class="easyui-layout" id="main">
@@ -81,20 +87,28 @@
             </li>
         </ul>
         </div>
-        <div data-options="region:'center',title:'Add Data Ruangan'" class="center">
+        <div data-options="region:'center',title:'Data Master Barang Habispakai'" class="center">
         	<div class="view">
-        	<div class="errors">
-                	<s:fielderror name="invaliRuangan"/>
-                </div>
-			  <s:form namespace="/masterRuangan" method="post" theme="bootstrap" cssClass="form-horizontal" >
-				<s:textfield name="ruangan.namaRuangan" label="Nama Ruangan " labelSeparator=":"/>
-				<s:textfield name="ruangan.panjang" label="Panjang " labelSeparator=":"/>
-				<s:textfield name="ruangan.lebar" label="Lebar " labelSeparator=":"/>
-				<div class="footer">
-					<s:submit action="searchRuangan" value="Cansel" cssClass="btn btn-default"/>
-					<s:submit action="SaveRuangan" value="Add" cssClass="btn btn-primary"/>
-				</div>
+        	<s:form namespace="/barang" id="form">
+			  <s:textfield name="barang.namaBarang" placeholder="Nama Barang " cssClass="search"/>
+			  <s:submit value="Search" action="SearchAllBhp" cssClass="btn btn-default btn-sm btnSrc" />
+			  <s:submit value="Add data" action="AddBarangBhp" cssClass="btn btn-success btn-sm btnAdd" />
 			</s:form>
+			<display:table id="listTableBarang" name="listBarang" pagesize="10"
+				 requestURI="/barang/SearchAllBhp.action" class="table table-bordered table-hover table-striped" >
+				<display:column title="Kode Barang " property="kodeBarang" />
+				<display:column title="Nama Barang " property="namaBarang" />
+				<display:column title="Keterangan " property="keterangan"  />
+				<display:column title="Merek " property="merek" />
+				<display:column title="Satuan " property="satuan" />
+				<display:column title="Jumlah " property="jumlah"  />
+				<display:column title="Harga " property="harga" />
+				<display:column title="Action">
+				    <a class="btn btn-warning btn-xs" href="${pageContext.request.contextPath}/barang/EditBarang.action?barang.kodeBarang=<%=((Barang) pageContext.getAttribute("listTableBarang")).getKodeBarang()%>">Edit</a>
+					<a class="btn btn-danger btn-xs" href="${pageContext.request.contextPath}/barang/DeletBarang.action?barang.kodeBarang=<%=((Barang) pageContext.getAttribute("listTableBarang")).getKodeBarang()%>">Delete</a>
+					<a class="btn btn-default btn-xs" href="${pageContext.request.contextPath}/barang/ViewBarang.action?barang.kodeBarang=<%=((Barang) pageContext.getAttribute("listTableBarang")).getKodeBarang()%>">View</a>
+				</display:column>	
+			   </display:table>
 			</div>
         </div>
     </div>

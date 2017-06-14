@@ -1,13 +1,41 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib uri="http://displaytag.sf.net" prefix="display"%>
-<%@page import="com.id.sima.modul.model.Ruangan"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page import="com.id.sima.modul.model.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <jsp:include page="/pages/template/header.jsp"></jsp:include>
-<title>Insert title here</title>
+<%-- <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/makeOver/css/jquery-ui.css"/>
+<script type="text/javascript" src="${pageContext.request.contextPath}/makeOver/js/jquery-ui.js"></script> --%>
+<title>SIMA</title>
+<script type="text/javascript">
+	$(window).ready(function(){	
+		/* function myformatter(date){
+            var y = date.getFullYear();
+            var m = date.getMonth()+1;
+            var d = date.getDate();
+            return (d<10?('0'+d):d)+'-'+(m<10?('0'+m):m)+'-'+y;
+        }
+        function myparser(s){
+            if (!s) return new Date();
+            var ss = (s.split('-'));
+            var y = parseInt(ss[0],10);
+            var m = parseInt(ss[1],10);
+            var d = parseInt(ss[2],10);
+            if (!isNaN(y) && !isNaN(m) && !isNaN(d)){
+                return new Date(y,m-1,d);
+            } else {
+                return new Date();
+            }
+        }  */
+       /*  $( "#tglAwal" ).datepicker();
+        $( "#tglAkhir" ).datepicker(); */
+		$("#listTablePengadaan  > thead tr th, tr td").css({"text-align": "center", "vertical-align": "middle"});
+    }); 
+</script>
 </head>
 <body>
 	<div class="easyui-layout" id="main">
@@ -16,7 +44,7 @@
             <li>
                 <span>My Documents</span>
                 <ul>
-                    <li>
+                    <li data-options="state:'closed'">
                         <span>Master Inventaris</span>
                         <ul>
                             <li><a href="${pageContext.request.contextPath}/barang/SearchAllBarang.action">Inventaris Barang</a></li>
@@ -24,7 +52,7 @@
 			    			<li><a href="${pageContext.request.contextPath}/masterRuangan/searchRuangan.action">Inventaris Ruang</a></li>
                         </ul>
                     </li>
-                    <li data-options="state:'closed'">
+                    <li>
                         <span>Pengadaan</span>
                         <ul>
                             <li><a href="${pageContext.request.contextPath}/pengadaanBarang/SearchAllPengadaan.action">Formulir Pengajuan</a></li>
@@ -81,20 +109,65 @@
             </li>
         </ul>
         </div>
-        <div data-options="region:'center',title:'Add Data Ruangan'" class="center">
-        	<div class="view">
-        	<div class="errors">
-                	<s:fielderror name="invaliRuangan"/>
-                </div>
-			  <s:form namespace="/masterRuangan" method="post" theme="bootstrap" cssClass="form-horizontal" >
-				<s:textfield name="ruangan.namaRuangan" label="Nama Ruangan " labelSeparator=":"/>
-				<s:textfield name="ruangan.panjang" label="Panjang " labelSeparator=":"/>
-				<s:textfield name="ruangan.lebar" label="Lebar " labelSeparator=":"/>
-				<div class="footer">
-					<s:submit action="searchRuangan" value="Cansel" cssClass="btn btn-default"/>
-					<s:submit action="SaveRuangan" value="Add" cssClass="btn btn-primary"/>
-				</div>
-			</s:form>
+        <div data-options="region:'center',title:'Data Pengadaan Barang'" class="center">
+            <div class="view">
+			  <s:form namespace="/pengadaanBarang" id="form" method="pos">
+				<s:textfield name="pengadaan.namaBarang" placeholder="Nama Barang " cssClass="search"/>
+				<%-- <div class="control-group ">
+					<div class="controls" >
+						<s:textfield name="pengadaan.tglAwal" id="tglAwal" cssClass="fieldShort" theme="simple" />
+						&nbsp;&nbsp; s/d &nbsp;&nbsp;
+						<s:textfield name="pengadaan.tglAkhir" id="tglAkhir" cssClass="fieldShort" theme="simple" />
+					</div>
+				</div> --%>
+				<s:submit value="Search" action="SearchAllPengadaan" cssClass="btn btn-default btn-sm btnSrc" />
+				<s:submit value="Add data" action="AddPengadaan" cssClass="btn btn-success btn-sm btnAdd" />
+			  </s:form>
+			  <display:table id="listTablePengadaan" name="listPengadaan" pagesize="10"
+				 requestURI="/pengadaanBarang/SearchAllPengadaan.action" class="table table-bordered table-hover table-striped" >
+				<display:column title="Tanggal " property="tanggal" format="{0,date,dd/MM/yyyy}" />
+				<display:column title="Kode Barang " property="kodeBarang" />
+				<display:column title="Nama Barang " property="namaBarang" />
+				<display:column title="Keterangan " property="keterangan"  />
+				<display:column title="Merek " property="merek" />
+				<display:column title="Satuan " property="satuan" />
+				<display:column title="Jumlah " property="jumlah"  />
+				<display:column title="Harga " property="harga" />
+				<display:column title="Action">
+					<c:choose>
+						<c:when test="${listTablePengadaan.status=='1' }">
+						    <a class="btn btn-warning btn-xs" href="${pageContext.request.contextPath}/pengadaanBarang/EditPengadaan.action?pengadaan.kodePengadaan=<%=((Pengadaan) pageContext.getAttribute("listTablePengadaan")).getKodePengadaan()%>">&nbsp; Edit &nbsp;</a>
+							<a class="btn btn-danger btn-xs" href="${pageContext.request.contextPath}/pengadaanBarang/DeletPengadaan.action?pengadaan.kodePengadaan=<%=((Pengadaan) pageContext.getAttribute("listTablePengadaan")).getKodePengadaan()%>">Delete</a>
+							<a class="btn btn-default btn-xs" href="${pageContext.request.contextPath}/pengadaanBarang/ViewPengadaan.action?pengadaan.kodePengadaan=<%=((Pengadaan) pageContext.getAttribute("listTablePengadaan")).getKodePengadaan()%>">&nbsp; View &nbsp;</a>
+							<a class="btn btn-primary btn-xs" href="${pageContext.request.contextPath}/pengadaanBarang/Submit.action?pengadaan.kodePengadaan=<%=((Pengadaan) pageContext.getAttribute("listTablePengadaan")).getKodePengadaan()%>">Submit</a>
+						</c:when>
+						<c:when test="${listTablePengadaan.status!='1' }">
+							<a class="btn btn-default btn-xs" href="${pageContext.request.contextPath}/pengadaanBarang/ViewPengadaan.action?pengadaan.kodePengadaan=<%=((Pengadaan) pageContext.getAttribute("listTablePengadaan")).getKodePengadaan()%>">&nbsp; View &nbsp;</a>
+						</c:when>
+					</c:choose>
+				</display:column>
+				<display:column title="status" media="html">
+    				<div class="btn-group btn-group-xs" role="group" aria-label="...">
+    					<c:choose>
+			    			<c:when test="${listTablePengadaan.status=='1'}"> 
+			    				<label class="label label-default">Created</label>
+			    			</c:when>
+			    			<c:when test="${listTablePengadaan.status=='2'}"> 
+			    				<label class="label label-info">Process</label>
+			    			</c:when>
+			    			<c:when test="${listTablePengadaan.status=='3'}"> 
+			    				<label class="label label-warning">Review</label>
+			    			</c:when>
+			    			<c:when test="${listTablePengadaan.status=='4'}"> 
+			    				<label class="label label-success">Acc</label>
+			    			</c:when>
+			    			<c:otherwise>
+			    				<label class="label label-default">Error</label>
+			    			</c:otherwise>
+			    		</c:choose>
+					</div>
+        		</display:column>	
+			  </display:table>
 			</div>
         </div>
     </div>

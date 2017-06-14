@@ -1,13 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib uri="http://displaytag.sf.net" prefix="display"%>
-<%@page import="com.id.sima.modul.model.Ruangan"%>
+<%@page import="com.id.sima.modul.model.Penggunaan"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <jsp:include page="/pages/template/header.jsp"></jsp:include>
-<title>Insert title here</title>
+<title>SIMA</title>
+<script type="text/javascript">
+	$(window).ready(function(){
+		$("#listTablePenggunaan  > thead tr th, tr td").css({"text-align": "center", "vertical-align": "middle"});
+    }); 
+</script>
 </head>
 <body>
 	<div class="easyui-layout" id="main">
@@ -16,11 +21,11 @@
             <li>
                 <span>My Documents</span>
                 <ul>
-                    <li>
+                    <li data-options="state:'closed'">
                         <span>Master Inventaris</span>
                         <ul>
                             <li><a href="${pageContext.request.contextPath}/barang/SearchAllBarang.action">Inventaris Barang</a></li>
-                            <li><a href="${pageContext.request.contextPath}/barang/SearchAllBhp.action">Inventaris Barang Habis Pakai</a></li>
+                            <li><a href="${pageContext.request.contextPath}/bhp/SearchAllBhp.action">Inventaris Barang Habis Pakai</a></li>
 			    			<li><a href="${pageContext.request.contextPath}/masterRuangan/searchRuangan.action">Inventaris Ruang</a></li>
                         </ul>
                     </li>
@@ -30,7 +35,7 @@
                             <li><a href="${pageContext.request.contextPath}/pengadaanBarang/SearchAllPengadaan.action">Formulir Pengajuan</a></li>
                         </ul>
                     </li>
-                    <li data-options="state:'closed'">
+                    <li>
                         <span>Penggunaan</span>
                         <ul>
                             <li data-options="state:'closed'">
@@ -53,7 +58,7 @@
                             		<li><a href="${pageContext.request.contextPath}/penggunaanBarang/SearchGudangPerlengkapan.action">Ruang Gudang Perlengkapan</a></li>
                             	</ul>
                             </li>
-                            <li data-options="state:'closed'">
+                            <li>
                             	<span>Sarana</span>
                             	<ul>
                             		<li><a href="${pageContext.request.contextPath}/penggunaanBarang/SearchMusholla.action">Mushola</a></li>
@@ -81,20 +86,27 @@
             </li>
         </ul>
         </div>
-        <div data-options="region:'center',title:'Add Data Ruangan'" class="center">
+        <div data-options="region:'center',title:'Data Penggunaan Kamar Mandi Serbaguna'" class="center">
         	<div class="view">
-        	<div class="errors">
-                	<s:fielderror name="invaliRuangan"/>
-                </div>
-			  <s:form namespace="/masterRuangan" method="post" theme="bootstrap" cssClass="form-horizontal" >
-				<s:textfield name="ruangan.namaRuangan" label="Nama Ruangan " labelSeparator=":"/>
-				<s:textfield name="ruangan.panjang" label="Panjang " labelSeparator=":"/>
-				<s:textfield name="ruangan.lebar" label="Lebar " labelSeparator=":"/>
-				<div class="footer">
-					<s:submit action="searchRuangan" value="Cansel" cssClass="btn btn-default"/>
-					<s:submit action="SaveRuangan" value="Add" cssClass="btn btn-primary"/>
-				</div>
-			</s:form>
+			  <s:form namespace="/penggunaanBarang" id="form">
+				<s:textfield name="penggunaan.namaBarang" placeholder="Nama Barang " cssClass="search"/>
+				<s:submit value="Search" action="SearchAllPenggunaan" cssClass="btn btn-default btn-sm btnSrc" />
+				<s:submit value="Add data" action="AddPenggunaan" cssClass="btn btn-success btn-sm btnAdd" />
+			  </s:form>
+			  <display:table id="listTablePenggunaan" name="listPenggunaan" pagesize="10"
+				 requestURI="/penggunaanBarang/SearchAllPenggunaan.action" class="table table-bordered table-hover table-striped" >
+				<display:column title="Kode Barang " property="kodeBarang" />
+				<display:column title="Nama Barang " property="namaBarang" />
+				<display:column title="Baik " property="baik"  />
+				<display:column title="Rusak " property="rusak" />
+				<display:column title="Jumlah " property="jumlah" />
+				<display:column title="Keterangan " property="keterangan" />
+				<display:column title="Action">
+				  <a class="btn btn-warning btn-xs" href="${pageContext.request.contextPath}/penggunaanBarang/EditPenggunaan.action?penggunaan.kodePenggunaan=<%=((Penggunaan) pageContext.getAttribute("listTablePenggunaan")).getKodePenggunaan()%>">Edit</a>
+				  <a class="btn btn-danger btn-xs" href="${pageContext.request.contextPath}/penggunaanBarang/DeletPenggunaan.action?penggunaan.kodePenggunaan=<%=((Penggunaan) pageContext.getAttribute("listTablePenggunaan")).getKodePenggunaan()%>">Delete</a>
+				  <a class="btn btn-default btn-xs" href="${pageContext.request.contextPath}/penggunaanBarang/ViewPenggunaan.action?penggunaan.kodePenggunaan=<%=((Penggunaan) pageContext.getAttribute("listTablePenggunaan")).getKodePenggunaan()%>">View</a>
+				</display:column>	
+			   </display:table>
 			</div>
         </div>
     </div>

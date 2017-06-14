@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <jsp:include page="/pages/template/header.jsp"></jsp:include>
-<title>Insert title here</title>
+<title>SIMA</title>
 </head>
 <body>
 	<div class="easyui-layout" id="main">
@@ -16,11 +16,11 @@
             <li>
                 <span>My Documents</span>
                 <ul>
-                    <li>
+                    <li data-options="state:'closed'">
                         <span>Master Inventaris</span>
                         <ul>
                             <li><a href="${pageContext.request.contextPath}/barang/SearchAllBarang.action">Inventaris Barang</a></li>
-                            <li><a href="${pageContext.request.contextPath}/barang/SearchAllBhp.action">Inventaris Barang Habis Pakai</a></li>
+                            <li><a href="${pageContext.request.contextPath}/bhp/SearchAllBhp.action">Inventaris Barang Habis Pakai</a></li>
 			    			<li><a href="${pageContext.request.contextPath}/masterRuangan/searchRuangan.action">Inventaris Ruang</a></li>
                         </ul>
                     </li>
@@ -30,7 +30,7 @@
                             <li><a href="${pageContext.request.contextPath}/pengadaanBarang/SearchAllPengadaan.action">Formulir Pengajuan</a></li>
                         </ul>
                     </li>
-                    <li data-options="state:'closed'">
+                    <li>
                         <span>Penggunaan</span>
                         <ul>
                             <li data-options="state:'closed'">
@@ -81,18 +81,22 @@
             </li>
         </ul>
         </div>
-        <div data-options="region:'center',title:'Add Data Ruangan'" class="center">
+        <div data-options="region:'center',title:'View Penggunaan Barang'" class="center">
         	<div class="view">
-        	<div class="errors">
-                	<s:fielderror name="invaliRuangan"/>
-                </div>
-			  <s:form namespace="/masterRuangan" method="post" theme="bootstrap" cssClass="form-horizontal" >
-				<s:textfield name="ruangan.namaRuangan" label="Nama Ruangan " labelSeparator=":"/>
-				<s:textfield name="ruangan.panjang" label="Panjang " labelSeparator=":"/>
-				<s:textfield name="ruangan.lebar" label="Lebar " labelSeparator=":"/>
+			  <s:form namespace="/penggunaanBarang" method="post" theme="bootstrap" cssClass="form-horizontal" >
+ 			    <s:textfield name="penggunaan.kodePenggunaan" label="Kode Penggunaan " labelSeparator=":" readonly="true" />
+				<s:textfield name="penggunaan.kodeBarang" label="Kode Barang " labelSeparator=":" readonly="true" />
+				<s:textfield name="penggunaan.namaBarang" label="Nama Barang " labelSeparator=":" readonly="true" />				
+				<s:textfield name="penggunaan.merek" label="Merek " labelSeparator=":" readonly="true"/>
+				<s:textfield name="penggunaan.satuan" label="Satuan " labelSeparator=":" readonly="true"/>
+				<s:textfield name="penggunaan.baik" label="Baik " labelSeparator=":" readonly="true"/>
+				<s:textfield name="penggunaan.rusak" label="Rusak " labelSeparator=":" readonly="true"/>
+				<s:textfield name="penggunaan.jumlah" label="Jumlah " labelSeparator=":" readonly="true"/>
+				<s:textarea name="penggunaan.keterangan" label="Keterangan " labelSeparator=":" readonly="true"/>
+				<s:textfield name="penggunaan.kodeRuangan" label="Kode Ruangan " labelSeparator=":" readonly="true" />
+				<s:textfield name="penggunaan.namaRuangan" label="Nama Ruangan " labelSeparator=":" readonly="true"/>
 				<div class="footer">
-					<s:submit action="searchRuangan" value="Cansel" cssClass="btn btn-default"/>
-					<s:submit action="SaveRuangan" value="Add" cssClass="btn btn-primary"/>
+					<s:submit action="SearchAllPenggunaan" value="Close" cssClass="btn btn-default"/>
 				</div>
 			</s:form>
 			</div>

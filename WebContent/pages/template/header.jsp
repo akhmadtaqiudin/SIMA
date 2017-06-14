@@ -14,9 +14,27 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/makeOver/js/jquery.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/makeOver/js/jquery.easyui.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/makeOver/js/bootstrap.min.js" ></script>
-	<title></title>
 </head>
-<body>
-
+<body>	
+	<div class="navbar navbar-default navbar-fixed-top bs-docs-nav">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <h3>Sistem Informasi Manajemen Aset</h3>
+        </div>
+        <div id="navbar" >
+          <div class="nav navbar-nav navbar-right">  
+            <a class="navbar-right" href="${pageContext.request.contextPath}/authentication/logout.action">
+	          <span class="glyphicon glyphicon-user" aria-hidden="true"></span><s:property value="#session['userName'].userName" /> Logout
+	        </a>
+	      </div>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </div>
 </body>
 </html>

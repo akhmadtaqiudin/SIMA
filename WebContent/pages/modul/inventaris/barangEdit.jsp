@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <jsp:include page="/pages/template/header.jsp"></jsp:include>
-<title>Insert title here</title>
+<title>SIMA</title>
 </head>
 <body>
 	<div class="easyui-layout" id="main">
@@ -81,18 +81,26 @@
             </li>
         </ul>
         </div>
-        <div data-options="region:'center',title:'Add Data Ruangan'" class="center">
+        <div data-options="region:'center',title:'Edit Data Barang'" class="center">
         	<div class="view">
-        	<div class="errors">
-                	<s:fielderror name="invaliRuangan"/>
-                </div>
-			  <s:form namespace="/masterRuangan" method="post" theme="bootstrap" cssClass="form-horizontal" >
-				<s:textfield name="ruangan.namaRuangan" label="Nama Ruangan " labelSeparator=":"/>
-				<s:textfield name="ruangan.panjang" label="Panjang " labelSeparator=":"/>
-				<s:textfield name="ruangan.lebar" label="Lebar " labelSeparator=":"/>
+			  <s:form namespace="/barang" method="post" theme="bootstrap" cssClass="form-horizontal" >
+				<s:textfield name="barang.kodeBarang" label="Kode Barang " labelSeparator=":" readonly="true"/>
+				<s:textfield name="barang.namaBarang" label="Nama Barang " labelSeparator=":"/>
+				<s:textarea name="barang.keterangan" label="Keterangan " labelSeparator=":"/>
+				<s:textfield name="barang.merek" label="Merek " labelSeparator=":"/>
+				<s:select list="#{'Box':'Box','Buah':'Buah','Dus':'Dus','Keping':'Keping','Pak':'Pak','Rim':'Rim','Rol':'Rol','Set':'Set'}"  
+					headerKey="0" headerValue="==Pilih==" name="barang.satuan" label="Satuan " labelSeparator=":" />
+				<s:textfield name="barang.jumlah" label="Jumlah " labelSeparator=":"/>
+				<s:textfield name="barang.harga" label="Harga " labelSeparator=":"/>
 				<div class="footer">
-					<s:submit action="searchRuangan" value="Cansel" cssClass="btn btn-default"/>
-					<s:submit action="SaveRuangan" value="Add" cssClass="btn btn-primary"/>
+					<s:if test="%{barang.jenis=='1'}">
+						<s:submit action="SearchAllBarang" value="Cansel" cssClass="btn btn-default"/>
+						<s:submit action="SaveEditBarang" value="Edit" cssClass="btn btn-primary"/>
+					</s:if>
+					<s:else>
+						<s:submit action="SearchAllBhp" value="Close" cssClass="btn btn-default"/>
+						<s:submit action="SaveEditBarangBhp" value="Edit" cssClass="btn btn-primary"/>
+					</s:else>
 				</div>
 			</s:form>
 			</div>

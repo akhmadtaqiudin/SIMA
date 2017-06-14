@@ -30,7 +30,7 @@
                             <li><a href="${pageContext.request.contextPath}/pengadaanBarang/SearchAllPengadaan.action">Formulir Pengajuan</a></li>
                         </ul>
                     </li>
-                    <li data-options="state:'closed'">
+                   <li data-options="state:'closed'">
                         <span>Penggunaan</span>
                         <ul>
                             <li data-options="state:'closed'">
@@ -81,18 +81,23 @@
             </li>
         </ul>
         </div>
-        <div data-options="region:'center',title:'Add Data Ruangan'" class="center">
+        <div data-options="region:'center',title:'View Data Barang'" class="center">
         	<div class="view">
-        	<div class="errors">
-                	<s:fielderror name="invaliRuangan"/>
-                </div>
-			  <s:form namespace="/masterRuangan" method="post" theme="bootstrap" cssClass="form-horizontal" >
-				<s:textfield name="ruangan.namaRuangan" label="Nama Ruangan " labelSeparator=":"/>
-				<s:textfield name="ruangan.panjang" label="Panjang " labelSeparator=":"/>
-				<s:textfield name="ruangan.lebar" label="Lebar " labelSeparator=":"/>
+			  <s:form namespace="/barang" method="post" theme="bootstrap" cssClass="form-horizontal" >
+			    <s:textfield name="barang.kodeBarang" label="Kode Barang " labelSeparator=":" readonly="true"/>
+				<s:textfield name="barang.namaBarang" label="Nama Barang " labelSeparator=":" readonly="true"/>
+				<s:textarea name="barang.keterangan" label="Keterangan " labelSeparator=":" readonly="true"/>
+				<s:textfield name="barang.merek" label="Merek " labelSeparator=":" readonly="true"/>
+				<s:textfield name="barang.satuan" label="Satuan " labelSeparator=":" readonly="true"/>
+				<s:textfield name="barang.jumlah" label="Jumlah " labelSeparator=":" readonly="true"/>
+				<s:textfield name="barang.harga" label="Harga " labelSeparator=":" readonly="true"/>
 				<div class="footer">
-					<s:submit action="searchRuangan" value="Cansel" cssClass="btn btn-default"/>
-					<s:submit action="SaveRuangan" value="Add" cssClass="btn btn-primary"/>
+					<s:if test="%{barang.jenis=='1'}">
+						<s:submit action="SearchAllBarang" value="Close" cssClass="btn btn-default"/>
+					</s:if>
+					<s:else>
+						<s:submit action="SearchAllBhp" value="Close" cssClass="btn btn-default"/>
+					</s:else>
 				</div>
 			</s:form>
 			</div>

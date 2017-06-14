@@ -7,7 +7,56 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <jsp:include page="/pages/template/header.jsp"></jsp:include>
-<title>Insert title here</title>
+<title>SIMA</title>
+<script>
+	$(window).ready(function(){
+		//barang
+		$("#kb").change(function(){
+			var varid = $("#kb").val();
+			if(varid==""){
+				$("#nb").val("");
+				$("#merek").val("");
+				$("#satuan").val("");
+			}
+			if(varid!=""){
+				var parent = "${pageContext.request.contextPath}";
+				$.ajax({
+				   url: parent+"/barang/SelectByJson.action?barang.kodeBarang="+varid,
+				   type: 'POST',
+		           dataType: 'json',
+		           success:  function(responseDariServer){
+						$("#nb").val(responseDariServer.namaBarang);
+						$("#merek").val(responseDariServer.merek);
+						$("#satuan").val(responseDariServer.satuan);
+				   },
+				   error: function(req, status, err){
+					alert("gagal melakukan koneksi data barang")
+				   }
+				});
+			}
+		});
+	
+		if($("kb").val()==""){
+			$("#nb").val("");
+			$("#merek").val("");
+			$("#satuan").val("");
+		}else{
+			var varid = $("#kb").val();
+			var parent = "${pageContext.request.contextPath}";
+				$.ajax({
+				   url: parent+"/barang/SelectByJson.action?barang.kodeBarang="+varid,
+				   success:  function(responseDariServer){
+					$("#nb").val(responseDariServer.namaBarang);
+					$("#merek").val(responseDariServer.merek);
+					$("#satuan").val(responseDariServer.satuan);
+				   },
+				   error: function(req, status, err){
+					alert("gagal mengambil data dari tabel barang")
+				   }
+			});
+		}
+	});
+</script>
 </head>
 <body>
 	<div class="easyui-layout" id="main">
@@ -16,11 +65,11 @@
             <li>
                 <span>My Documents</span>
                 <ul>
-                    <li>
+                    <li data-options="state:'closed'">
                         <span>Master Inventaris</span>
                         <ul>
                             <li><a href="${pageContext.request.contextPath}/barang/SearchAllBarang.action">Inventaris Barang</a></li>
-                            <li><a href="${pageContext.request.contextPath}/barang/SearchAllBhp.action">Inventaris Barang Habis Pakai</a></li>
+                            <li><a href="${pageContext.request.contextPath}/bhp/SearchAllBhp.action">Inventaris Barang Habis Pakai</a></li>
 			    			<li><a href="${pageContext.request.contextPath}/masterRuangan/searchRuangan.action">Inventaris Ruang</a></li>
                         </ul>
                     </li>
@@ -30,7 +79,7 @@
                             <li><a href="${pageContext.request.contextPath}/pengadaanBarang/SearchAllPengadaan.action">Formulir Pengajuan</a></li>
                         </ul>
                     </li>
-                    <li data-options="state:'closed'">
+                    <li>
                         <span>Penggunaan</span>
                         <ul>
                             <li data-options="state:'closed'">
@@ -81,18 +130,26 @@
             </li>
         </ul>
         </div>
-        <div data-options="region:'center',title:'Add Data Ruangan'" class="center">
+        <div data-options="region:'center',title:'Edit Penggunaan Barang'" class="center">
         	<div class="view">
-        	<div class="errors">
-                	<s:fielderror name="invaliRuangan"/>
-                </div>
-			  <s:form namespace="/masterRuangan" method="post" theme="bootstrap" cssClass="form-horizontal" >
-				<s:textfield name="ruangan.namaRuangan" label="Nama Ruangan " labelSeparator=":"/>
-				<s:textfield name="ruangan.panjang" label="Panjang " labelSeparator=":"/>
-				<s:textfield name="ruangan.lebar" label="Lebar " labelSeparator=":"/>
+        	  <s:action namespace="/barang" name="SelectListBarang" id="slb"/>
+        	  <s:action namespace="/masterRuangan" name="SelectListRuangan" id="slr"/>
+			  <s:form namespace="/penggunaanBarang" method="post" theme="bootstrap" cssClass="form-horizontal" >
+				<s:select id="kb" list="#slb.listBarang" listKey="kodeBarang" listValue="kodeBarang" 
+					headerKey="0" headerValue="==Pilih==" name="penggunaan.kodeBarang" label="Kode Barang " labelSeparator=":" />
+				<s:textfield id="nb" name="penggunaan.namaBarang" label="Nama Barang " labelSeparator=":" readonly="true" />
+				<s:textfield id="merek" name="penggunaan.merek" label="Merek " labelSeparator=":" readonly="true"/>
+				<s:textfield id="satuan" name="penggunaan.satuan" label="Satuan " labelSeparator=":" readonly="true"/>
+				<s:select id="kr" list="#slr.listRuangan" listKey="kodeRuangan" listValue="kodeRuangan" 
+					headerKey="0" headerValue="==Pilih==" name="penggunaan.kodeRuangan" label="Kode Ruangan " labelSeparator=":" />
+				<s:textfield id="nr" name="penggunaan.namaRuangan" label="Nama Ruangan " labelSeparator=":" readonly="true"/>
+				<s:textfield name="penggunaan.jumlah" label="Jumlah " labelSeparator=":"/>
+				<s:textfield name="penggunaan.baik" label="Baik " labelSeparator=":" />
+				<s:textfield name="penggunaan.rusak" label="Rusak " labelSeparator=":" />
+				<s:textarea name="penggunaan.keterangan" label="Keterangan " labelSeparator=":" />
 				<div class="footer">
-					<s:submit action="searchRuangan" value="Cansel" cssClass="btn btn-default"/>
-					<s:submit action="SaveRuangan" value="Add" cssClass="btn btn-primary"/>
+					<s:submit action="SearchAllPenggunaan" value="Cansel" cssClass="btn btn-default"/>
+					<s:submit action="SaveEditPenggunaan" value="Edit" cssClass="btn btn-primary"/>
 				</div>
 			</s:form>
 			</div>
