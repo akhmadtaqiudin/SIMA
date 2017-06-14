@@ -1,8 +1,6 @@
 package com.id.sima.modul.controller;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -53,29 +51,28 @@ public class RuanganController extends CoreAction{
 	public String addRecord(){
 		System.out.println("Jalankan Method addRecord");
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-		String d[] = sdf.format(new Date()).split("/"),date="";
-		date+=d[0]+d[1]+d[2];
+		String kode="";
+		kode += "KAR";
 		int y = 0;
 		y = ruanganDao.count(ruangan);
 		int x = ruanganDao.maxID(ruangan);
 		x++;
 		
 		if(x <99 && x>=10){
-			date+="00"+x;
+			kode+="00"+x;
 		}else if(x>99 && x<1000){
-			date+="0"+x;
+			kode+="0"+x;
 		}else if(x>=999){
-			date+=x;
+			kode+=x;
 		}else{
-			date+="000"+x;
+			kode+="000"+x;
 		}
 		if(y > 0){
 			addFieldError("invaliRuangan", "Nama Ruangan : "+ruangan.getNamaRuangan()+" sudah terdaftar pada database, harap gunakan Nama Ruangan lain");
 			return ERROR;
 		}
 		try {
-			ruangan.setKodeRuangan(date);
+			ruangan.setKodeRuangan(kode);
 			ruanganDao.insertRecord(ruangan);
 		} catch (Exception e) {
 			addFieldError("invaliRuang", "Gagal menambahkan data dikarenakan "+e);
