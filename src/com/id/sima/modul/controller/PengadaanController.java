@@ -1,6 +1,8 @@
 package com.id.sima.modul.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -22,7 +24,11 @@ public class PengadaanController extends CoreAction{
 		if(pengadaan == null){
 			pengadaan = new Pengadaan();
 			pengadaan.setNamaBarang("");
+			pengadaan.setTglAwal(new Date());
+			pengadaan.setTglAkhir(new Date());
 		}
+		System.out.println("tgl awal "+pengadaan.getTglAwal());
+		System.out.println("tgl awal "+pengadaan.getTglAkhir());
 		listPengadaan = pengadaanDao.selectAll(pengadaan);
 		return SUCCESS;
 	}
@@ -37,29 +43,32 @@ public class PengadaanController extends CoreAction{
 	public String addPengadaan(){
 		System.out.println("Jalankan method searchAllPengadaan");
 		
-		String kode="";
-		kode += "KPB";
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+		String d[] = sdf.format(new Date()).split("/"),date="";
+		date+=d[0]+d[1]+d[2];
+		
 		int y = 0;
 		y = pengadaanDao.count(pengadaan);
 		int x = pengadaanDao.maxID(pengadaan);
 		x++;
 		
 		if(x <99 && x>=10){
-			kode+="00"+x;
+			date+="00"+x;
 		}else if(x>99 && x<1000){
-			kode+="0"+x;
+			date+="0"+x;
 		}else if(x>=999){
-			kode+=x;
+			date+=x;
 		}else{
-			kode+="000"+x;
+			date+="000"+x;
 		}
+		
 		if(y > 0){
 			addFieldError("invaliPengadaan", "Kode Barang : "+pengadaan.getKodeBarang()+" sudah terdaftar pada database, harap gunakan Kode Barang lain");
 			return ERROR;
 		}
 		try {
-			pengadaan.setKodePengadaan(kode);
 			pengadaan.setStatus("1");
+			pengadaan.setKodePengadaan(date);
 			pengadaanDao.insertRecord(pengadaan);
 		} catch (Exception e) {
 			addFieldError("invaliPengadaan", "Gagal menambahkan data dikarenakan "+e);
