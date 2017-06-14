@@ -21,11 +21,6 @@
 		WHERE jenis=#{jenis} AND
 		lower(nama_barang) like '%'|| lower(#{namaBarang}) ||'%' order by nama_barang asc
 	</select>
-	<select id="selectAllBhp" parameterType="com.id.sima.modul.model.Barang" resultMap="BaseResultMap">
-		SELECT * FROM m_barang
-		WHERE jenis=#{jenis} AND
-		lower(nama_barang) like '%'|| lower(#{namaBarang}) ||'%' order by nama_barang asc
-	</select>
   	<select id="maxID" parameterType="com.id.sima.modul.model.Barang" resultType="java.lang.Integer">
   		SELECT COUNT(*) FROM m_barang 
   	</select>

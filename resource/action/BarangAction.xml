@@ -32,7 +32,7 @@
     		<result name="success">/pages/modul/inventaris/barangMain.jsp</result>
     		<result name="error">/pages/modul/inventaris/barangMain.jsp</result>
     	</action>
-    	<action name="SelectByJson" class="com.id.sima.modul.controller.BarangController" method="searchKodeToJson">
+    	<action name="SelectByJson" class="com.id.sima.modul.controller.BarangController" method="searchWhereKode">
     		<result type="json">
                 <param name="noCache">true</param>
 		        <param name="root">barang</param>

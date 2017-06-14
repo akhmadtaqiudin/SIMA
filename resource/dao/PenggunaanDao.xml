@@ -17,7 +17,7 @@
 	</resultMap>
 	<select id="selectWhereKode" parameterType="com.id.sima.modul.model.Penggunaan" resultMap="BaseResultMap">
 		SELECT p.kode_penggunaan,p.kode_barang,p.baik,p.rusak,p.keterangan,
-		(SELECT nama_barang FROM m_barang WHERE kode_barang = t_penggunaan.kode_barang) AS nama_barang 
+		(SELECT nama_barang FROM m_barang WHERE kode_barang = p.kode_barang) AS nama_barang 
 		FROM t_penggunaan p
 		LEFT JOIN m_barang b ON b.kode_barang=p.kode_barang
 		LEFT JOIN m_ruangan r ON r.kode_ruangan=p.kode_ruangan 
@@ -25,7 +25,7 @@
 	</select>
 	<select id="selectAllRecord" parameterType="com.id.sima.modul.model.Penggunaan" resultMap="BaseResultMap">
 		SELECT p.kode_penggunaan,p.kode_barang,p.baik,p.rusak,p.keterangan,
-		(SELECT nama_barang FROM m_barang WHERE kode_barang = t_penggunaan.kode_barang) AS nama_barang 
+		(SELECT nama_barang FROM m_barang WHERE kode_barang = p.kode_barang) AS nama_barang 
 		FROM t_penggunaan p
 		LEFT JOIN m_barang b ON b.kode_barang=p.kode_barang
 		LEFT JOIN m_ruangan r ON r.kode_ruangan=p.kode_ruangan 	
@@ -43,7 +43,7 @@
 	</insert>
 	<update id="updateRecord" parameterType="com.id.sima.modul.model.Penggunaan">
 		UPDATE t_penggunaan SET
-		kode_barang=#{kodeBarang},kode_ruangan=#{kodeRuangan},jumlah=#{jumlah},baik=#{baik},rusak=#{rusak},keterangan=#{keterangan}
+		kode_barang=#{kodeBarang},jumlah=#{jumlah},baik=#{baik},rusak=#{rusak},keterangan=#{keterangan}
 		WHERE kode_penggunaan=#{kodePenggunaan}
 	</update>
 	<delete id="deletRecord" parameterType="com.id.sima.modul.model.Penggunaan">

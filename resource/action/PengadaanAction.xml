@@ -24,6 +24,7 @@
         
     	<action name="SearchAllPengadaan" class="com.id.sima.modul.controller.PengadaanController" method="searchAllPengadaan">
     		<interceptor-ref name="authStack"/>
+    		<result name="input">/pages/modul/transaction/pengadaanMain.jsp</result>
     		<result name="success">/pages/modul/transaction/pengadaanMain.jsp</result>
     		<result name="error">/pages/modul/transaction/pengadaanMain.jsp</result>
     	</action>
@@ -61,7 +62,13 @@
     		<result name="success">/pages/modul/transaction/pengadaanView.jsp</result>
     		<result name="error">/pages/modul/transaction/pengadaanView.jsp</result>
     	</action>
-    	<action name="SubmitePengadaan" class="com.id.sima.modul.controller.PengadaanController" method="submitPengadaan">
+    	<action name="Submit" class="com.id.sima.modul.controller.PengadaanController" method="searchWherePengadaan">
+    		<interceptor-ref name="authStack"/>
+    		<result name="input">/pages/modul/transaction/pengadaanSubmit.jsp</result>
+    		<result name="success">/pages/modul/transaction/pengadaanSubmit.jsp</result>
+    		<result name="error">/pages/modul/transaction/pengadaanSubmit.jsp</result>
+    	</action>
+    	<action name="SubmitPengadaan" class="com.id.sima.modul.controller.PengadaanController" method="submitPengadaan">
     		<interceptor-ref name="authStack"/>
     		<result name="success">/pages/modul/transaction/pengadaanMain.jsp</result>
     		<result name="error">/pages/modul/transaction/pengadaanMain.jsp</result>

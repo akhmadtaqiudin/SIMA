@@ -7,4 +7,9 @@
 <struts>
     <constant name="struts.devMode" value="true"/>
     <include file="action/UserAction.xml"></include>
+    <include file="action/BarangAction.xml"></include>
+    <include file="action/BarangHabisPakaiAction.xml"></include>
+    <include file="action/RuangAction.xml"></include>
+    <include file="action/PengadaanAction.xml"></include>
+    <include file="action/PenggunaanAction.xml"></include>
 </struts>

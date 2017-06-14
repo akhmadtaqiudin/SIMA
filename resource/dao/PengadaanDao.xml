@@ -14,26 +14,29 @@
 	    <result column="jumlah" property="jumlah" />
 	    <result column="status" property="status" />
 	    <result column="tanggal" property="tanggal" />
+	    <result property="tglAwal" />
+	    <result property="tglAkhir" />
 	</resultMap>
 	<select id="selectWhereKode" parameterType="com.id.sima.modul.model.Pengadaan" resultMap="BaseResultMap">
 		SELECT a.tanggal,a.kode_pengadaan,a.kode_barang,a.status,b.keterangan,b.merek,b.jenis,b.satuan,b.harga,a.jumlah,
-		(SELECT nama_barang FROM m_barang WHERE kode_barang = t_pengadaan.kode_barang) AS nama_barang 
+		(SELECT nama_barang FROM m_barang WHERE kode_barang = a.kode_barang) AS nama_barang 
 		FROM t_pengadaan a
 		LEFT JOIN m_barang b ON b.kode_barang=a.kode_barang
-		WHERE kode_pengadaan = #{kodeRuangan}
+		WHERE kode_pengadaan = #{kodePengadaan}
 	</select>
 	<select id="selectAll" parameterType="com.id.sima.modul.model.Pengadaan" resultMap="BaseResultMap">
 		SELECT a.tanggal,a.kode_pengadaan,a.kode_barang,a.status,b.keterangan,b.merek,b.jenis,b.satuan,b.harga,a.jumlah,
-		(SELECT nama_barang FROM m_barang WHERE kode_barang = t_pengadaan.kode_barang) AS nama_barang 
+		(SELECT nama_barang FROM m_barang WHERE kode_barang = a.kode_barang) AS nama_barang 
 		FROM t_pengadaan a
 		LEFT JOIN m_barang b ON b.kode_barang=a.kode_barang
-		WHERE lower(nama_barang) like '%'|| lower(#{namaBarang}) ||'%' order by kode_pengadaan asc
+		WHERE 
+		lower(nama_barang) like '%'|| lower(#{namaBarang}) ||'%' ORDER BY kode_pengadaan DESC
 	</select>
   	<select id="maxID" parameterType="com.id.sima.modul.model.Pengadaan" resultType="java.lang.Integer">
   		SELECT COUNT(*) FROM t_pengadaan
   	</select>
   	<select id="count" parameterType="com.id.sima.modul.model.Pengadaan" resultType="java.lang.Integer">
-  		SELECT COUNT(*) FROM t_pengadaan WHERE kode_barang = #{kodeBarang}
+  		SELECT COUNT(*) FROM t_pengadaan WHERE tanggal=now() AND kode_barang = #{kodeBarang}
   	</select>
 	<insert id="insertRecord" parameterType="com.id.sima.modul.model.Pengadaan">
 		INSERT INTO t_pengadaan(kode_pengadaan,kode_barang, jumlah, status, tanggal)

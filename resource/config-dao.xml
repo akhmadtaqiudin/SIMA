@@ -19,6 +19,9 @@
     </settings>
     <mappers>
        <mapper resource="dao/UserDao.xml" /> 
-       
+       <mapper resource="dao/BarangDao.xml" />
+       <mapper resource="dao/RuangDao.xml" />
+       <mapper resource="dao/PengadaanDao.xml" />
+       <mapper resource="dao/PenggunaanDao.xml" />
     </mappers>
 </configuration>
