@@ -70,10 +70,7 @@
                     <li data-options="state:'closed'">
                         <span>Laporan</span>
                         <ul>
-                            <li><a href="${pageContext.request.contextPath}/ruangan/searchRuangan.action">Laporan Master Barang</a></li>
-                            <li><a href="${pageContext.request.contextPath}/ruangan/searchRuangan.action">Laporan</a> </li>
-                            <li><a href="${pageContext.request.contextPath}/ruangan/searchRuangan.action">Microsoft Office</a></li>
-                            <li><a href="${pageContext.request.contextPath}/ruangan/searchRuangan.action">Games</a></li>
+                            <li><a href="${pageContext.request.contextPath}/pengadaanBarang/ReportPengadaan.action">Laporan Pengadaan Barang</a></li>
                         </ul>
                     </li>
                 </ul>

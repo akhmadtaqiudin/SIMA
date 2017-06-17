@@ -12,27 +12,10 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/makeOver/js/jquery-ui.js"></script> --%>
 <title>SIMA</title>
 <script type="text/javascript">
-	$(window).ready(function(){	
-		/* function myformatter(date){
-            var y = date.getFullYear();
-            var m = date.getMonth()+1;
-            var d = date.getDate();
-            return (d<10?('0'+d):d)+'-'+(m<10?('0'+m):m)+'-'+y;
-        }
-        function myparser(s){
-            if (!s) return new Date();
-            var ss = (s.split('-'));
-            var y = parseInt(ss[0],10);
-            var m = parseInt(ss[1],10);
-            var d = parseInt(ss[2],10);
-            if (!isNaN(y) && !isNaN(m) && !isNaN(d)){
-                return new Date(y,m-1,d);
-            } else {
-                return new Date();
-            }
-        }  */
-       /*  $( "#tglAwal" ).datepicker();
-        $( "#tglAkhir" ).datepicker(); */
+	$(window).ready(function(){
+		$(".btnRst").on("click", function(){
+        	$(".search").val("");
+        });
 		$("#listTablePengadaan  > thead tr th, tr td").css({"text-align": "center", "vertical-align": "middle"});
     }); 
 </script>
@@ -98,11 +81,8 @@
                     </li>
                     <li data-options="state:'closed'">
                         <span>Laporan</span>
-                        <ul>
-                            <li><a href="${pageContext.request.contextPath}/ruangan/searchRuangan.action">Laporan Master Barang</a></li>
-                            <li><a href="${pageContext.request.contextPath}/ruangan/searchRuangan.action">Laporan</a> </li>
-                            <li><a href="${pageContext.request.contextPath}/ruangan/searchRuangan.action">Microsoft Office</a></li>
-                            <li><a href="${pageContext.request.contextPath}/ruangan/searchRuangan.action">Games</a></li>
+                       <ul>
+                            <li><a href="${pageContext.request.contextPath}/pengadaanBarang/ReportPengadaan.action">Laporan Pengadaan Barang</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -113,14 +93,8 @@
             <div class="view">
 			  <s:form namespace="/pengadaanBarang" id="form" method="pos">
 				<s:textfield name="pengadaan.namaBarang" placeholder="Nama Barang " cssClass="search"/>
-				<%-- <div class="control-group ">
-					<div class="controls" >
-						<s:textfield name="pengadaan.tglAwal" id="tglAwal" cssClass="fieldShort" theme="simple" />
-						&nbsp;&nbsp; s/d &nbsp;&nbsp;
-						<s:textfield name="pengadaan.tglAkhir" id="tglAkhir" cssClass="fieldShort" theme="simple" />
-					</div>
-				</div> --%>
 				<s:submit value="Search" action="SearchAllPengadaan" cssClass="btn btn-default btn-sm btnSrc" />
+				<input value="Reset" class="btn btn-default btn-sm btnRst" />
 				<s:submit value="Add data" action="AddPengadaan" cssClass="btn btn-success btn-sm btnAdd" />
 			  </s:form>
 			  <display:table id="listTablePengadaan" name="listPengadaan" pagesize="10"
@@ -128,11 +102,11 @@
 				<display:column title="Tanggal " property="tanggal" format="{0,date,dd/MM/yyyy}" />
 				<display:column title="Kode Barang " property="kodeBarang" />
 				<display:column title="Nama Barang " property="namaBarang" />
-				<display:column title="Keterangan " property="keterangan"  />
 				<display:column title="Merek " property="merek" />
 				<display:column title="Satuan " property="satuan" />
 				<display:column title="Jumlah " property="jumlah"  />
 				<display:column title="Harga " property="harga" />
+				<display:column title="Keterangan " property="keterangan"  />
 				<display:column title="Action">
 					<c:choose>
 						<c:when test="${listTablePengadaan.status=='1' }">

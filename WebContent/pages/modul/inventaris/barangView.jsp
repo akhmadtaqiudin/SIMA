@@ -71,10 +71,7 @@
                     <li data-options="state:'closed'">
                         <span>Laporan</span>
                         <ul>
-                            <li><a href="${pageContext.request.contextPath}/ruangan/searchRuangan.action">Laporan Master Barang</a></li>
-                            <li><a href="${pageContext.request.contextPath}/ruangan/searchRuangan.action">Laporan</a> </li>
-                            <li><a href="${pageContext.request.contextPath}/ruangan/searchRuangan.action">Microsoft Office</a></li>
-                            <li><a href="${pageContext.request.contextPath}/ruangan/searchRuangan.action">Games</a></li>
+                            <li><a href="${pageContext.request.contextPath}/pengadaanBarang/ReportPengadaan.action">Laporan Pengadaan Barang</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -86,17 +83,16 @@
 			  <s:form namespace="/barang" method="post" theme="bootstrap" cssClass="form-horizontal" >
 			    <s:textfield name="barang.kodeBarang" label="Kode Barang " labelSeparator=":" readonly="true"/>
 				<s:textfield name="barang.namaBarang" label="Nama Barang " labelSeparator=":" readonly="true"/>
-				<s:textarea name="barang.keterangan" label="Keterangan " labelSeparator=":" readonly="true"/>
 				<s:textfield name="barang.merek" label="Merek " labelSeparator=":" readonly="true"/>
 				<s:textfield name="barang.satuan" label="Satuan " labelSeparator=":" readonly="true"/>
 				<s:textfield name="barang.jumlah" label="Jumlah " labelSeparator=":" readonly="true"/>
 				<s:textfield name="barang.harga" label="Harga " labelSeparator=":" readonly="true"/>
 				<div class="footer">
 					<s:if test="%{barang.jenis=='1'}">
-						<s:submit action="SearchAllBarang" value="Close" cssClass="btn btn-default"/>
+						<s:submit action="SearchAllBarang" value="Close" cssClass="btn btn-default" id="view"/>
 					</s:if>
 					<s:else>
-						<s:submit action="SearchAllBhp" value="Close" cssClass="btn btn-default"/>
+						<s:submit action="SearchAllBhp" value="Close" cssClass="btn btn-default" id="view"/>
 					</s:else>
 				</div>
 			</s:form>

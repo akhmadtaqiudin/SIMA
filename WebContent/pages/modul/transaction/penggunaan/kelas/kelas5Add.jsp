@@ -11,23 +11,23 @@
 <script>
 	$(window).ready(function(){
 		//barang
-		$("#kb").change(function(){
-			var varid = $("#kb").val();
+		$("#nb").change(function(){
+			var varid = $("#nb").val();
 			if(varid==""){
-				$("#nb").val("");
 				$("#merek").val("");
 				$("#satuan").val("");
+				$("#kb").val("");
 			}
 			if(varid!=""){
 				var parent = "${pageContext.request.contextPath}";
 				$.ajax({
-				   url: parent+"/barang/SelectByJson.action?barang.kodeBarang="+varid,
+				   url: parent+"/barang/SelectByJson.action?barang.namaBarang="+varid,
 				   type: 'POST',
 		           dataType: 'json',
 		           success:  function(responseDariServer){
-						$("#nb").val(responseDariServer.namaBarang);
-						$("#merek").val(responseDariServer.merek);
-						$("#satuan").val(responseDariServer.satuan);
+					   $("#merek").val(responseDariServer.merek);
+					   $("#satuan").val(responseDariServer.satuan);
+					   $("#kb").val(responseDariServer.kodeBarang);
 				   },
 				   error: function(req, status, err){
 					alert("gagal melakukan koneksi data barang")
@@ -36,19 +36,19 @@
 			}
 		});
 	
-		if($("kb").val()==""){
-			$("#nb").val("");
+		if($("#nb").val()==""){
 			$("#merek").val("");
 			$("#satuan").val("");
+			$("#kb").val("");
 		}else{
-			var varid = $("#kb").val();
+			var varid = $("#nb").val();
 			var parent = "${pageContext.request.contextPath}";
 				$.ajax({
-				   url: parent+"/barang/SelectByJson.action?barang.kodeBarang="+varid,
+				   url: parent+"/barang/SelectByJson.action?barang.namaBarang="+varid,
 				   success:  function(responseDariServer){
-					$("#nb").val(responseDariServer.namaBarang);
 					$("#merek").val(responseDariServer.merek);
 					$("#satuan").val(responseDariServer.satuan);
+					$("#kb").val(responseDariServer.kodeBarang);
 				   },
 				   error: function(req, status, err){
 					alert("gagal mengambil data dari tabel barang")
@@ -120,10 +120,7 @@
                     <li data-options="state:'closed'">
                         <span>Laporan</span>
                         <ul>
-                            <li><a href="${pageContext.request.contextPath}/ruangan/searchRuangan.action">Laporan Master Barang</a></li>
-                            <li><a href="${pageContext.request.contextPath}/ruangan/searchRuangan.action">Laporan</a> </li>
-                            <li><a href="${pageContext.request.contextPath}/ruangan/searchRuangan.action">Microsoft Office</a></li>
-                            <li><a href="${pageContext.request.contextPath}/ruangan/searchRuangan.action">Games</a></li>
+                            <li><a href="${pageContext.request.contextPath}/pengadaanBarang/ReportPengadaan.action">Laporan Pengadaan Barang</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -132,17 +129,21 @@
         </div>
         <div data-options="region:'center',title:'Add Penggunaan Barang'" class="center">
         	<div class="view">
+        	<div class="errors">
+                	<s:fielderror name="invaliPenggunaan"/>
+                </div>
         	  <s:action namespace="/barang" name="SelectListBarang" id="slb"/>
 			  <s:form namespace="/penggunaanBarang" method="post" theme="bootstrap" cssClass="form-horizontal" >
-				<s:select id="kb" list="#slb.listBarang" listKey="kodeBarang" listValue="kodeBarang" 
-					headerKey="0" headerValue="==Pilih==" name="penggunaan.kodeBarang" label="Kode Barang " labelSeparator=":" />
-				<s:textfield id="nb" name="penggunaan.namaBarang" label="Nama Barang " labelSeparator=":" readonly="true" />
+				<s:hidden name="penggunaan.kodeRuangan" value="KAR0017"/>
+				<s:hidden id="kb" name="penggunaan.kodeBarang"/>
+				<s:select id="nb" list="#slb.listBarang" listKey="namaBarang" listValue="namaBarang" 
+					headerKey="0" headerValue="==Pilih==" name="penggunaan.namaBarang" label="Nama Barang " labelSeparator=":" />
 				<s:textfield id="merek" name="penggunaan.merek" label="Merek " labelSeparator=":" readonly="true"/>
 				<s:textfield id="satuan" name="penggunaan.satuan" label="Satuan " labelSeparator=":" readonly="true"/>
 				<s:textfield name="penggunaan.baik" label="Jumlah " labelSeparator=":"/>
 				<div class="footer">
-					<s:submit action="SearchAllPenggunaan" value="Cansel" cssClass="btn btn-default"/>
-					<s:submit action="SavePenggunaan" value="Add" cssClass="btn btn-primary"/>
+					<s:submit action="SearchKelas5" value="Cansel" cssClass="btn btn-default"/>
+					<s:submit action="SavePenggunaanKelas5" value="Save" cssClass="btn btn-primary"/>
 				</div>
 			</s:form>
 			</div>

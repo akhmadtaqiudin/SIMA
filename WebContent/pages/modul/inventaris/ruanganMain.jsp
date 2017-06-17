@@ -10,6 +10,9 @@
 <title>SIMA</title>
 <script type="text/javascript">
 	$(window).ready(function(){
+		$(".btnRst").on("click", function(){
+        	$(".search").val("");
+        });
 		$("#listTableRuangan  > thead tr th, tr td").css({"text-align": "center", "vertical-align": "middle"});
     }); 
 </script>
@@ -76,10 +79,7 @@
                     <li data-options="state:'closed'">
                         <span>Laporan</span>
                         <ul>
-                            <li><a href="${pageContext.request.contextPath}/ruangan/searchRuangan.action">Laporan Master Barang</a></li>
-                            <li><a href="${pageContext.request.contextPath}/ruangan/searchRuangan.action">Laporan</a> </li>
-                            <li><a href="${pageContext.request.contextPath}/ruangan/searchRuangan.action">Microsoft Office</a></li>
-                            <li><a href="${pageContext.request.contextPath}/ruangan/searchRuangan.action">Games</a></li>
+                            <li><a href="${pageContext.request.contextPath}/pengadaanBarang/ReportPengadaan.action">Laporan Pengadaan Barang</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -91,6 +91,7 @@
 			  <s:form namespace="/masterRuangan" id="form">
 				<s:textfield name="ruangan.namaRuangan" placeholder="Nama Ruangan " cssClass="search"/>
 				<s:submit value="Search" action="searchRuangan" cssClass="btn btn-default btn-sm btnSrc" />
+				<input value="Reset" class="btn btn-default btn-sm btnRst" />
 				<s:submit value="Add data" action="AddRuangan" cssClass="btn btn-success btn-sm btnAdd" />
 			  </s:form>
 			  <display:table id="listTableRuangan" name="listRuangan" pagesize="10"

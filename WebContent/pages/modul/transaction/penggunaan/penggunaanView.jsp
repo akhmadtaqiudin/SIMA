@@ -70,11 +70,8 @@
                     </li>
                     <li data-options="state:'closed'">
                         <span>Laporan</span>
-                        <ul>
-                            <li><a href="${pageContext.request.contextPath}/ruangan/searchRuangan.action">Laporan Master Barang</a></li>
-                            <li><a href="${pageContext.request.contextPath}/ruangan/searchRuangan.action">Laporan</a> </li>
-                            <li><a href="${pageContext.request.contextPath}/ruangan/searchRuangan.action">Microsoft Office</a></li>
-                            <li><a href="${pageContext.request.contextPath}/ruangan/searchRuangan.action">Games</a></li>
+                         <ul>
+                            <li><a href="${pageContext.request.contextPath}/pengadaanBarang/ReportPengadaan.action">Laporan Pengadaan Barang</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -96,7 +93,7 @@
 				<s:textfield name="penggunaan.kodeRuangan" label="Kode Ruangan " labelSeparator=":" readonly="true" />
 				<s:textfield name="penggunaan.namaRuangan" label="Nama Ruangan " labelSeparator=":" readonly="true"/>
 				<div class="footer">
-					<s:submit action="SearchAllPenggunaan" value="Close" cssClass="btn btn-default"/>
+					<s:submit action="SearchAllPenggunaan" value="Close" cssClass="btn btn-default" id="view"/>
 				</div>
 			</s:form>
 			</div>

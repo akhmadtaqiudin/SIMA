@@ -10,6 +10,9 @@
 <title>SIMA</title>
 <script type="text/javascript">
 	$(window).ready(function(){
+		$(".btnRst").on("click", function(){
+        	$(".search").val("");
+        });
 		$("#listTablePenggunaan  > thead tr th, tr td").css({"text-align": "center", "vertical-align": "middle"});
     }); 
 </script>
@@ -76,25 +79,23 @@
                     <li data-options="state:'closed'">
                         <span>Laporan</span>
                         <ul>
-                            <li><a href="${pageContext.request.contextPath}/ruangan/searchRuangan.action">Laporan Master Barang</a></li>
-                            <li><a href="${pageContext.request.contextPath}/ruangan/searchRuangan.action">Laporan</a> </li>
-                            <li><a href="${pageContext.request.contextPath}/ruangan/searchRuangan.action">Microsoft Office</a></li>
-                            <li><a href="${pageContext.request.contextPath}/ruangan/searchRuangan.action">Games</a></li>
+                            <li><a href="${pageContext.request.contextPath}/pengadaanBarang/ReportPengadaan.action">Laporan Pengadaan Barang</a></li>
                         </ul>
                     </li>
                 </ul>
             </li>
         </ul>
         </div>
-        <div data-options="region:'center',title:'Data Penggunaan Ruangan Serbaguna'" class="center">
+        <div data-options="region:'center',title:'Data Penggunaan Ruang Serbaguna'" class="center">
         	<div class="view">
 			  <s:form namespace="/penggunaanBarang" id="form">
 				<s:textfield name="penggunaan.namaBarang" placeholder="Nama Barang " cssClass="search"/>
-				<s:submit value="Search" action="SearchAllPenggunaan" cssClass="btn btn-default btn-sm btnSrc" />
-				<s:submit value="Add data" action="AddPenggunaan" cssClass="btn btn-success btn-sm btnAdd" />
+				<s:submit value="Search" action="SearchRuangSerbaguna" cssClass="btn btn-default btn-sm btnSrc" />
+				<input value="Reset" class="btn btn-default btn-sm btnRst" />
+				<s:submit value="Add data" action="AddPenggunaanRuangSerbaguna" cssClass="btn btn-success btn-sm btnAdd" />
 			  </s:form>
 			  <display:table id="listTablePenggunaan" name="listPenggunaan" pagesize="10"
-				 requestURI="/penggunaanBarang/SearchAllPenggunaan.action" class="table table-bordered table-hover table-striped" >
+				 requestURI="/penggunaanBarang/SearchRuangSerbaguna.action" class="table table-bordered table-hover table-striped" >
 				<display:column title="Kode Barang " property="kodeBarang" />
 				<display:column title="Nama Barang " property="namaBarang" />
 				<display:column title="Baik " property="baik"  />
@@ -103,7 +104,7 @@
 				<display:column title="Keterangan " property="keterangan" />
 				<display:column title="Action">
 				  <a class="btn btn-warning btn-xs" href="${pageContext.request.contextPath}/penggunaanBarang/EditPenggunaan.action?penggunaan.kodePenggunaan=<%=((Penggunaan) pageContext.getAttribute("listTablePenggunaan")).getKodePenggunaan()%>">Edit</a>
-				  <a class="btn btn-danger btn-xs" href="${pageContext.request.contextPath}/penggunaanBarang/DeletPenggunaan.action?penggunaan.kodePenggunaan=<%=((Penggunaan) pageContext.getAttribute("listTablePenggunaan")).getKodePenggunaan()%>">Delete</a>
+				  <a class="btn btn-danger btn-xs" href="${pageContext.request.contextPath}/penggunaanBarang/DeletPenggunaanRuangSerbaguna.action?penggunaan.kodePenggunaan=<%=((Penggunaan) pageContext.getAttribute("listTablePenggunaan")).getKodePenggunaan()%>">Delete</a>
 				  <a class="btn btn-default btn-xs" href="${pageContext.request.contextPath}/penggunaanBarang/ViewPenggunaan.action?penggunaan.kodePenggunaan=<%=((Penggunaan) pageContext.getAttribute("listTablePenggunaan")).getKodePenggunaan()%>">View</a>
 				</display:column>	
 			   </display:table>

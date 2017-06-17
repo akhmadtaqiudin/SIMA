@@ -10,6 +10,9 @@
 <title>SIMA</title>
 <script type="text/javascript">
 	$(window).ready(function(){
+		$(".btnRst").on("click", function(){
+        	$(".search").val("");
+        });
 		$("#listTableBarang  > thead tr th, tr td").css({"text-align": "center", "vertical-align": "middle"});
     }); 
 </script>
@@ -76,10 +79,7 @@
                     <li data-options="state:'closed'">
                         <span>Laporan</span>
                         <ul>
-                            <li><a href="${pageContext.request.contextPath}/ruangan/searchRuangan.action">Laporan Master Barang</a></li>
-                            <li><a href="${pageContext.request.contextPath}/ruangan/searchRuangan.action">Laporan</a> </li>
-                            <li><a href="${pageContext.request.contextPath}/ruangan/searchRuangan.action">Microsoft Office</a></li>
-                            <li><a href="${pageContext.request.contextPath}/ruangan/searchRuangan.action">Games</a></li>
+                            <li><a href="${pageContext.request.contextPath}/pengadaanBarang/ReportPengadaan.action">Laporan Pengadaan Barang</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -91,17 +91,15 @@
 			  <s:form namespace="/barang" id="form">
 				<s:textfield name="barang.namaBarang" placeholder="Nama Barang " cssClass="search"/>
 				<s:submit value="Search" action="SearchAllBarang" cssClass="btn btn-default btn-sm btnSrc" />
+				<input value="Reset" class="btn btn-default btn-sm btnRst" />
 				<s:submit value="Add data" action="AddBarang" cssClass="btn btn-success btn-sm btnAdd" />
 			  </s:form>
 			  <display:table id="listTableBarang" name="listBarang" pagesize="10"
 				 requestURI="/barang/SearchAllBarang.action" class="table table-bordered table-hover table-striped" >
 				<display:column title="Kode Barang " property="kodeBarang" />
 				<display:column title="Nama Barang " property="namaBarang" />
-				<display:column title="Keterangan " property="keterangan"  />
-				<display:column title="Merek " property="merek" />
 				<display:column title="Satuan " property="satuan" />
 				<display:column title="Jumlah " property="jumlah"  />
-				<display:column title="Harga " property="harga" />
 				<display:column title="Action">
 				    <a class="btn btn-warning btn-xs" href="${pageContext.request.contextPath}/barang/EditBarang.action?barang.kodeBarang=<%=((Barang) pageContext.getAttribute("listTableBarang")).getKodeBarang()%>">Edit</a>
 					<a class="btn btn-danger btn-xs" href="${pageContext.request.contextPath}/barang/DeletBarang.action?barang.kodeBarang=<%=((Barang) pageContext.getAttribute("listTableBarang")).getKodeBarang()%>">Delete</a>

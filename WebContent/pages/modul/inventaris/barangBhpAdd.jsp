@@ -71,10 +71,7 @@
                     <li data-options="state:'closed'">
                         <span>Laporan</span>
                         <ul>
-                            <li><a href="${pageContext.request.contextPath}/ruangan/searchRuangan.action">Laporan Master Barang</a></li>
-                            <li><a href="${pageContext.request.contextPath}/ruangan/searchRuangan.action">Laporan</a> </li>
-                            <li><a href="${pageContext.request.contextPath}/ruangan/searchRuangan.action">Microsoft Office</a></li>
-                            <li><a href="${pageContext.request.contextPath}/ruangan/searchRuangan.action">Games</a></li>
+                            <li><a href="${pageContext.request.contextPath}/pengadaanBarang/ReportPengadaan.action">Laporan Pengadaan Barang</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -83,9 +80,11 @@
         </div>
         <div data-options="region:'center',title:'Add Data Barang Habispakai'" class="center">
         	<div class="view">
+        	<div class="errors">
+                	<s:fielderror name="invaliRuangan"/>
+                </div>
 			  <s:form namespace="/barang" method="post" theme="bootstrap" cssClass="form-horizontal" >
 				<s:textfield name="barang.namaBarang" label="Nama Barang " labelSeparator=":"/>
-				<s:textarea name="barang.keterangan" label="Keterangan " labelSeparator=":"/>
 				<s:textfield name="barang.merek" label="Merek " labelSeparator=":"/>
 				<s:select list="#{'Box':'Box','Buah':'Buah','Dus':'Dus','Keping':'Keping','Pak':'Pak','Rim':'Rim','Rol':'Rol','Set':'Set'}"  
 					headerKey="0" headerValue="==Pilih==" name="barang.satuan" label="Satuan " labelSeparator=":" />
@@ -93,7 +92,7 @@
 				<s:textfield name="barang.harga" label="Harga " labelSeparator=":"/>
 				<div class="footer">
 					<s:submit action="SearchAllBhp" value="Cansel" cssClass="btn btn-default"/>
-					<s:submit action="SaveBarangBhp" value="Add" cssClass="btn btn-primary"/>
+					<s:submit action="SaveBarangBhp" value="Save" cssClass="btn btn-primary"/>
 				</div>
 			</s:form>
 			</div>

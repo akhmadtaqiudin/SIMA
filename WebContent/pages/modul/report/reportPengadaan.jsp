@@ -1,61 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib uri="http://displaytag.sf.net" prefix="display"%>
-<%@page import="com.id.sima.modul.model.Ruangan"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page import="com.id.sima.modul.model.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <jsp:include page="/pages/template/header.jsp"></jsp:include>
 <title>SIMA</title>
-<script>
-	$(window).ready(function(){
-		//barang
-		$("#nb").change(function(){
-			var varid = $("#nb").val();
-			if(varid==""){
-				$("#merek").val("");
-				$("#satuan").val("");
-				$("#kb").val("");
-			}
-			if(varid!=""){
-				var parent = "${pageContext.request.contextPath}";
-				$.ajax({
-				   url: parent+"/barang/SelectByJson.action?barang.namaBarang="+varid,
-				   type: 'POST',
-		           dataType: 'json',
-		           success:  function(responseDariServer){
-					   $("#merek").val(responseDariServer.merek);
-					   $("#satuan").val(responseDariServer.satuan);
-					   $("#kb").val(responseDariServer.kodeBarang);
-				   },
-				   error: function(req, status, err){
-					alert("gagal melakukan koneksi data barang")
-				   }
-				});
-			}
-		});
-	
-		if($("#nb").val()==""){
-			$("#merek").val("");
-			$("#satuan").val("");
-			$("#kb").val("");
-		}else{
-			var varid = $("#nb").val();
-			var parent = "${pageContext.request.contextPath}";
-				$.ajax({
-				   url: parent+"/barang/SelectByJson.action?barang.namaBarang="+varid,
-				   success:  function(responseDariServer){
-					$("#merek").val(responseDariServer.merek);
-					$("#satuan").val(responseDariServer.satuan);
-					$("#kb").val(responseDariServer.kodeBarang);
-				   },
-				   error: function(req, status, err){
-					alert("gagal mengambil data dari tabel barang")
-				   }
-			});
-		}
-	});
+<script type="text/javascript">
+	$(window).ready(function(){	
+		$("#listTablePengadaan  > thead tr th, tr td").css({"text-align": "center", "vertical-align": "middle"});
+    }); 
 </script>
 </head>
 <body>
@@ -69,7 +26,7 @@
                         <span>Master Inventaris</span>
                         <ul>
                             <li><a href="${pageContext.request.contextPath}/barang/SearchAllBarang.action">Inventaris Barang</a></li>
-                            <li><a href="${pageContext.request.contextPath}/bhp/SearchAllBhp.action">Inventaris Barang Habis Pakai</a></li>
+                            <li><a href="${pageContext.request.contextPath}/barang/SearchAllBhp.action">Inventaris Barang Habis Pakai</a></li>
 			    			<li><a href="${pageContext.request.contextPath}/masterRuangan/searchRuangan.action">Inventaris Ruang</a></li>
                         </ul>
                     </li>
@@ -79,7 +36,7 @@
                             <li><a href="${pageContext.request.contextPath}/pengadaanBarang/SearchAllPengadaan.action">Formulir Pengajuan</a></li>
                         </ul>
                     </li>
-                    <li>
+                    <li data-options="state:'closed'">
                         <span>Penggunaan</span>
                         <ul>
                             <li data-options="state:'closed'">
@@ -93,7 +50,7 @@
 		                            <li><a href="${pageContext.request.contextPath}/penggunaanBarang/SearchKelas6.action">Kelas 6</a></li>
                             	</ul>
                             </li>
-                            <li>
+                            <li data-options="state:'closed'">
                             	<span>Ruangan</span>
                             	<ul>
                             		<li><a href="${pageContext.request.contextPath}/penggunaanBarang/SearchRuangKepalaSekolah.action">Ruang Kepala Sekolah</a></li>
@@ -117,7 +74,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li data-options="state:'closed'">
+                    <li>
                         <span>Laporan</span>
                         <ul>
                             <li><a href="${pageContext.request.contextPath}/pengadaanBarang/ReportPengadaan.action">Laporan Pengadaan Barang</a></li>
@@ -127,25 +84,23 @@
             </li>
         </ul>
         </div>
-        <div data-options="region:'center',title:'Add Penggunaan Ruang Guru'" class="center">
-        	<div class="view">
-        	<div class="errors">
-                	<s:fielderror name="invaliPenggunaan"/>
-                </div>
-        	  <s:action namespace="/barang" name="SelectListBarang" id="slb"/>
-			  <s:form namespace="/penggunaanBarang" method="post" theme="bootstrap" cssClass="form-horizontal" >
-				<s:hidden name="penggunaan.kodeRuangan" value="KAR0004"/>
-				<s:hidden id="kb" name="penggunaan.kodeBarang"/>
-				<s:select id="nb" list="#slb.listBarang" listKey="namaBarang" listValue="namaBarang" 
-					headerKey="0" headerValue="==Pilih==" name="penggunaan.namaBarang" label="Nama Barang " labelSeparator=":" />
-				<s:textfield id="merek" name="penggunaan.merek" label="Merek " labelSeparator=":" readonly="true"/>
-				<s:textfield id="satuan" name="penggunaan.satuan" label="Satuan " labelSeparator=":" readonly="true"/>
-				<s:textfield name="penggunaan.baik" label="Jumlah " labelSeparator=":"/>
-				<div class="footer">
-					<s:submit action="SearchRuangGuru" value="Cansel" cssClass="btn btn-default"/>
-					<s:submit action="SavePenggunaanRuangGuru" value="Save" cssClass="btn btn-primary"/>
-				</div>
-			</s:form>
+        <div data-options="region:'center',title:'Data Pengadaan Barang'" class="center">
+            <div class="view">
+			  <s:form namespace="/pengadaanBarang" id="form" method="pos">
+				<s:textfield name="pengadaan.namaBarang" placeholder="Nama Barang " cssClass="search"/>
+				<s:submit value="Search" action="SearchAllPengadaan" cssClass="btn btn-default btn-sm btnSrc" />
+			  </s:form>
+			  <display:table id="listTablePengadaan" name="listPengadaan" pagesize="10"
+				 requestURI="/pengadaanBarang/SearchAllPengadaan.action" class="table table-bordered table-hover table-striped" >
+				<display:column title="Tanggal " property="tanggal" format="{0,date,dd/MM/yyyy}" />
+				<display:column title="Kode Barang " property="kodeBarang" />
+				<display:column title="Nama Barang " property="namaBarang" />
+				<display:column title="Merek " property="merek" />
+				<display:column title="Satuan " property="satuan" />
+				<display:column title="Jumlah " property="jumlah"  />
+				<display:column title="Harga " property="harga" />
+				<display:column title="Keterangan " property="keterangan"  />
+			  </display:table>
 			</div>
         </div>
     </div>
