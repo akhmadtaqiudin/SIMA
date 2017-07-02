@@ -16,7 +16,7 @@
 	    <result column="rusak" property="rusak" />
 	</resultMap>
 	<select id="selectWhereKode" parameterType="com.id.sima.modul.model.Penggunaan" resultMap="BaseResultMap">
-		SELECT p.kode_penggunaan,p.kode_barang,p.baik,p.rusak,p.keterangan,
+		SELECT p.kode_penggunaan,p.kode_barang,p.kode_ruangan,p.baik,p.rusak,p.keterangan,
 		(SELECT nama_barang FROM m_barang WHERE kode_barang = p.kode_barang) AS nama_barang 
 		FROM t_penggunaan p
 		LEFT JOIN m_barang b ON b.kode_barang=p.kode_barang
@@ -24,18 +24,18 @@
 		WHERE kode_penggunaan = #{kodeRuangan}
 	</select>
 	<select id="selectAllRecord" parameterType="com.id.sima.modul.model.Penggunaan" resultMap="BaseResultMap">
-		SELECT p.kode_penggunaan,p.kode_barang,p.baik,p.rusak,p.keterangan,
+		SELECT p.kode_penggunaan,p.kode_barang,p.kode_ruangan,p.baik,p.rusak,p.keterangan,
 		(SELECT nama_barang FROM m_barang WHERE kode_barang = p.kode_barang) AS nama_barang 
 		FROM t_penggunaan p
 		LEFT JOIN m_barang b ON b.kode_barang=p.kode_barang
 		LEFT JOIN m_ruangan r ON r.kode_ruangan=p.kode_ruangan 	
-		WHERE lower(nama_barang) like '%'|| lower(#{namaBarang}) ||'%' order by kode_penggunaan asc
+		WHERE lower(nama_barang) like '%'|| lower(#{namaBarang}) ||'%' AND p.kode_ruangan=#{kodeRuangan} order by kode_penggunaan asc
 	</select>
   	<select id="maxID" parameterType="com.id.sima.modul.model.Penggunaan" resultType="java.lang.Integer">
   		SELECT COUNT(*) FROM t_penggunaan 
   	</select>
   	<select id="count" parameterType="com.id.sima.modul.model.Penggunaan" resultType="java.lang.Integer">
-  		SELECT COUNT(*) FROM t_penggunaan WHERE kode_barang = #{kodeBarang}
+  		SELECT COUNT(*) FROM t_penggunaan WHERE kode_barang = #{kodeBarang} AND kode_ruangan=#{kodeRuangan}
   	</select>
 	<insert id="insertRecord" parameterType="com.id.sima.modul.model.Penggunaan">
 		INSERT INTO t_penggunaan(kode_penggunaan,kode_barang,kode_ruangan,jumlah,baik,rusak,keterangan)

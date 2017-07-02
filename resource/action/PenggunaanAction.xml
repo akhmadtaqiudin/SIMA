@@ -22,13 +22,13 @@
 			<result name="login">/pages/template/login.jsp</result>
 		</global-results>
         
-        <action name="EditPenggunaan" class="com.id.sima.modul.controller.BarangController" method="searchWherePenggunaan">
+        <action name="EditPenggunaan" class="com.id.sima.modul.controller.PenggunaanController" method="searchWherePenggunaan">
     		<interceptor-ref name="authStack"/>
     		<result name="input">/pages/modul/transaction/penggunaan/penggunaanEdit.jsp</result>
     		<result name="success">/pages/modul/transaction/penggunaan/penggunaanEdit.jsp</result>
     		<result name="error">/pages/modul/transaction/penggunaan/penggunaanEdit.jsp</result>
     	</action>
-    	<action name="ViewPenggunaan" class="com.id.sima.modul.controller.BarangController" method="searchWherePenggunaan">
+    	<action name="ViewPenggunaan" class="com.id.sima.modul.controller.PenggunaanController" method="searchWherePenggunaan">
     		<interceptor-ref name="authStack"/>
     		<result name="success">/pages/modul/transaction/penggunaan/penggunaanView.jsp</result>
     		<result name="error">/pages/modul/transaction/penggunaan/penggunaanView.jsp</result>
@@ -46,22 +46,27 @@
     		<result name="success">/pages/modul/transaction/penggunaan/kelas/kelas1Add.jsp</result>
     		<result name="error">/pages/modul/transaction/penggunaan/kelas/kelas1Add.jsp</result>
     	</action>
-    	<action name="SavePenggunaanKelas1" class="com.id.sima.modul.controller.BarangController" method="addKelas1">
+    	<action name="SavePenggunaanKelas1" class="com.id.sima.modul.controller.PenggunaanController" method="addKelas1">
     		<interceptor-ref name="authStack"/>
     		<result name="input">/pages/modul/transaction/penggunaan/kelas/kelas1Add.jsp</result>
     		<result name="success">/pages/modul/transaction/penggunaan/kelas/kelas1Main.jsp</result>
     		<result name="error">/pages/modul/transaction/penggunaan/kelas/kelas1Add.jsp</result>
     	</action>
-    	<action name="SaveEditPenggunaanKelas1" class="com.id.sima.modul.controller.BarangController" method="editPenggunaan">
+    	<action name="SaveEditPenggunaanKelas1" class="com.id.sima.modul.controller.PenggunaanController" method="editPenggunaan">
     		<interceptor-ref name="authStack"/>
     		<result name="input">/pages/modul/transaction/penggunaan/penggunaanEdit.jsp</result>
     		<result name="success">/pages/modul/transaction/penggunaan/kelas/kelas1Main.jsp</result>
     		<result name="error">/pages/modul/transaction/penggunaan/penggunaanEdit.jsp</result>
     	</action>
-    	<action name="DeletPenggunaanKelas1" class="com.id.sima.modul.controller.BarangController" method="deletPenggunaan">
+    	<action name="DeletPenggunaanKelas1" class="com.id.sima.modul.controller.PenggunaanController" method="deletPenggunaan">
     		<interceptor-ref name="authStack"/>
     		<result name="success">/pages/modul/transaction/penggunaan/kelas/kelas1Main.jsp</result>
     		<result name="error">/pages/modul/transaction/penggunaan/kelas/kelas1Main.jsp</result>
+    	</action>
+    	<action name="Kelas1" class="com.id.sima.modul.controller.PenggunaanController" method="searchAllKelas1">
+    		<interceptor-ref name="authStack"/>
+    		<result name="success">/pages/modul/user/penggunaan/kelas/kelas1.jsp</result>
+    		<result name="error">/pages/modul/user/penggunaan/kelas/kelas1.jsp</result>
     	</action>
     	<!-- kelas 2 -->
     	<action name="SearchKelas2" class="com.id.sima.modul.controller.PenggunaanController" method="searchAllKelas2">
@@ -75,22 +80,27 @@
     		<result name="success">/pages/modul/transaction/penggunaan/kelas/kelas2Add.jsp</result>
     		<result name="error">/pages/modul/transaction/penggunaan/kelas/kelas2Add.jsp</result>
     	</action>
-    	<action name="SavePenggunaanKelas2" class="com.id.sima.modul.controller.BarangController" method="addKelas2">
+    	<action name="SavePenggunaanKelas2" class="com.id.sima.modul.controller.PenggunaanController" method="addKelas2">
     		<interceptor-ref name="authStack"/>
     		<result name="input">/pages/modul/transaction/penggunaan/kelas/kelas2Add.jsp</result>
     		<result name="success">/pages/modul/transaction/penggunaan/kelas/kelas2Main.jsp</result>
     		<result name="error">/pages/modul/transaction/penggunaan/kelas/kelas2Add.jsp</result>
     	</action>
-    	<action name="SaveEditPenggunaanKelas2" class="com.id.sima.modul.controller.BarangController" method="editPenggunaan">
+    	<action name="SaveEditPenggunaanKelas2" class="com.id.sima.modul.controller.PenggunaanController" method="editPenggunaan">
     		<interceptor-ref name="authStack"/>
     		<result name="input">/pages/modul/transaction/penggunaan/penggunaanEdit.jsp</result>
     		<result name="success">/pages/modul/transaction/penggunaan/kelas/kelas2Main.jsp</result>
     		<result name="error">/pages/modul/transaction/penggunaan/penggunaanEdit.jsp</result>
     	</action>
-    	<action name="DeletPenggunaan" class="com.id.sima.modul.controller.BarangController" method="deletPenggunaan">
+    	<action name="DeletPenggunaanKelas2" class="com.id.sima.modul.controller.PenggunaanController" method="deletPenggunaan">
     		<interceptor-ref name="authStack"/>
     		<result name="success">/pages/modul/transaction/penggunaan/kelas/kelas2Main.jsp</result>
     		<result name="error">/pages/modul/transaction/penggunaan/kelas/kelas2Main.jsp</result>
+    	</action>
+    	<action name="Kelas2" class="com.id.sima.modul.controller.PenggunaanController" method="searchAllKelas2">
+    		<interceptor-ref name="authStack"/>
+    		<result name="success">/pages/modul/user/penggunaan/kelas/kelas2.jsp</result>
+    		<result name="error">/pages/modul/user/penggunaan/kelas/kelas2.jsp</result>
     	</action>
     	<!-- kelas 3 -->
     	<action name="SearchKelas3" class="com.id.sima.modul.controller.PenggunaanController" method="searchAllKelas3">
@@ -104,22 +114,27 @@
     		<result name="success">/pages/modul/transaction/penggunaan/kelas/kelas3Add.jsp</result>
     		<result name="error">/pages/modul/transaction/penggunaan/kelas/kelas3Add.jsp</result>
     	</action>
-    	<action name="SavePenggunaanKelas3" class="com.id.sima.modul.controller.BarangController" method="addKelas3">
+    	<action name="SavePenggunaanKelas3" class="com.id.sima.modul.controller.PenggunaanController" method="addKelas3">
     		<interceptor-ref name="authStack"/>
     		<result name="input">/pages/modul/transaction/penggunaan/kelas/kelas3Add.jsp</result>
     		<result name="success">/pages/modul/transaction/penggunaan/kelas/kelas3Main.jsp</result>
     		<result name="error">/pages/modul/transaction/penggunaan/kelas/kelas3Add.jsp</result>
     	</action>
-    	<action name="SaveEditPenggunaanKelas3" class="com.id.sima.modul.controller.BarangController" method="editPenggunaan">
+    	<action name="SaveEditPenggunaanKelas3" class="com.id.sima.modul.controller.PenggunaanController" method="editPenggunaan">
     		<interceptor-ref name="authStack"/>
     		<result name="input">/pages/modul/transaction/penggunaan/penggunaanEdit.jsp</result>
     		<result name="success">/pages/modul/transaction/penggunaan/kelas/kelas3Main.jsp</result>
     		<result name="error">/pages/modul/transaction/penggunaan/penggunaanEdit.jsp</result>
     	</action>
-    	<action name="DeletPenggunaan" class="com.id.sima.modul.controller.BarangController" method="deletPenggunaan">
+    	<action name="DeletPenggunaanKelas3" class="com.id.sima.modul.controller.PenggunaanController" method="deletPenggunaan">
     		<interceptor-ref name="authStack"/>
     		<result name="success">/pages/modul/transaction/penggunaan/kelas/kelas3Main.jsp</result>
     		<result name="error">/pages/modul/transaction/penggunaan/kelas/kelas3Main.jsp</result>
+    	</action>
+    	<action name="Kelas3" class="com.id.sima.modul.controller.PenggunaanController" method="searchAllKelas3">
+    		<interceptor-ref name="authStack"/>
+    		<result name="success">/pages/modul/user/penggunaan/kelas/kelas3.jsp</result>
+    		<result name="error">/pages/modul/user/penggunaan/kelas/kelas3.jsp</result>
     	</action>
     	<!-- kelas 4 -->
     	<action name="SearchKelas4" class="com.id.sima.modul.controller.PenggunaanController" method="searchAllKelas4">
@@ -133,22 +148,27 @@
     		<result name="success">/pages/modul/transaction/penggunaan/kelas/kelas4Add.jsp</result>
     		<result name="error">/pages/modul/transaction/penggunaan/kelas/kelas4Add.jsp</result>
     	</action>
-    	<action name="SavePenggunaanKelas4" class="com.id.sima.modul.controller.BarangController" method="addKelas4">
+    	<action name="SavePenggunaanKelas4" class="com.id.sima.modul.controller.PenggunaanController" method="addKelas4">
     		<interceptor-ref name="authStack"/>
     		<result name="input">/pages/modul/transaction/penggunaan/kelas/kelas4Add.jsp</result>
     		<result name="success">/pages/modul/transaction/penggunaan/kelas/kelas4Main.jsp</result>
     		<result name="error">/pages/modul/transaction/penggunaan/kelas/kelas4Add.jsp</result>
     	</action>
-    	<action name="SaveEditPenggunaanKelas4" class="com.id.sima.modul.controller.BarangController" method="editPenggunaan">
+    	<action name="SaveEditPenggunaanKelas4" class="com.id.sima.modul.controller.PenggunaanController" method="editPenggunaan">
     		<interceptor-ref name="authStack"/>
     		<result name="input">/pages/modul/transaction/penggunaan/penggunaanEdit.jsp</result>
     		<result name="success">/pages/modul/transaction/penggunaan/kelas/kelas4Main.jsp</result>
     		<result name="error">/pages/modul/transaction/penggunaan/penggunaanEdit.jsp</result>
     	</action>
-    	<action name="DeletPenggunaan" class="com.id.sima.modul.controller.BarangController" method="deletPenggunaan">
+    	<action name="DeletPenggunaanKelas4" class="com.id.sima.modul.controller.PenggunaanController" method="deletPenggunaan">
     		<interceptor-ref name="authStack"/>
     		<result name="success">/pages/modul/transaction/penggunaan/kelas/kelas4Main.jsp</result>
     		<result name="error">/pages/modul/transaction/penggunaan/kelas/kelas4Main.jsp</result>
+    	</action>
+    	<action name="Kelas4" class="com.id.sima.modul.controller.PenggunaanController" method="searchAllKelas4">
+    		<interceptor-ref name="authStack"/>
+    		<result name="success">/pages/modul/user/penggunaan/kelas/kelas4.jsp</result>
+    		<result name="error">/pages/modul/user/penggunaan/kelas/kelas4.jsp</result>
     	</action>
     	<!-- kelas 5 -->
     	<action name="SearchKelas5" class="com.id.sima.modul.controller.PenggunaanController" method="searchAllKelas5">
@@ -162,22 +182,27 @@
     		<result name="success">/pages/modul/transaction/penggunaan/kelas/kelas5Add.jsp</result>
     		<result name="error">/pages/modul/transaction/penggunaan/kelas/kelas5Add.jsp</result>
     	</action>
-    	<action name="SavePenggunaanKelas5" class="com.id.sima.modul.controller.BarangController" method="addKelas5">
+    	<action name="SavePenggunaanKelas5" class="com.id.sima.modul.controller.PenggunaanController" method="addKelas5">
     		<interceptor-ref name="authStack"/>
     		<result name="input">/pages/modul/transaction/penggunaan/kelas/kelas5Add.jsp</result>
     		<result name="success">/pages/modul/transaction/penggunaan/kelas/kelas5Main.jsp</result>
     		<result name="error">/pages/modul/transaction/penggunaan/kelas/kelas5Add.jsp</result>
     	</action>
-    	<action name="SaveEditPenggunaanKelas5" class="com.id.sima.modul.controller.BarangController" method="editPenggunaan">
+    	<action name="SaveEditPenggunaanKelas5" class="com.id.sima.modul.controller.PenggunaanController" method="editPenggunaan">
     		<interceptor-ref name="authStack"/>
     		<result name="input">/pages/modul/transaction/penggunaan/penggunaanEdit.jsp</result>
     		<result name="success">/pages/modul/transaction/penggunaan/kelas/kelas5Main.jsp</result>
     		<result name="error">/pages/modul/transaction/penggunaan/penggunaanEdit.jsp</result>
     	</action>
-    	<action name="DeletPenggunaan" class="com.id.sima.modul.controller.BarangController" method="deletPenggunaan">
+    	<action name="DeletPenggunaanKelas5" class="com.id.sima.modul.controller.PenggunaanController" method="deletPenggunaan">
     		<interceptor-ref name="authStack"/>
     		<result name="success">/pages/modul/transaction/penggunaan/kelas/kelas5Main.jsp</result>
     		<result name="error">/pages/modul/transaction/penggunaan/kelas/kelas5Main.jsp</result>
+    	</action>
+    	<action name="Kelas5" class="com.id.sima.modul.controller.PenggunaanController" method="searchAllKelas5">
+    		<interceptor-ref name="authStack"/>
+    		<result name="success">/pages/modul/user/penggunaan/kelas/kelas5.jsp</result>
+    		<result name="error">/pages/modul/user/penggunaan/kelas/kelas5.jsp</result>
     	</action>
     	<!-- kelas 6 -->
     	<action name="SearchKelas6" class="com.id.sima.modul.controller.PenggunaanController" method="searchAllKelas6">
@@ -191,22 +216,27 @@
     		<result name="success">/pages/modul/transaction/penggunaan/kelas/kelas6Add.jsp</result>
     		<result name="error">/pages/modul/transaction/penggunaan/kelas/kelas6Add.jsp</result>
     	</action>
-    	<action name="SavePenggunaanKelas6" class="com.id.sima.modul.controller.BarangController" method="addKelas6">
+    	<action name="SavePenggunaanKelas6" class="com.id.sima.modul.controller.PenggunaanController" method="addKelas6">
     		<interceptor-ref name="authStack"/>
     		<result name="input">/pages/modul/transaction/penggunaan/kelas/kelas6Add.jsp</result>
     		<result name="success">/pages/modul/transaction/penggunaan/kelas/kelas6Main.jsp</result>
     		<result name="error">/pages/modul/transaction/penggunaan/kelas/kelas6Add.jsp</result>
     	</action>
-    	<action name="SaveEditPenggunaanKelas6" class="com.id.sima.modul.controller.BarangController" method="editPenggunaan">
+    	<action name="SaveEditPenggunaanKelas6" class="com.id.sima.modul.controller.PenggunaanController" method="editPenggunaan">
     		<interceptor-ref name="authStack"/>
     		<result name="input">/pages/modul/transaction/penggunaan/penggunaanEdit.jsp</result>
     		<result name="success">/pages/modul/transaction/penggunaan/kelas/kelas6Main.jsp</result>
     		<result name="error">/pages/modul/transaction/penggunaan/penggunaanEdit.jsp</result>
     	</action>
-    	<action name="DeletPenggunaan" class="com.id.sima.modul.controller.BarangController" method="deletPenggunaan">
+    	<action name="DeletPenggunaanKelas6" class="com.id.sima.modul.controller.PenggunaanController" method="deletPenggunaan">
     		<interceptor-ref name="authStack"/>
     		<result name="success">/pages/modul/transaction/penggunaan/kelas/kelas6Main.jsp</result>
     		<result name="error">/pages/modul/transaction/penggunaan/kelas/kelas6Main.jsp</result>
+    	</action>
+    	<action name="Kelas6" class="com.id.sima.modul.controller.PenggunaanController" method="searchAllKelas6">
+    		<interceptor-ref name="authStack"/>
+    		<result name="success">/pages/modul/user/penggunaan/kelas/kelas6.jsp</result>
+    		<result name="error">/pages/modul/user/penggunaan/kelas/kelas6.jsp</result>
     	</action>
     	<!-- Musholla -->
     	<action name="SearchMusholla" class="com.id.sima.modul.controller.PenggunaanController" method="searchAllMusholla">
@@ -220,22 +250,27 @@
     		<result name="success">/pages/modul/transaction/penggunaan/sarana/mushollaAdd.jsp</result>
     		<result name="error">/pages/modul/transaction/penggunaan/sarana/mushollaAdd.jsp</result>
     	</action>
-    	<action name="SavePenggunaanMusholla" class="com.id.sima.modul.controller.BarangController" method="addMusholla">
+    	<action name="SavePenggunaanMusholla" class="com.id.sima.modul.controller.PenggunaanController" method="addMusholla">
     		<interceptor-ref name="authStack"/>
     		<result name="input">/pages/modul/transaction/penggunaan/sarana/mushollaAdd.jsp</result>
     		<result name="success">/pages/modul/transaction/penggunaan/sarana/mushollaMain.jsp</result>
     		<result name="error">/pages/modul/transaction/penggunaan/sarana/mushollaAdd.jsp</result>
     	</action>
-    	<action name="SaveEditPenggunaanMusholla" class="com.id.sima.modul.controller.BarangController" method="editPenggunaan">
+    	<action name="SaveEditPenggunaanMusholla" class="com.id.sima.modul.controller.PenggunaanController" method="editPenggunaan">
     		<interceptor-ref name="authStack"/>
     		<result name="input">/pages/modul/transaction/penggunaan/penggunaanEdit.jsp</result>
     		<result name="success">/pages/modul/transaction/penggunaan/sarana/mushollaMain.jsp</result>
     		<result name="error">/pages/modul/transaction/penggunaan/penggunaanEdit.jsp</result>
     	</action>
-    	<action name="DeletPenggunaan" class="com.id.sima.modul.controller.BarangController" method="deletPenggunaan">
+    	<action name="DeletPenggunaanMusholla" class="com.id.sima.modul.controller.PenggunaanController" method="deletPenggunaan">
     		<interceptor-ref name="authStack"/>
     		<result name="success">/pages/modul/transaction/penggunaan/sarana/mushollaMain.jsp</result>
     		<result name="error">/pages/modul/transaction/penggunaan/sarana/mushollaMain.jsp</result>
+    	</action>
+    	<action name="Musholla" class="com.id.sima.modul.controller.PenggunaanController" method="searchAllMusholla">
+    		<interceptor-ref name="authStack"/>
+    		<result name="success">/pages/modul/user/penggunaan/sarana/musholla.jsp</result>
+    		<result name="error">/pages/modul/user/penggunaan/sarana/musholla.jsp</result>
     	</action>
     	<!-- Perpus -->
     	<action name="SearchPerpus" class="com.id.sima.modul.controller.PenggunaanController" method="searchAllPerpus">
@@ -249,80 +284,27 @@
     		<result name="success">/pages/modul/transaction/penggunaan/sarana/perpusAdd.jsp</result>
     		<result name="error">/pages/modul/transaction/penggunaan/sarana/perpusAdd.jsp</result>
     	</action>
-    	<action name="SavePenggunaanPerpus" class="com.id.sima.modul.controller.BarangController" method="addPerpus">
+    	<action name="SavePenggunaanPerpus" class="com.id.sima.modul.controller.PenggunaanController" method="addPerpus">
     		<interceptor-ref name="authStack"/>
     		<result name="input">/pages/modul/transaction/penggunaan/sarana/perpusAdd.jsp</result>
     		<result name="success">/pages/modul/transaction/penggunaan/sarana/perpusMain.jsp</result>
     		<result name="error">/pages/modul/transaction/penggunaan/sarana/perpusAdd.jsp</result>
     	</action>
-    	<action name="SaveEditPenggunaanPerpus" class="com.id.sima.modul.controller.BarangController" method="editPenggunaan">
+    	<action name="SaveEditPenggunaanPerpus" class="com.id.sima.modul.controller.PenggunaanController" method="editPenggunaan">
     		<interceptor-ref name="authStack"/>
     		<result name="input">/pages/modul/transaction/penggunaan/penggunaanEdit.jsp</result>
     		<result name="success">/pages/modul/transaction/penggunaan/sarana/perpusMain.jsp</result>
     		<result name="error">/pages/modul/transaction/penggunaan/penggunaanEdit.jsp</result>
     	</action>
-    	<action name="DeletPenggunaan" class="com.id.sima.modul.controller.BarangController" method="deletPenggunaan">
+    	<action name="DeletPenggunaanPerpus" class="com.id.sima.modul.controller.PenggunaanController" method="deletPenggunaan">
     		<interceptor-ref name="authStack"/>
     		<result name="success">/pages/modul/transaction/penggunaan/sarana/perpusMain.jsp</result>
     		<result name="error">/pages/modul/transaction/penggunaan/sarana/perpusMain.jsp</result>
     	</action>
-    	<!-- Kepala Sekolah -->
-    	<action name="SearchRuangKepalaSekolah" class="com.id.sima.modul.controller.PenggunaanController" method="searchAllKepsek">
+    	<action name="Perpus" class="com.id.sima.modul.controller.PenggunaanController" method="searchAllPerpus">
     		<interceptor-ref name="authStack"/>
-    		<result name="success">/pages/modul/transaction/penggunaan/ruang/ruangKetuaMain.jsp</result>
-    		<result name="error">/pages/modul/transaction/penggunaan/ruang/ruangKetuaMain.jsp</result>
-    	</action>
-    	<action name="AddPenggunaanRuangKepalaSekolah">
-    		<interceptor-ref name="authStack"/>
-    		<result name="input">/pages/modul/transaction/penggunaan/ruang/ruangKetuaAdd.jsp</result>
-    		<result name="success">/pages/modul/transaction/penggunaan/ruang/ruangKetuaAdd.jsp</result>
-    		<result name="error">/pages/modul/transaction/penggunaan/ruang/ruangKetuaAdd.jsp</result>
-    	</action>
-    	<action name="SavePenggunaanRuangKepalaSekolah" class="com.id.sima.modul.controller.BarangController" method="addKepsek">
-    		<interceptor-ref name="authStack"/>
-    		<result name="input">/pages/modul/transaction/penggunaan/ruang/ruangKetuaAdd.jsp</result>
-    		<result name="success">/pages/modul/transaction/penggunaan/ruang/ruangKetuaMain.jsp</result>
-    		<result name="error">/pages/modul/transaction/penggunaan/ruang/ruangKetuaAdd.jsp</result>
-    	</action>
-    	<action name="SaveEditPenggunaanRuangKepalaSekolah" class="com.id.sima.modul.controller.BarangController" method="editPenggunaan">
-    		<interceptor-ref name="authStack"/>
-    		<result name="input">/pages/modul/transaction/penggunaan/penggunaanEdit.jsp</result>
-    		<result name="success">/pages/modul/transaction/penggunaan/ruang/ruangKetuaMain.jsp</result>
-    		<result name="error">/pages/modul/transaction/penggunaan/penggunaanEdit.jsp</result>
-    	</action>
-    	<action name="DeletPenggunaan" class="com.id.sima.modul.controller.BarangController" method="deletPenggunaan">
-    		<interceptor-ref name="authStack"/>
-    		<result name="success">/pages/modul/transaction/penggunaan/ruang/ruangKetuaMain.jsp</result>
-    		<result name="error">/pages/modul/transaction/penggunaan/ruang/ruangKetuaMain.jsp</result>
-    	</action>
-    	<!-- Ruang Guru -->
-    	<action name="SearchRuangGuru" class="com.id.sima.modul.controller.PenggunaanController" method="searchAllGuru">
-    		<interceptor-ref name="authStack"/>
-    		<result name="success">/pages/modul/transaction/penggunaan/ruang/ruangGuruMain.jsp</result>
-    		<result name="error">/pages/modul/transaction/penggunaan/ruang/ruangGuruMain.jsp</result>
-    	</action>
-    	<action name="AddPenggunaanRuangGuru">
-    		<interceptor-ref name="authStack"/>
-    		<result name="input">/pages/modul/transaction/penggunaan/ruang/ruangGuruAdd.jsp</result>
-    		<result name="success">/pages/modul/transaction/penggunaan/ruang/ruangGuruAdd.jsp</result>
-    		<result name="error">/pages/modul/transaction/penggunaan/ruang/ruangGuruAdd.jsp</result>
-    	</action>
-    	<action name="SavePenggunaanRuangGuru" class="com.id.sima.modul.controller.BarangController" method="addGuru">
-    		<interceptor-ref name="authStack"/>
-    		<result name="input">/pages/modul/transaction/penggunaan/ruang/ruangGuruAdd.jsp</result>
-    		<result name="success">/pages/modul/transaction/penggunaan/ruang/ruangGuruMain.jsp</result>
-    		<result name="error">/pages/modul/transaction/penggunaan/ruang/ruangGuruAdd.jsp</result>
-    	</action>
-    	<action name="SaveEditPenggunaanKRuangGuru" class="com.id.sima.modul.controller.BarangController" method="editPenggunaan">
-    		<interceptor-ref name="authStack"/>
-    		<result name="input">/pages/modul/transaction/penggunaan/penggunaanEdit.jsp</result>
-    		<result name="success">/pages/modul/transaction/penggunaan/ruang/ruangGuruMain.jsp</result>
-    		<result name="error">/pages/modul/transaction/penggunaan/penggunaanEdit.jsp</result>
-    	</action>
-    	<action name="DeletPenggunaan" class="com.id.sima.modul.controller.BarangController" method="deletPenggunaan">
-    		<interceptor-ref name="authStack"/>
-    		<result name="success">/pages/modul/transaction/penggunaan/ruang/ruangGuruMain.jsp</result>
-    		<result name="error">/pages/modul/transaction/penggunaan/ruang/ruangGuruMain.jsp</result>
+    		<result name="success">/pages/modul/user/penggunaan/sarana/perpus.jsp</result>
+    		<result name="error">/pages/modul/user/penggunaan/sarana/perpus.jsp</result>
     	</action>
     	<!-- Ruang Uks -->
     	<action name="SearchRuangUks" class="com.id.sima.modul.controller.PenggunaanController" method="searchAllUks">
@@ -336,22 +318,27 @@
     		<result name="success">/pages/modul/transaction/penggunaan/sarana/uksAdd.jsp</result>
     		<result name="error">/pages/modul/transaction/penggunaan/sarana/uksAdd.jsp</result>
     	</action>
-    	<action name="SavePenggunaanRuangUks" class="com.id.sima.modul.controller.BarangController" method="addUks">
+    	<action name="SavePenggunaanRuangUks" class="com.id.sima.modul.controller.PenggunaanController" method="addUks">
     		<interceptor-ref name="authStack"/>
     		<result name="input">/pages/modul/transaction/penggunaan/sarana/uksAdd.jsp</result>
     		<result name="success">/pages/modul/transaction/penggunaan/sarana/uksMain.jsp</result>
     		<result name="error">/pages/modul/transaction/penggunaan/sarana/uksAdd.jsp</result>
     	</action>
-    	<action name="SaveEditPenggunaanRuangUks" class="com.id.sima.modul.controller.BarangController" method="editPenggunaan">
+    	<action name="SaveEditPenggunaanRuangUks" class="com.id.sima.modul.controller.PenggunaanController" method="editPenggunaan">
     		<interceptor-ref name="authStack"/>
     		<result name="input">/pages/modul/transaction/penggunaan/penggunaanEdit.jsp</result>
     		<result name="success">/pages/modul/transaction/penggunaan/sarana/uksMain.jsp</result>
     		<result name="error">/pages/modul/transaction/penggunaan/penggunaanEdit.jsp</result>
     	</action>
-    	<action name="DeletPenggunaan" class="com.id.sima.modul.controller.BarangController" method="deletPenggunaan">
+    	<action name="DeletPenggunaanUks" class="com.id.sima.modul.controller.PenggunaanController" method="deletPenggunaan">
     		<interceptor-ref name="authStack"/>
     		<result name="success">/pages/modul/transaction/penggunaan/sarana/uksMain.jsp</result>
     		<result name="error">/pages/modul/transaction/penggunaan/sarana/uksMain.jsp</result>
+    	</action>
+    	<action name="RuangUks" class="com.id.sima.modul.controller.PenggunaanController" method="searchAllUks">
+    		<interceptor-ref name="authStack"/>
+    		<result name="success">/pages/modul/user/penggunaan/sarana/uks.jsp</result>
+    		<result name="error">/pages/modul/user/penggunaan/sarana/uks.jsp</result>
     	</action>
     	<!-- Ruang Lab Ipa -->
     	<action name="SearchRuangLabIpa" class="com.id.sima.modul.controller.PenggunaanController" method="searchAllLab">
@@ -365,22 +352,27 @@
     		<result name="success">/pages/modul/transaction/penggunaan/sarana/labIpaAdd.jsp</result>
     		<result name="error">/pages/modul/transaction/penggunaan/sarana/labIpaAdd.jsp</result>
     	</action>
-    	<action name="SavePenggunaanRuangLabIpa" class="com.id.sima.modul.controller.BarangController" method="addLab">
+    	<action name="SavePenggunaanRuangLabIpa" class="com.id.sima.modul.controller.PenggunaanController" method="addLab">
     		<interceptor-ref name="authStack"/>
     		<result name="input">/pages/modul/transaction/penggunaan/sarana/labIpaAdd.jsp</result>
     		<result name="success">/pages/modul/transaction/penggunaan/sarana/labIpaMain.jsp</result>
     		<result name="error">/pages/modul/transaction/penggunaan/sarana/labIpaAdd.jsp</result>
     	</action>
-    	<action name="SaveEditPenggunaanRuangLabIpa" class="com.id.sima.modul.controller.BarangController" method="editPenggunaan">
+    	<action name="SaveEditPenggunaanRuangLabIpa" class="com.id.sima.modul.controller.PenggunaanController" method="editPenggunaan">
     		<interceptor-ref name="authStack"/>
     		<result name="input">/pages/modul/transaction/penggunaan/penggunaanEdit.jsp</result>
     		<result name="success">/pages/modul/transaction/penggunaan/sarana/labIpaMain.jsp</result>
     		<result name="error">/pages/modul/transaction/penggunaan/penggunaanEdit.jsp</result>
     	</action>
-    	<action name="DeletPenggunaan" class="com.id.sima.modul.controller.BarangController" method="deletPenggunaan">
+    	<action name="DeletPenggunaanLab" class="com.id.sima.modul.controller.PenggunaanController" method="deletPenggunaan">
     		<interceptor-ref name="authStack"/>
     		<result name="success">/pages/modul/transaction/penggunaan/sarana/labIpaMain.jsp</result>
     		<result name="error">/pages/modul/transaction/penggunaan/sarana/labIpaMain.jsp</result>
+    	</action>
+    	<action name="RuangLabIpa" class="com.id.sima.modul.controller.PenggunaanController" method="searchAllLab">
+    		<interceptor-ref name="authStack"/>
+    		<result name="success">/pages/modul/user/penggunaan/sarana/labIpa.jsp</result>
+    		<result name="error">/pages/modul/user/penggunaan/sarana/labIpa.jsp</result>
     	</action>
     	<!-- Ruang Serbaguna -->
     	<action name="SearchRuangSerbaguna" class="com.id.sima.modul.controller.PenggunaanController" method="searchAllSerbaguna">
@@ -394,80 +386,27 @@
     		<result name="success">/pages/modul/transaction/penggunaan/sarana/ruangSerbagunaAdd.jsp</result>
     		<result name="error">/pages/modul/transaction/penggunaan/sarana/ruangSerbagunaAdd.jsp</result>
     	</action>
-    	<action name="SavePenggunaanRuangSerbaguna" class="com.id.sima.modul.controller.BarangController" method="addSerbaguna">
+    	<action name="SavePenggunaanRuangSerbaguna" class="com.id.sima.modul.controller.PenggunaanController" method="addSerbaguna">
     		<interceptor-ref name="authStack"/>
     		<result name="input">/pages/modul/transaction/penggunaan/sarana/ruangSerbagunaAdd.jsp</result>
     		<result name="success">/pages/modul/transaction/penggunaan/sarana/ruangSerbagunaMain.jsp</result>
     		<result name="error">/pages/modul/transaction/penggunaan/sarana/ruangSerbagunaAdd.jsp</result>
     	</action>
-    	<action name="SaveEditPenggunaanRuangSerbaguna" class="com.id.sima.modul.controller.BarangController" method="editPenggunaan">
+    	<action name="SaveEditPenggunaanRuangSerbaguna" class="com.id.sima.modul.controller.PenggunaanController" method="editPenggunaan">
     		<interceptor-ref name="authStack"/>
     		<result name="input">/pages/modul/transaction/penggunaan/penggunaanEdit.jsp</result>
     		<result name="success">/pages/modul/transaction/penggunaan/sarana/ruangSerbagunaMain.jsp</result>
     		<result name="error">/pages/modul/transaction/penggunaan/penggunaanEdit.jsp</result>
     	</action>
-    	<action name="DeletPenggunaan" class="com.id.sima.modul.controller.BarangController" method="deletPenggunaan">
+    	<action name="DeletPenggunaanRuangSerbaguna" class="com.id.sima.modul.controller.PenggunaanController" method="deletPenggunaan">
     		<interceptor-ref name="authStack"/>
     		<result name="success">/pages/modul/transaction/penggunaan/sarana/ruangSerbagunaMain.jsp</result>
     		<result name="error">/pages/modul/transaction/penggunaan/sarana/ruangSerbagunaMain.jsp</result>
     	</action>
-    	<!-- Gudang Peralatan -->
-    	<action name="SearchGudangPeralatan" class="com.id.sima.modul.controller.PenggunaanController" method="searchAllGudangPeralatan">
+    	<action name="RuangSerbaguna" class="com.id.sima.modul.controller.PenggunaanController" method="searchAllSerbaguna">
     		<interceptor-ref name="authStack"/>
-    		<result name="success">/pages/modul/transaction/penggunaan/ruang/ruangGudangPeralatanMain.jsp</result>
-    		<result name="error">/pages/modul/transaction/penggunaan/ruang/ruangGudangPeralatanMain.jsp</result>
-    	</action>
-    	<action name="AddPenggunaanGudangPeralatan">
-    		<interceptor-ref name="authStack"/>
-    		<result name="input">/pages/modul/transaction/penggunaan/ruang/ruangGudangPeralatanAdd.jsp</result>
-    		<result name="success">/pages/modul/transaction/penggunaan/ruang/ruangGudangPeralatanAdd.jsp</result>
-    		<result name="error">/pages/modul/transaction/penggunaan/ruang/ruangGudangPeralatanAdd.jsp</result>
-    	</action>
-    	<action name="SavePenggunaanGudangPeralatan" class="com.id.sima.modul.controller.BarangController" method="addGudangPeralatan">
-    		<interceptor-ref name="authStack"/>
-    		<result name="input">/pages/modul/transaction/penggunaan/ruang/ruangGudangPeralatanAdd.jsp</result>
-    		<result name="success">/pages/modul/transaction/penggunaan/ruang/ruangGudangPeralatanMain.jsp</result>
-    		<result name="error">/pages/modul/transaction/penggunaan/ruang/ruangGudangPeralatanAdd.jsp</result>
-    	</action>
-    	<action name="SaveEditPenggunaanGudangPeralatan" class="com.id.sima.modul.controller.BarangController" method="editPenggunaan">
-    		<interceptor-ref name="authStack"/>
-    		<result name="input">/pages/modul/transaction/penggunaan/penggunaanEdit.jsp</result>
-    		<result name="success">/pages/modul/transaction/penggunaan/ruang/ruangGudangPeralatanMain.jsp</result>
-    		<result name="error">/pages/modul/transaction/penggunaan/penggunaanEdit.jsp</result>
-    	</action>
-    	<action name="DeletPenggunaan" class="com.id.sima.modul.controller.BarangController" method="deletPenggunaan">
-    		<interceptor-ref name="authStack"/>
-    		<result name="success">/pages/modul/transaction/penggunaan/ruang/ruangGudangPeralatanMain.jsp</result>
-    		<result name="error">/pages/modul/transaction/penggunaan/ruang/ruangGudangPeralatanMain.jsp</result>
-    	</action>
-    	<!-- Gudang Perlengkapan -->
-    	<action name="SearchGudangPerlengkapan" class="com.id.sima.modul.controller.PenggunaanController" method="searchAllGudangPerlengkapan">
-    		<interceptor-ref name="authStack"/>
-    		<result name="success">/pages/modul/transaction/penggunaan/ruang/ruangGudangPerlengkapanMain.jsp</result>
-    		<result name="error">/pages/modul/transaction/penggunaan/ruang/ruangGudangPerlengkapanMain.jsp</result>
-    	</action>
-    	<action name="AddPenggunaanGudangPerlengkapan">
-    		<interceptor-ref name="authStack"/>
-    		<result name="input">/pages/modul/transaction/penggunaan/ruang/ruangGudangPerlengkapanAdd.jsp</result>
-    		<result name="success">/pages/modul/transaction/penggunaan/ruang/ruangGudangPerlengkapanAdd.jsp</result>
-    		<result name="error">/pages/modul/transaction/penggunaan/ruang/ruangGudangPerlengkapanAdd.jsp</result>
-    	</action>
-    	<action name="SavePenggunaanGudangPerlengkapan" class="com.id.sima.modul.controller.BarangController" method="addGudangPerlengkapan">
-    		<interceptor-ref name="authStack"/>
-    		<result name="input">/pages/modul/transaction/penggunaan/ruang/ruangGudangPerlengkapanAdd.jsp</result>
-    		<result name="success">/pages/modul/transaction/penggunaan/ruang/ruangGudangPerlengkapanMain.jsp</result>
-    		<result name="error">/pages/modul/transaction/penggunaan/ruang/ruangGudangPerlengkapanAdd.jsp</result>
-    	</action>
-    	<action name="SaveEditPenggunaanGudangPerlengkapan" class="com.id.sima.modul.controller.BarangController" method="editPenggunaan">
-    		<interceptor-ref name="authStack"/>
-    		<result name="input">/pages/modul/transaction/penggunaan/penggunaanEdit.jsp</result>
-    		<result name="success">/pages/modul/transaction/penggunaan/ruang/ruangGudangPerlengkapanMain.jsp</result>
-    		<result name="error">/pages/modul/transaction/penggunaan/penggunaanEdit.jsp</result>
-    	</action>
-    	<action name="DeletPenggunaan" class="com.id.sima.modul.controller.BarangController" method="deletPenggunaan">
-    		<interceptor-ref name="authStack"/>
-    		<result name="success">/pages/modul/transaction/penggunaan/ruang/ruangGudangPerlengkapanMain.jsp</result>
-    		<result name="error">/pages/modul/transaction/penggunaan/ruang/ruangGudangPerlengkapanMain.jsp</result>
+    		<result name="success">/pages/modul/user/penggunaan/sarana/ruangSerbaguna.jsp</result>
+    		<result name="error">/pages/modul/user/penggunaan/sarana/ruangSerbaguna.jsp</result>
     	</action>
     	<!-- Kamar Mandi Guru -->
     	<action name="SearchKamarMandiGuru" class="com.id.sima.modul.controller.PenggunaanController" method="searchAllKmGuru">
@@ -481,22 +420,27 @@
     		<result name="success">/pages/modul/transaction/penggunaan/sarana/kmGuruAdd.jsp</result>
     		<result name="error">/pages/modul/transaction/penggunaan/sarana/kmGuruAdd.jsp</result>
     	</action>
-    	<action name="SavePenggunaanKamarMandiGuru" class="com.id.sima.modul.controller.BarangController" method="addKmGuru">
+    	<action name="SavePenggunaanKamarMandiGuru" class="com.id.sima.modul.controller.PenggunaanController" method="addKmGuru">
     		<interceptor-ref name="authStack"/>
     		<result name="input">/pages/modul/transaction/penggunaan/sarana/kmGuruAdd.jsp</result>
     		<result name="success">/pages/modul/transaction/penggunaan/sarana/kmGuruMain.jsp</result>
     		<result name="error">/pages/modul/transaction/penggunaan/sarana/kmGuruAdd.jsp</result>
     	</action>
-    	<action name="SaveEditPenggunaanKamarMandiGuru" class="com.id.sima.modul.controller.BarangController" method="editPenggunaan">
+    	<action name="SaveEditPenggunaanKamarMandiGuru" class="com.id.sima.modul.controller.PenggunaanController" method="editPenggunaan">
     		<interceptor-ref name="authStack"/>
     		<result name="input">/pages/modul/transaction/penggunaan/penggunaanEdit.jsp</result>
     		<result name="success">/pages/modul/transaction/penggunaan/sarana/kmGuruMain.jsp</result>
     		<result name="error">/pages/modul/transaction/penggunaan/penggunaanEdit.jsp</result>
     	</action>
-    	<action name="DeletPenggunaan" class="com.id.sima.modul.controller.BarangController" method="deletPenggunaan">
+    	<action name="DeletPenggunaanKmGuru" class="com.id.sima.modul.controller.PenggunaanController" method="deletPenggunaan">
     		<interceptor-ref name="authStack"/>
     		<result name="success">/pages/modul/transaction/penggunaan/sarana/kmGuruMain.jsp</result>
     		<result name="error">/pages/modul/transaction/penggunaan/sarana/kmGuruMain.jsp</result>
+    	</action>
+    	<action name="KamarMandiGuru" class="com.id.sima.modul.controller.PenggunaanController" method="searchAllKmGuru">
+    		<interceptor-ref name="authStack"/>
+    		<result name="success">/pages/modul/user/penggunaan/sarana/kmGuru.jsp</result>
+    		<result name="error">/pages/modul/user/penggunaan/sarana/kmGuru.jsp</result>
     	</action>
     	<!-- Kamar Mandi Siswa -->
     	<action name="SearchKamarMandiSiswa" class="com.id.sima.modul.controller.PenggunaanController" method="searchAllKmSiswa">
@@ -510,22 +454,27 @@
     		<result name="success">/pages/modul/transaction/penggunaan/sarana/kmSiswaAdd.jsp</result>
     		<result name="error">/pages/modul/transaction/penggunaan/sarana/kmSiswaAdd.jsp</result>
     	</action>
-    	<action name="SavePenggunaanKamarMandiSiswa" class="com.id.sima.modul.controller.BarangController" method="addKmSiswa">
+    	<action name="SavePenggunaanKamarMandiSiswa" class="com.id.sima.modul.controller.PenggunaanController" method="addKmSiswa">
     		<interceptor-ref name="authStack"/>
     		<result name="input">/pages/modul/transaction/penggunaan/sarana/kmSiswaAdd.jsp</result>
     		<result name="success">/pages/modul/transaction/penggunaan/sarana/kmSiswaMain.jsp</result>
     		<result name="error">/pages/modul/transaction/penggunaan/sarana/kmSiswaAdd.jsp</result>
     	</action>
-    	<action name="SaveEditPenggunaanKamarMandiSiswa" class="com.id.sima.modul.controller.BarangController" method="editPenggunaan">
+    	<action name="SaveEditPenggunaanKamarMandiSiswa" class="com.id.sima.modul.controller.PenggunaanController" method="editPenggunaan">
     		<interceptor-ref name="authStack"/>
     		<result name="input">/pages/modul/transaction/penggunaan/penggunaanEdit.jsp</result>
     		<result name="success">/pages/modul/transaction/penggunaan/sarana/kmSiswaMain.jsp</result>
     		<result name="error">/pages/modul/transaction/penggunaan/penggunaanEdit.jsp</result>
     	</action>
-    	<action name="DeletPenggunaan" class="com.id.sima.modul.controller.BarangController" method="deletPenggunaan">
+    	<action name="DeletPenggunaanKmSiswa" class="com.id.sima.modul.controller.PenggunaanController" method="deletPenggunaan">
     		<interceptor-ref name="authStack"/>
     		<result name="success">/pages/modul/transaction/penggunaan/sarana/kmSiswaMain.jsp</result>
     		<result name="error">/pages/modul/transaction/penggunaan/sarana/kmSiswaMain.jsp</result>
+    	</action>
+    	<action name="KamarMandiSiswa" class="com.id.sima.modul.controller.PenggunaanController" method="searchAllKmSiswa">
+    		<interceptor-ref name="authStack"/>
+    		<result name="success">/pages/modul/user/penggunaan/sarana/kmSiswa.jsp</result>
+    		<result name="error">/pages/modul/user/penggunaan/sarana/kmSiswa.jsp</result>
     	</action>
     	<!-- Kamar Mandi Serbaguna -->
     	<action name="SearchKamarMandiSerbaguna" class="com.id.sima.modul.controller.PenggunaanController" method="searchAllKmSerbaguna">
@@ -539,22 +488,163 @@
     		<result name="success">/pages/modul/transaction/penggunaan/sarana/kmSerbagunaAdd.jsp</result>
     		<result name="error">/pages/modul/transaction/penggunaan/sarana/kmSerbagunaAdd.jsp</result>
     	</action>
-    	<action name="SavePenggunaanKamarMandiSerbaguna" class="com.id.sima.modul.controller.BarangController" method="addKmSerbaguna">
+    	<action name="SavePenggunaanKamarMandiSerbaguna" class="com.id.sima.modul.controller.PenggunaanController" method="addKmSerbaguna">
     		<interceptor-ref name="authStack"/>
     		<result name="input">/pages/modul/transaction/penggunaan/sarana/kmSerbagunaAdd.jsp</result>
     		<result name="success">/pages/modul/transaction/penggunaan/sarana/kmSerbagunaMain.jsp</result>
     		<result name="error">/pages/modul/transaction/penggunaan/sarana/kmSerbagunaAdd.jsp</result>
     	</action>
-    	<action name="SaveEditPenggunaanKamarMandiSerbaguna" class="com.id.sima.modul.controller.BarangController" method="editPenggunaan">
+    	<action name="SaveEditPenggunaanKamarMandiSerbaguna" class="com.id.sima.modul.controller.PenggunaanController" method="editPenggunaan">
     		<interceptor-ref name="authStack"/>
     		<result name="input">/pages/modul/transaction/penggunaan/penggunaanEdit.jsp</result>
     		<result name="success">/pages/modul/transaction/penggunaan/sarana/kmSerbagunaMain.jsp</result>
     		<result name="error">/pages/modul/transaction/penggunaan/penggunaanEdit.jsp</result>
     	</action>
-    	<action name="DeletPenggunaan" class="com.id.sima.modul.controller.BarangController" method="deletPenggunaan">
+    	<action name="DeletPenggunaanKms" class="com.id.sima.modul.controller.PenggunaanController" method="deletPenggunaan">
     		<interceptor-ref name="authStack"/>
     		<result name="success">/pages/modul/transaction/penggunaan/sarana/kmSerbagunaMain.jsp</result>
     		<result name="error">/pages/modul/transaction/penggunaan/sarana/kmSerbagunaMain.jsp</result>
+    	</action>
+    	<action name="KamarMandiSerbaguna" class="com.id.sima.modul.controller.PenggunaanController" method="searchAllKmSerbaguna">
+    		<interceptor-ref name="authStack"/>
+    		<result name="success">/pages/modul/user/penggunaan/sarana/kmSerbaguna.jsp</result>
+    		<result name="error">/pages/modul/user/penggunaan/sarana/kmSerbaguna.jsp</result>
+    	</action>
+    	<!-- Kepala Sekolah -->
+    	<action name="SearchRuangKepalaSekolah" class="com.id.sima.modul.controller.PenggunaanController" method="searchAllKepsek">
+    		<interceptor-ref name="authStack"/>
+    		<result name="success">/pages/modul/transaction/penggunaan/ruang/ruangKetuaMain.jsp</result>
+    		<result name="error">/pages/modul/transaction/penggunaan/ruang/ruangKetuaMain.jsp</result>
+    	</action>
+    	<action name="AddPenggunaanRuangKepalaSekolah">
+    		<interceptor-ref name="authStack"/>
+    		<result name="input">/pages/modul/transaction/penggunaan/ruang/ruangKetuaAdd.jsp</result>
+    		<result name="success">/pages/modul/transaction/penggunaan/ruang/ruangKetuaAdd.jsp</result>
+    		<result name="error">/pages/modul/transaction/penggunaan/ruang/ruangKetuaAdd.jsp</result>
+    	</action>
+    	<action name="SavePenggunaanRuangKepalaSekolah" class="com.id.sima.modul.controller.PenggunaanController" method="addKepsek">
+    		<interceptor-ref name="authStack"/>
+    		<result name="input">/pages/modul/transaction/penggunaan/ruang/ruangKetuaAdd.jsp</result>
+    		<result name="success">/pages/modul/transaction/penggunaan/ruang/ruangKetuaMain.jsp</result>
+    		<result name="error">/pages/modul/transaction/penggunaan/ruang/ruangKetuaAdd.jsp</result>
+    	</action>
+    	<action name="SaveEditPenggunaanRuangKepalaSekolah" class="com.id.sima.modul.controller.PenggunaanController" method="editPenggunaan">
+    		<interceptor-ref name="authStack"/>
+    		<result name="input">/pages/modul/transaction/penggunaan/penggunaanEdit.jsp</result>
+    		<result name="success">/pages/modul/transaction/penggunaan/ruang/ruangKetuaMain.jsp</result>
+    		<result name="error">/pages/modul/transaction/penggunaan/penggunaanEdit.jsp</result>
+    	</action>
+    	<action name="DeletPenggunaanRks" class="com.id.sima.modul.controller.PenggunaanController" method="deletPenggunaan">
+    		<interceptor-ref name="authStack"/>
+    		<result name="success">/pages/modul/transaction/penggunaan/ruang/ruangKetuaMain.jsp</result>
+    		<result name="error">/pages/modul/transaction/penggunaan/ruang/ruangKetuaMain.jsp</result>
+    	</action>
+    	<action name="RuangKepalaSekolah" class="com.id.sima.modul.controller.PenggunaanController" method="searchAllKepsek">
+    		<interceptor-ref name="authStack"/>
+    		<result name="success">/pages/modul/user/penggunaan/ruangan/ruangKetua.jsp</result>
+    		<result name="error">/pages/modul/user/penggunaan/ruangan/ruangKetua.jsp</result>
+    	</action>
+    	<!-- Ruang Guru -->
+    	<action name="SearchRuangGuru" class="com.id.sima.modul.controller.PenggunaanController" method="searchAllGuru">
+    		<interceptor-ref name="authStack"/>
+    		<result name="success">/pages/modul/transaction/penggunaan/ruang/ruangGuruMain.jsp</result>
+    		<result name="error">/pages/modul/transaction/penggunaan/ruang/ruangGuruMain.jsp</result>
+    	</action>
+    	<action name="AddPenggunaanRuangGuru">
+    		<interceptor-ref name="authStack"/>
+    		<result name="input">/pages/modul/transaction/penggunaan/ruang/ruangGuruAdd.jsp</result>
+    		<result name="success">/pages/modul/transaction/penggunaan/ruang/ruangGuruAdd.jsp</result>
+    		<result name="error">/pages/modul/transaction/penggunaan/ruang/ruangGuruAdd.jsp</result>
+    	</action>
+    	<action name="SavePenggunaanRuangGuru" class="com.id.sima.modul.controller.PenggunaanController" method="addGuru">
+    		<interceptor-ref name="authStack"/>
+    		<result name="input">/pages/modul/transaction/penggunaan/ruang/ruangGuruAdd.jsp</result>
+    		<result name="success">/pages/modul/transaction/penggunaan/ruang/ruangGuruMain.jsp</result>
+    		<result name="error">/pages/modul/transaction/penggunaan/ruang/ruangGuruAdd.jsp</result>
+    	</action>
+    	<action name="SaveEditPenggunaanKRuangGuru" class="com.id.sima.modul.controller.PenggunaanController" method="editPenggunaan">
+    		<interceptor-ref name="authStack"/>
+    		<result name="input">/pages/modul/transaction/penggunaan/penggunaanEdit.jsp</result>
+    		<result name="success">/pages/modul/transaction/penggunaan/ruang/ruangGuruMain.jsp</result>
+    		<result name="error">/pages/modul/transaction/penggunaan/penggunaanEdit.jsp</result>
+    	</action>
+    	<action name="DeletPenggunaanRg" class="com.id.sima.modul.controller.PenggunaanController" method="deletPenggunaan">
+    		<interceptor-ref name="authStack"/>
+    		<result name="success">/pages/modul/transaction/penggunaan/ruang/ruangGuruMain.jsp</result>
+    		<result name="error">/pages/modul/transaction/penggunaan/ruang/ruangGuruMain.jsp</result>
+    	</action>
+    	<action name="RuangGuru" class="com.id.sima.modul.controller.PenggunaanController" method="searchAllGuru">
+    		<interceptor-ref name="authStack"/>
+    		<result name="success">/pages/modul/user/penggunaan/ruangan/ruangGuru.jsp</result>
+    		<result name="error">/pages/modul/user/penggunaan/ruangan/ruangGuru.jsp</result>
+    	</action>
+    	<!-- Gudang Peralatan -->
+    	<action name="SearchGudangPeralatan" class="com.id.sima.modul.controller.PenggunaanController" method="searchAllGudangPeralatan">
+    		<interceptor-ref name="authStack"/>
+    		<result name="success">/pages/modul/transaction/penggunaan/ruang/ruangGudangPeralatanMain.jsp</result>
+    		<result name="error">/pages/modul/transaction/penggunaan/ruang/ruangGudangPeralatanMain.jsp</result>
+    	</action>
+    	<action name="AddPenggunaanGudangPeralatan">
+    		<interceptor-ref name="authStack"/>
+    		<result name="input">/pages/modul/transaction/penggunaan/ruang/ruangGudangPeralatanAdd.jsp</result>
+    		<result name="success">/pages/modul/transaction/penggunaan/ruang/ruangGudangPeralatanAdd.jsp</result>
+    		<result name="error">/pages/modul/transaction/penggunaan/ruang/ruangGudangPeralatanAdd.jsp</result>
+    	</action>
+    	<action name="SavePenggunaanGudangPeralatan" class="com.id.sima.modul.controller.PenggunaanController" method="addGudangPeralatan">
+    		<interceptor-ref name="authStack"/>
+    		<result name="input">/pages/modul/transaction/penggunaan/ruang/ruangGudangPeralatanAdd.jsp</result>
+    		<result name="success">/pages/modul/transaction/penggunaan/ruang/ruangGudangPeralatanMain.jsp</result>
+    		<result name="error">/pages/modul/transaction/penggunaan/ruang/ruangGudangPeralatanAdd.jsp</result>
+    	</action>
+    	<action name="SaveEditPenggunaanGudangPeralatan" class="com.id.sima.modul.controller.PenggunaanController" method="editPenggunaan">
+    		<interceptor-ref name="authStack"/>
+    		<result name="input">/pages/modul/transaction/penggunaan/penggunaanEdit.jsp</result>
+    		<result name="success">/pages/modul/transaction/penggunaan/ruang/ruangGudangPeralatanMain.jsp</result>
+    		<result name="error">/pages/modul/transaction/penggunaan/penggunaanEdit.jsp</result>
+    	</action>
+    	<action name="DeletPenggunaanGudangPeralatan" class="com.id.sima.modul.controller.PenggunaanController" method="deletPenggunaan">
+    		<interceptor-ref name="authStack"/>
+    		<result name="success">/pages/modul/transaction/penggunaan/ruang/ruangGudangPeralatanMain.jsp</result>
+    		<result name="error">/pages/modul/transaction/penggunaan/ruang/ruangGudangPeralatanMain.jsp</result>
+    	</action>
+    	<action name="GudangPeralatan" class="com.id.sima.modul.controller.PenggunaanController" method="searchAllGudangPeralatan">
+    		<interceptor-ref name="authStack"/>
+    		<result name="success">/pages/modul/user/penggunaan/ruangan/rgPeralatan.jsp</result>
+    		<result name="error">/pages/modul/user/penggunaan/ruangan/rgPeralatan.jsp</result>
+    	</action>
+    	<!-- Gudang Perlengkapan -->
+    	<action name="SearchGudangPerlengkapan" class="com.id.sima.modul.controller.PenggunaanController" method="searchAllGudangPerlengkapan">
+    		<interceptor-ref name="authStack"/>
+    		<result name="success">/pages/modul/transaction/penggunaan/ruang/ruangGudangPerlengkapanMain.jsp</result>
+    		<result name="error">/pages/modul/transaction/penggunaan/ruang/ruangGudangPerlengkapanMain.jsp</result>
+    	</action>
+    	<action name="AddPenggunaanGudangPerlengkapan">
+    		<interceptor-ref name="authStack"/>
+    		<result name="input">/pages/modul/transaction/penggunaan/ruang/ruangGudangPerlengkapanAdd.jsp</result>
+    		<result name="success">/pages/modul/transaction/penggunaan/ruang/ruangGudangPerlengkapanAdd.jsp</result>
+    		<result name="error">/pages/modul/transaction/penggunaan/ruang/ruangGudangPerlengkapanAdd.jsp</result>
+    	</action>
+    	<action name="SavePenggunaanGudangPerlengkapan" class="com.id.sima.modul.controller.PenggunaanController" method="addGudangPerlengkapan">
+    		<interceptor-ref name="authStack"/>
+    		<result name="input">/pages/modul/transaction/penggunaan/ruang/ruangGudangPerlengkapanAdd.jsp</result>
+    		<result name="success">/pages/modul/transaction/penggunaan/ruang/ruangGudangPerlengkapanMain.jsp</result>
+    		<result name="error">/pages/modul/transaction/penggunaan/ruang/ruangGudangPerlengkapanAdd.jsp</result>
+    	</action>
+    	<action name="SaveEditPenggunaanGudangPerlengkapan" class="com.id.sima.modul.controller.PenggunaanController" method="editPenggunaan">
+    		<interceptor-ref name="authStack"/>
+    		<result name="input">/pages/modul/transaction/penggunaan/penggunaanEdit.jsp</result>
+    		<result name="success">/pages/modul/transaction/penggunaan/ruang/ruangGudangPerlengkapanMain.jsp</result>
+    		<result name="error">/pages/modul/transaction/penggunaan/penggunaanEdit.jsp</result>
+    	</action>
+    	<action name="DeletPenggunaanGudangPerlengkapan" class="com.id.sima.modul.controller.PenggunaanController" method="deletPenggunaan">
+    		<interceptor-ref name="authStack"/>
+    		<result name="success">/pages/modul/transaction/penggunaan/ruang/ruangGudangPerlengkapanMain.jsp</result>
+    		<result name="error">/pages/modul/transaction/penggunaan/ruang/ruangGudangPerlengkapanMain.jsp</result>
+    	</action>
+    	<action name="GudangPerlengkapan" class="com.id.sima.modul.controller.PenggunaanController" method="searchAllGudangPerlengkapan">
+    		<interceptor-ref name="authStack"/>
+    		<result name="success">/pages/modul/user/penggunaan/ruangan/rgPerlengkapan.jsp</result>
+    		<result name="error">/pages/modul/user/penggunaan/ruangan/rgPerlengkapan.jsp</result>
     	</action>
     </package>
 </struts>

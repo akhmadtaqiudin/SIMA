@@ -22,9 +22,6 @@
   	<select id="count" parameterType="com.id.sima.modul.model.Ruangan" resultType="java.lang.Integer">
   		SELECT COUNT(*) FROM m_ruangan WHERE lower(nama_ruangan) = lower(#{namaRuangan})
   	</select>
-	<select id="selectList" parameterType="com.id.sima.modul.model.Ruangan" resultMap="BaseResultMap">
-		SELECT * FROM m_ruangan order by kode_ruangan asc
-	</select>
 	<insert id="insertRecord" parameterType="com.id.sima.modul.model.Ruangan">
 		INSERT INTO m_ruangan(kode_ruangan, nama_ruangan, panjang, lebar)
     	VALUES (#{kodeRuangan},#{namaRuangan},#{panjang},#{lebar})

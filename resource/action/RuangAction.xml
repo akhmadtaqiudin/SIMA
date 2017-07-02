@@ -27,16 +27,10 @@
     		<result name="success">/pages/modul/inventaris/ruanganMain.jsp</result>
     		<result name="error">/pages/modul/inventaris/ruanganMain.jsp</result>
     	</action>
-    	<action name="SelectListRuangan" class="com.id.sima.modul.controller.RuanganController" method="selectList">
+    	<action name="Ruangan" class="com.id.sima.modul.controller.RuanganController" method="searchAllRecord">
     		<interceptor-ref name="authStack"/>
-    		<result name="success">/pages/modul/inventaris/ruanganMain.jsp</result>
-    		<result name="error">/pages/modul/inventaris/ruanganMain.jsp</result>
-    	</action>
-    	<action name="SelectByJson" class="com.id.sima.modul.controller.RuanganController" method="searchKodeToJson">
-    		<result type="json">
-                <param name="noCache">true</param>
-		        <param name="root">ruangan</param>
-    		</result>
+    		<result name="success">/pages/modul/user/ruangan.jsp</result>
+    		<result name="error">/pages/modul/user/ruangan.jsp</result>
     	</action>
     	<action name="AddRuangan">
     		<interceptor-ref name="authStack"/>

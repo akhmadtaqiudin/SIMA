@@ -5,7 +5,6 @@
 	<resultMap id="BaseResultMap" type="com.id.sima.modul.model.Barang" >
 	    <result column="kode_barang" property="kodeBarang"/>
 	    <result column="nama_barang" property="namaBarang" />
-	    <result column="keterangan" property="keterangan" />
 	    <result column="merek" property="merek" />
 	    <result column="jenis" property="jenis" />
 	    <result column="satuan" property="satuan" />
@@ -25,20 +24,23 @@
   		SELECT COUNT(*) FROM m_barang 
   	</select>
   	<select id="count" parameterType="com.id.sima.modul.model.Barang" resultType="java.lang.Integer">
-  		SELECT COUNT(*) FROM m_barang WHERE lower(nama_barang)=lower(#{namaBarang}) AND lower(keterangan)=lower(#{keterangan})
+  		SELECT COUNT(*) FROM m_barang WHERE lower(nama_barang)=lower(#{namaBarang}) AND jenis=#{jenis}
   	</select>
 	<select id="selectList" parameterType="com.id.sima.modul.model.Barang" resultMap="BaseResultMap">
 		SELECT * FROM m_barang order by kode_barang asc
 	</select>
+	<select id="selectToJson" parameterType="com.id.sima.modul.model.Barang" resultMap="BaseResultMap">
+		SELECT * FROM m_barang WHERE nama_barang=#{namaBarang} order by nama_barang asc
+	</select>
 	<insert id="insertRecord" parameterType="com.id.sima.modul.model.Barang">
 		INSERT INTO m_barang(
-            kode_barang, nama_barang, keterangan, merek, jenis, satuan, jumlah, harga)
+            kode_barang, nama_barang, merek, jenis, satuan, jumlah, harga)
     	VALUES
-			(#{kodeBarang},#{namaBarang},#{keterangan},#{merek},#{jenis},#{satuan},#{jumlah},#{harga})
+			(#{kodeBarang},#{namaBarang},#{merek},#{jenis},#{satuan},#{jumlah},#{harga})
 	</insert>
 	<update id="updateRecord" parameterType="com.id.sima.modul.model.Barang">
 		UPDATE m_barang SET
-		nama_barang=#{namaBarang}, keterangan=#{keterangan}, merek=#{merek}, 
+		nama_barang=#{namaBarang}, merek=#{merek}, 
 		satuan=#{satuan}, jumlah=#{jumlah}, harga=#{harga}
 		WHERE kode_barang=#{kodeBarang}
 	</update>
