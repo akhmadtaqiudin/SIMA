@@ -86,7 +86,7 @@
 				<s:textfield name="barang.merek" label="Merek " labelSeparator=":" readonly="true"/>
 				<s:textfield name="barang.satuan" label="Satuan " labelSeparator=":" readonly="true"/>
 				<s:textfield name="barang.jumlah" label="Jumlah " labelSeparator=":" readonly="true"/>
-				<s:textfield name="barang.harga" label="Harga " labelSeparator=":" readonly="true"/>
+				<s:textfield name="barang.harga" label="Harga Satuan " labelSeparator=":" readonly="true"/>
 				<div class="footer">
 					<s:if test="%{barang.jenis=='1'}">
 						<s:submit action="SearchAllBarang" value="Close" cssClass="btn btn-default" id="view"/>

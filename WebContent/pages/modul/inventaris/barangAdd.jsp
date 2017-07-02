@@ -89,7 +89,7 @@
 				<s:select list="#{'Box':'Box','Buah':'Buah','Dus':'Dus','Keping':'Keping','Pak':'Pak','Rim':'Rim','Pcs':'Pcs','Set':'Set'}"  
 					headerKey="0" headerValue="==Pilih==" name="barang.satuan" label="Satuan " labelSeparator=":" />
 				<s:textfield name="barang.jumlah" label="Jumlah " labelSeparator=":"/>
-				<s:textfield name="barang.harga" label="Harga " labelSeparator=":"/>
+				<s:textfield name="barang.harga" label="Harga Satuan " labelSeparator=":"/>
 				<div class="footer">
 					<s:submit action="SearchAllBarang" value="Cansel" cssClass="btn btn-default"/>
 					<s:submit action="SaveBarang" value="Save" cssClass="btn btn-primary"/>

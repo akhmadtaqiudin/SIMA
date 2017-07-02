@@ -84,11 +84,12 @@
             </li>
         </ul>
         </div>
-        <div data-options="region:'center',title:'Data Pengadaan Barang'" class="center">
+        <div data-options="region:'center',title:'Data Laporan Pengadaan Barang'" class="center">
             <div class="view">
 			  <s:form namespace="/pengadaanBarang" id="form" method="pos">
-				<s:textfield name="pengadaan.namaBarang" placeholder="Nama Barang " cssClass="search"/>
-				<s:submit value="Search" action="SearchAllPengadaan" cssClass="btn btn-default btn-sm btnSrc" />
+				<s:textfield name="pengadaan.namaBarang" placeholder="Nama Barang " cssStyle="margin-right:-293px;"/>
+				<s:submit value="Search" action="SearchAllPengadaan" cssClass="btn btn-default btn-sm" cssStyle="margin-bottom:-54px;margin-right:-17px;" />
+			  	<s:submit value="ExportExcel" action="ExportExcel" cssClass="btn btn-default btn-sm" cssStyle="margin-right:47px;" />
 			  </s:form>
 			  <display:table id="listTablePengadaan" name="listPengadaan" pagesize="10"
 				 requestURI="/pengadaanBarang/SearchAllPengadaan.action" class="table table-bordered table-hover table-striped" >

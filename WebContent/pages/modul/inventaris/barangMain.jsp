@@ -101,9 +101,9 @@
 				<display:column title="Satuan " property="satuan" />
 				<display:column title="Jumlah " property="jumlah"  />
 				<display:column title="Action">
-				    <a class="btn btn-warning btn-xs" href="${pageContext.request.contextPath}/barang/EditBarang.action?barang.kodeBarang=<%=((Barang) pageContext.getAttribute("listTableBarang")).getKodeBarang()%>">Edit</a>
-					<a class="btn btn-danger btn-xs" href="${pageContext.request.contextPath}/barang/DeletBarang.action?barang.kodeBarang=<%=((Barang) pageContext.getAttribute("listTableBarang")).getKodeBarang()%>">Delete</a>
-					<a class="btn btn-default btn-xs" href="${pageContext.request.contextPath}/barang/ViewBarang.action?barang.kodeBarang=<%=((Barang) pageContext.getAttribute("listTableBarang")).getKodeBarang()%>">View</a>
+				    <a class="btn btn-warning btn-xs" href="${pageContext.request.contextPath}/barang/EditBarang.action?barang.kodeBarang=<%=((Barang) pageContext.getAttribute("listTableBarang")).getKodeBarang()%>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>Edit</a>
+					<a class="btn btn-danger btn-xs" href="${pageContext.request.contextPath}/barang/DeletBarang.action?barang.kodeBarang=<%=((Barang) pageContext.getAttribute("listTableBarang")).getKodeBarang()%>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Delete</a>
+					<a class="btn btn-default btn-xs" href="${pageContext.request.contextPath}/barang/ViewBarang.action?barang.kodeBarang=<%=((Barang) pageContext.getAttribute("listTableBarang")).getKodeBarang()%>"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>View</a>
 				</display:column>	
 			   </display:table>
 			</div>

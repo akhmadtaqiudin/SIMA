@@ -89,6 +89,7 @@
         <div data-options="region:'center',title:'Data Penggunaan Gudang Peralatan'" class="center">
         	<div class="view">
 			  <s:form namespace="/penggunaanBarang" id="form">
+			  	<s:hidden name="penggunaan.kodeRuangan"/>
 				<s:textfield name="penggunaan.namaBarang" placeholder="Nama Barang " cssClass="search"/>
 				<s:submit value="Search" action="SearchGudangPeralatan" cssClass="btn btn-default btn-sm btnSrc" />
 				<input value="Reset" class="btn btn-default btn-sm btnRst" />
@@ -103,9 +104,9 @@
 				<display:column title="Jumlah " property="jumlah" />
 				<display:column title="Keterangan " property="keterangan" />
 				<display:column title="Action">
-				  <a class="btn btn-warning btn-xs" href="${pageContext.request.contextPath}/penggunaanBarang/EditPenggunaan.action?penggunaan.kodePenggunaan=<%=((Penggunaan) pageContext.getAttribute("listTablePenggunaan")).getKodePenggunaan()%>">Edit</a>
-				  <a class="btn btn-danger btn-xs" href="${pageContext.request.contextPath}/penggunaanBarang/DeletPenggunaanGudangPeralatan.action?penggunaan.kodePenggunaan=<%=((Penggunaan) pageContext.getAttribute("listTablePenggunaan")).getKodePenggunaan()%>">Delete</a>
-				  <a class="btn btn-default btn-xs" href="${pageContext.request.contextPath}/penggunaanBarang/ViewPenggunaan.action?penggunaan.kodePenggunaan=<%=((Penggunaan) pageContext.getAttribute("listTablePenggunaan")).getKodePenggunaan()%>">View</a>
+				  <a class="btn btn-warning btn-xs" href="${pageContext.request.contextPath}/penggunaanBarang/EditPenggunaan.action?penggunaan.kodePenggunaan=<%=((Penggunaan) pageContext.getAttribute("listTablePenggunaan")).getKodePenggunaan()%>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>Edit</a>
+				  <a class="btn btn-danger btn-xs" href="${pageContext.request.contextPath}/penggunaanBarang/DeletPenggunaanGudangPeralatan.action?penggunaan.kodePenggunaan=<%=((Penggunaan) pageContext.getAttribute("listTablePenggunaan")).getKodePenggunaan()%>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Delete</a>
+				  <a class="btn btn-default btn-xs" href="${pageContext.request.contextPath}/penggunaanBarang/ViewPenggunaan.action?penggunaan.kodePenggunaan=<%=((Penggunaan) pageContext.getAttribute("listTablePenggunaan")).getKodePenggunaan()%>"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>View</a>
 				</display:column>	
 			   </display:table>
 			</div>

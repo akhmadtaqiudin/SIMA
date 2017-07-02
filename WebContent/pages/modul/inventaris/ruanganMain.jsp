@@ -101,9 +101,9 @@
 				<display:column title="Panjang " property="panjang"  />
 				<display:column title="Lebar " property="lebar" />
 				<display:column title="Action">
-				  <a class="btn btn-warning btn-xs" href="${pageContext.request.contextPath}/masterRuangan/EditRuangan.action?ruangan.kodeRuangan=<%=((Ruangan) pageContext.getAttribute("listTableRuangan")).getKodeRuangan()%>">Edit</a>
-				  <a class="btn btn-danger btn-xs" href="${pageContext.request.contextPath}/masterRuangan/DeletRuangan.action?ruangan.kodeRuangan=<%=((Ruangan) pageContext.getAttribute("listTableRuangan")).getKodeRuangan()%>">Delete</a>
-				  <a class="btn btn-default btn-xs" href="${pageContext.request.contextPath}/masterRuangan/ViewRuangan.action?ruangan.kodeRuangan=<%=((Ruangan) pageContext.getAttribute("listTableRuangan")).getKodeRuangan()%>">View</a>
+				  <a class="btn btn-warning btn-xs" href="${pageContext.request.contextPath}/masterRuangan/EditRuangan.action?ruangan.kodeRuangan=<%=((Ruangan) pageContext.getAttribute("listTableRuangan")).getKodeRuangan()%>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>Edit</a>
+				  <a class="btn btn-danger btn-xs" href="${pageContext.request.contextPath}/masterRuangan/DeletRuangan.action?ruangan.kodeRuangan=<%=((Ruangan) pageContext.getAttribute("listTableRuangan")).getKodeRuangan()%>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Delete</a>
+				  <a class="btn btn-default btn-xs" href="${pageContext.request.contextPath}/masterRuangan/ViewRuangan.action?ruangan.kodeRuangan=<%=((Ruangan) pageContext.getAttribute("listTableRuangan")).getKodeRuangan()%>"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>View</a>
 				</display:column>	
 			   </display:table>
 			</div>

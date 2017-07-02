@@ -70,7 +70,7 @@
                     </li>
                     <li data-options="state:'closed'">
                         <span>Laporan</span>
-                        <ul>
+                       <ul>
                             <li><a href="${pageContext.request.contextPath}/pengadaanBarang/ReportPengadaan.action">Laporan Pengadaan Barang</a></li>
                         </ul>
                     </li>
@@ -85,16 +85,15 @@
                 </div>
                 <s:action namespace="/barang" name="SelectListBarang" id="slb"/>
 				  <s:form namespace="/pengadaanBarang" method="post" theme="bootstrap" cssClass="form-horizontal" >
-				  	<s:textfield name="pengadaan.tanggal" label="Tanggal Pengadaan " labelSeparator=":" readonly="true" />
 				  	<s:textfield name="pengadaan.kodePengadaan" label="Kode Pengadaan " labelSeparator=":" readonly="true" />
 					<s:textfield name="pengadaan.kodeBarang" label="Kode Barang " labelSeparator=":" readonly="true" />
 					<s:textfield name="pengadaan.namaBarang" label="Nama Barang " labelSeparator=":" readonly="true" />
-					<s:textarea  name="pengadaan.keterangan" label="Keterangan " labelSeparator=":" readonly="true"/>
 					<s:textfield name="pengadaan.merek" label="Merek " labelSeparator=":" readonly="true"/>
 					<s:textfield name="pengadaan.satuan" label="Satuan " labelSeparator=":" readonly="true"/>
 					<s:textfield name="pengadaan.jumlah" label="Jumlah " labelSeparator=":" readonly="true"/>
 					<div class="footer">
-						<s:submit action="SearchAllPengadaan" value="Close" cssClass="btn btn-default" id="view"/>
+						<s:submit action="SearchAllPengadaan" value="Close" cssClass="btn btn-default"/>
+						<s:submit action="SubmitPengadaan" value="Submit" cssClass="btn btn-success"/>
 					</div>
 			    </s:form>
 			</div>
